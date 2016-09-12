@@ -1,82 +1,156 @@
 Top 15 most common tickers:
-AAPL:	27
-MYL:	19
-LULU:	17
-AVGO:	17
-PANW:	16
-CRM:	15
-ANF:	11
-TSLA:	11
-PAY:	11
-ESI:	10
-NAV:	10
-TWTR:	10
-MRVL:	10
-HLF:	10
-RIGL:	9
-
-----------------------------
-----------------------------
+AAPL:	38
+TSCO:	14
+FNSR:	13
+NAV:	12
+HPE:	10
+CPHD:	9
+PIR:	8
+MON:	8
+CLCD:	8
+TSLA:	8
+CMG:	8
+WDC:	7
+RTRX:	7
+INTC:	7
+GEVO:	7
 
 -----------------------------------------------------------
+[#1 / 811 total tickers] AAPL
 -----------------------------------------------------------
-[#1 / 996 tickers] All 27 articles for AAPL:
------------------------------------------------------------
------------------------------------------------------------
-name:		Apple (AAPL) Hits Twitter
-href:		Corporate+News/Apple+%28AAPL%29+Hits+Twitter/11998258.html
-date:		September 2, 2016
+
+-----------------------------
+Stock info for AAPL at 2016-09-11 19:30:13.082011
+-----------------------------
+200day_moving_avg: 101.60
+50day_moving_avg: 106.28
+avg_daily_volume: 33220400
+book_value: 23.46
+change: -2.39
+days_high: 105.72
+days_low: 103.13
+dividend_share: 2.28
+dividend_yield: 2.16
+earnings_growth_ratio: 1.67
+earnings_share: 8.58
+ebitda: 73.96B
+market_cap: 555.71B
+name: AAPL
+open: 104.61
+prev_close: 105.52
+price: 103.13
+price_book: 4.50
+price_earnings_ratio: 12.03
+price_sales: 2.58
+short_ratio: 1.51
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 46556984
+year_high: 123.82
+year_low: 89.47
+
+-----------------------------
+All 38 articles for AAPL
+-----------------------------
+name:		UPDATE: Apple (AAPL) Sees Selling Out Opening Weekend iPhone 7 Supply - Bloomberg, Citing Email
+href:		Corporate+News/UPDATE%3A+Apple+%28AAPL%29+Sees+Selling+Out+Opening+Weekend+iPhone+7+Supply+-+Bloomberg%2C+Citing+Email/12014935.html
+date:		September 8, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) sees no near-term impact on results from EC opinion - Bloomberg
-href:		Corporate+News/Apple+%28AAPL%29+sees+no+near-term+impact+on+results+from+EC+opinion+-+Bloomberg/11988968.html
-date:		August 31, 2016
+name:		In a Break from Past, Apple (AAPL) Will Not Release iPhone 7 Pre-Order Numbers
+href:		Corporate+News/In+a+Break+from+Past%2C+Apple+%28AAPL%29+Will+Not+Release+iPhone+7+Pre-Order+Numbers/12013552.html
+date:		September 8, 2016
 tickers:	['AAPL']
 
-name:		Apple's (AAPL) Cook: Every Co. in Ireland and EU Now at Risk of Taxes Under Laws that Never Existed
-href:		Corporate+News/Apple%27s+%28AAPL%29+Cook%3A+Every+Co.+in+Ireland+and+EU+Now+at+Risk+of+Taxes+Under+Laws+that+Never+Existed/11984588.html
-date:		August 30, 2016
+name:		Apple (AAPL) Announces New AirPods Wireless Headphones
+href:		Corporate+News/Apple+%28AAPL%29+Announces+New+AirPods+Wireless+Headphones/12010070.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) Determined to Receive Up to EUR13 Billion in Undue Irish Tax Breaks - EC
-href:		Corporate+News/Apple+%28AAPL%29+Determined+to+Receive+Up+to+EUR13+Billion+in+Undue+Irish+Tax+Breaks+-+EC/11984338.html
-date:		August 30, 2016
+name:		Apple (AAPL) Debuts iPhone 7, iPhone 7 Plus; Will Start at $649, Be Available Sept. 16th
+href:		Corporate+News/Apple+%28AAPL%29+Debuts+iPhone+7%2C+iPhone+7+Plus%3B+Will+Start+at+%24649%2C+Be+Available+Sept.+16th/12010066.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) Sends Out Invites for Sept 7 iPhone 7 Event
-href:		Corporate+News/Apple+%28AAPL%29+Sends+Out+Invites+for+Sept+7+iPhone+7+Event/11981290.html
-date:		August 29, 2016
+name:		Apple (AAPL) announces wireless AirPods Headphones
+href:		Corporate+News/Apple+%28AAPL%29+announces+wireless+AirPods+Headphones/12009977.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Irish Finance Minister Noonan Disagrees with EU Tax Assessment on Apple (AAPL)
-href:		Litigation/Irish+Finance+Minister+Noonan+Disagrees+with+EU+Tax+Assessment+on+Apple+%28AAPL%29/11985879.html
-date:		August 30, 2016
+name:		Apple (AAPL) says to include analog headphone adapter in box
+href:		Corporate+News/Apple+%28AAPL%29+says+to+include+analog+headphone+adapter+in+box/12009970.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) criticizes EU ruling; says it will hurt European economy - Bloomberg
-href:		Litigation/Apple+%28AAPL%29+criticizes+EU+ruling%3B+says+it+will+hurt+European+economy+-+Bloomberg/11984366.html
-date:		August 30, 2016
+name:		Apple (AAPL) headphones to connect over lightning socket
+href:		Corporate+News/Apple+%28AAPL%29+headphones+to+connect+over+lightning+socket/12009963.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		UPDATE: Apple (AAPL) May Face Billions of Arrears in Irish Tax Case - Bloomberg
-href:		Litigation/UPDATE%3A+Apple+%28AAPL%29+May+Face+Billions+of+Arrears+in+Irish+Tax+Case+-+Bloomberg/11981599.html
-date:		August 29, 2016
+name:		Apple (AAPL) confirms iPhone 7 is water and dust resistant
+href:		Corporate+News/Apple+%28AAPL%29+confirms+iPhone+7+is+water+and+dust+resistant/12009880.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Leon Cooperman concerned Apple's (AAPL) best days may be behind it - CNBC
-href:		Hedge+Funds/Leon+Cooperman+concerned+Apple%27s+%28AAPL%29+best+days+may+be+behind+it+-+CNBC/11990940.html
-date:		August 31, 2016
+name:		Apple (AAPL) Introduces Apple Watch Series 2
+href:		Corporate+News/Apple+%28AAPL%29+Introduces+Apple+Watch+Series+2/12009868.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) CEO Tim Cook Sells ~$65M in Stock, or 38% of His Holdings
-href:		Insider+Trades/Apple+%28AAPL%29+CEO+Tim+Cook+Sells+%7E%2465M+in+Stock%2C+or+38%25+of+His+Holdings/11994135.html
-date:		September 1, 2016
+name:		Apple (AAPL) and Nike (NKE) Launch Apple Watch Nike+
+href:		Corporate+News/Apple+%28AAPL%29+and+Nike+%28NKE%29+Launch+Apple+Watch+Nike%2B/12009839.html
+date:		September 7, 2016
+tickers:	['AAPL', 'NKE']
+
+name:		Apple (AAPL) Talks iPhone
+href:		Corporate+News/Apple+%28AAPL%29+Talks+iPhone/12009826.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		IDC Trims PC Sales Decline Outlook for 2016; Q2 Growth Outpaced (AAPL) (HPQ) (MSFT)
-href:		Insiders+Blog/IDC+Trims+PC+Sales+Decline+Outlook+for+2016%3B+Q2+Growth+Outpaced+%28AAPL%29+%28HPQ%29+%28MSFT%29/11985023.html
-date:		August 30, 2016
-tickers:	['AAPL', 'HPQ', 'MSFT']
+name:		Apple (AAPL) Watch Series 2 to start at $369; Apple Watch Series 1 to start at $269
+href:		Corporate+News/Apple+%28AAPL%29+Watch+Series+2+to+start+at+%24369%3B+Apple+Watch+Series+1+to+start+at+%24269/12009818.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) partners with Nike on Apple Watch
+href:		Corporate+News/Apple+%28AAPL%29+partners+with+Nike+on+Apple+Watch/12009800.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) announces new Apple Watch
+href:		Corporate+News/Apple+%28AAPL%29+announces+new+Apple+Watch/12009731.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) iPhone 7 Offers New Camera, Water-Resistant
+href:		Corporate+News/Apple+%28AAPL%29+iPhone+7+Offers+New+Camera%2C+Water-Resistant/12009691.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) iPhone 7 event starts
+href:		Corporate+News/Apple+%28AAPL%29+iPhone+7+event+starts/12009657.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL): Good Enough To Drive An Upgrade Cycle - BMO
+href:		Management+Comments/Apple+%28AAPL%29%3A+Good+Enough+To+Drive+An+Upgrade+Cycle+-+BMO/12012278.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) sees selling out opening weekend iPhone 7 supply - Bloomberg
+href:		Guidance/Apple+%28AAPL%29+sees+selling+out+opening+weekend+iPhone+7+supply+-+Bloomberg/12014934.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) volatility up on more calls than puts into iPhone event
+href:		Options/Apple+%28AAPL%29+volatility+up+on+more+calls+than+puts+into+iPhone+event/12009485.html
+date:		September 7, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) volatility at low end or range into iPhone event
+href:		Options/Apple+%28AAPL%29+volatility+at+low+end+or+range+into+iPhone+event/12007111.html
+date:		September 7, 2016
+tickers:	['AAPL']
 
 name:		Apple (AAPL) volatility increases into iPhone event
 href:		Options/Apple+%28AAPL%29+volatility+increases+into+iPhone+event/12004446.html
@@ -93,29 +167,69 @@ href:		Options/Apple+%28AAPL%29+volatility+low+into+iPhone+event/12002267.html
 date:		September 6, 2016
 tickers:	['AAPL']
 
-name:		Apple (AAPL) volatility low into EU concluded that Ireland granted undue tax benefits of up to EUR13B
-href:		Options/Apple+%28AAPL%29+volatility+low+into+EU+concluded+that+Ireland+granted+undue+tax+benefits+of+up+to+EUR13B/11984354.html
-date:		August 30, 2016
+name:		Notable Analyst Rating Changes 9/8: (LLY) (ENB) (JCI) Upgraded; (NKE) (ABBV) (AAPL) Downgraded
+href:		Special+Reports/Notable+Analyst+Rating+Changes+98%3A+%28LLY%29+%28ENB%29+%28JCI%29+Upgraded%3B+%28NKE%29+%28ABBV%29+%28AAPL%29+Downgraded/12013820.html
+date:		September 8, 2016
+tickers:	['LLY', 'ENB', 'JCI', 'NKE', 'ABBV', 'AAPL']
+
+name:		Apple (AAPL) Shares Ramp to Session Highs
+href:		Trader+Talk/Apple+%28AAPL%29+Shares+Ramp+to+Session+Highs/12010205.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
-name:		Streetinsider.com's Hot Lunchtime Reads 8/30: (STJ) (AAPL) (GOOG) (POT)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+830%3A+%28STJ%29+%28AAPL%29+%28GOOG%29+%28POT%29/11986227.html
-date:		August 30, 2016
-tickers:	['STJ', 'AAPL', 'GOOG', 'POT']
+name:		Apple (AAPL) Shares Lifeless Following iPhone Event
+href:		Trader+Talk/Apple+%28AAPL%29+Shares+Lifeless+Following+iPhone+Event/12010124.html
+date:		September 7, 2016
+tickers:	['AAPL']
 
-name:		Streetinsider.com's Hot Lunchtime Reads 8/29: (AAPL) (TTWO) (HLF) (CNAT)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+829%3A+%28AAPL%29+%28TTWO%29+%28HLF%29+%28CNAT%29/11981310.html
-date:		August 29, 2016
-tickers:	['AAPL', 'TTWO', 'HLF', 'CNAT']
+name:		Amazon (AMZN) Launches iPhone 7 Page Ahead of Apple (AAPL) Event
+href:		Trader+Talk/Amazon+%28AMZN%29+Launches+iPhone+7+Page+Ahead+of+Apple+%28AAPL%29+Event/12009546.html
+date:		September 7, 2016
+tickers:	['AMZN', 'AAPL']
 
-name:		Apple (AAPL) plans to let users make payments using Siri and Square Cash (SQ) - Bloomberg
-href:		Trader+Talk/Apple+%28AAPL%29+plans+to+let+users+make+payments+using+Siri+and+Square+Cash+%28SQ%29+-+Bloomberg/11995947.html
-date:		September 1, 2016
-tickers:	['AAPL', 'SQ']
+name:		Apple (AAPL): Lack Of Weekend iPhone Sales Update Likely Due To Component Supply Constraints - RBC
+href:		Analyst+Comments/Apple+%28AAPL%29%3A+Lack+Of+Weekend+iPhone+Sales+Update+Likely+Due+To+Component+Supply+Constraints+-+RBC/12017729.html
+date:		September 9, 2016
+tickers:	['AAPL']
 
-name:		Apple (AAPL) volatility low into hosting event on September 7
-href:		Trader+Talk/Apple+%28AAPL%29+volatility+low+into+hosting+event+on+September+7/11981315.html
-date:		August 29, 2016
+name:		UBS Reiterates Buy on Apple (AAPL) Following Product Launch
+href:		Analyst+Comments/UBS+Reiterates+Buy+on+Apple+%28AAPL%29+Following+Product+Launch/12013145.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Piper's Gene Munster Comfortable with 11% Unit Growth After Apple's (AAPL) Announcemnt
+href:		Analyst+Comments/Piper%27s+Gene+Munster+Comfortable+with+11%25+Unit+Growth+After+Apple%27s+%28AAPL%29+Announcemnt/12013082.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL): Blended ASP Could Increase On Demand Of The Plus - RBC
+href:		Analyst+Comments/Apple+%28AAPL%29%3A+Blended+ASP+Could+Increase+On+Demand+Of+The+Plus+-+RBC/12012914.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Wells Fargo Thinks Apple (AAPL) Shares will be 'Range Bound'; Analyst Cuts Rating to 'Market Perform'
+href:		Analyst+Comments/Wells+Fargo+Thinks+Apple+%28AAPL%29+Shares+will+be+%27Range+Bound%27%3B+Analyst+Cuts+Rating+to+%27Market+Perform%27/12012357.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL) New Products In-Line with Expectations, Sees Shares Performing Well Into Year End - Mizuho
+href:		Analyst+Comments/Apple+%28AAPL%29+New+Products+In-Line+with+Expectations%2C+Sees+Shares+Performing+Well+Into+Year+End+-+Mizuho/12012533.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Apple (AAPL): Product Announcements Not Enough To Improve Financials - Oppenheimer
+href:		Analyst+Comments/Apple+%28AAPL%29%3A+Product+Announcements+Not+Enough+To+Improve+Financials+-+Oppenheimer/12012520.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Cowen Positive on Apple (AAPL) Post-iPhone Event; Sees AirPods as Key Accessory for Co.
+href:		Analyst+Comments/Cowen+Positive+on+Apple+%28AAPL%29+Post-iPhone+Event%3B+Sees+AirPods+as+Key+Accessory+for+Co./12012315.html
+date:		September 8, 2016
+tickers:	['AAPL']
+
+name:		Drexel Hamilton Apple Monitor 'Very Strong' (AAPL)
+href:		Analyst+Comments/Drexel+Hamilton+Apple+Monitor+%27Very+Strong%27+%28AAPL%29/12008987.html
+date:		September 7, 2016
 tickers:	['AAPL']
 
 name:		Apple (AAPL): Why This Summer Was The Bottom - Drexel Hamilton
@@ -128,731 +242,258 @@ href:		Analyst+Comments/Cowen+Sees+Apple%27s+%28AAPL%29+iPhone+7+as+%27Bridge%27
 date:		September 6, 2016
 tickers:	['AAPL']
 
-name:		Exploding Galaxy Phones and Shipment Halt a 'Lucky Break' for Apple (AAPL) Ahead of iPhone 7 Launch - Drexel Hamilton
-href:		Analyst+Comments/Exploding+Galaxy+Phones+and+Shipment+Halt+a+%27Lucky+Break%27+for+Apple+%28AAPL%29+Ahead+of+iPhone+7+Launch+-+Drexel+Hamilton/11998641.html
-date:		September 2, 2016
-tickers:	['AAPL']
-
-name:		Apple (AAPL): Update From Japan - Mizuho
-href:		Analyst+Comments/Apple+%28AAPL%29%3A+Update+From+Japan+-+Mizuho/11993469.html
-date:		September 1, 2016
-tickers:	['AAPL']
-
-name:		Wall Street is Already Looking Past Apple's (AAPL) iPhone 7 to the 8
-href:		Analyst+Comments/Wall+Street+is+Already+Looking+Past+Apple%27s+%28AAPL%29+iPhone+7+to+the+8/11991126.html
-date:		August 31, 2016
-tickers:	['AAPL']
-
-name:		RBC Expects These 8 Features for Apple's (AAPL) iPhone 7
-href:		Analyst+Comments/RBC+Expects+These+8+Features+for+Apple%27s+%28AAPL%29+iPhone+7/11985941.html
-date:		August 30, 2016
-tickers:	['AAPL']
-
-name:		Apple (AAPL) Unfavorable Tax Ruling is 'Manageable' - RBC
-href:		Analyst+Comments/Apple+%28AAPL%29+Unfavorable+Tax+Ruling+is+%27Manageable%27+-+RBC/11985726.html
-date:		August 30, 2016
-tickers:	['AAPL']
-
-name:		Apple (AAPL): EU Tax Issue Is A Headline Grabber - Drexel Hamilton
-href:		Analyst+Comments/Apple+%28AAPL%29%3A+EU+Tax+Issue+Is+A+Headline+Grabber+-+Drexel+Hamilton/11984804.html
-date:		August 30, 2016
-tickers:	['AAPL']
 
 
 -----------------------------------------------------------
+[#2 / 811 total tickers] TSCO
 -----------------------------------------------------------
-[#2 / 996 tickers] All 19 articles for MYL:
+
+-----------------------------
+Stock info for TSCO at 2016-09-11 19:30:14.505736
+-----------------------------
+200day_moving_avg: 90.14
+50day_moving_avg: 85.71
+avg_daily_volume: 1495910
+book_value: 11.23
+change: -0.96
+days_high: 69.50
+days_low: 68.13
+dividend_share: 0.96
+dividend_yield: 1.38
+earnings_growth_ratio: 1.70
+earnings_share: 3.12
+ebitda: 800.55M
+market_cap: 9.15B
+name: TSCO
+open: 69.17
+prev_close: 69.38
+price: 68.42
+price_book: 6.18
+price_earnings_ratio: 21.94
+price_sales: 1.44
+short_ratio: 5.08
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 5491082
+year_high: 97.25
+year_low: 68.13
+
+-----------------------------
+All 14 articles for TSCO
+-----------------------------
+name:		Tractor Supply (TSCO) Guides Q3 Below the Street
+href:		Retail+Sales/Tractor+Supply+%28TSCO%29+Guides+Q3+Below+the+Street/12010452.html
+date:		September 7, 2016
+tickers:	['TSCO']
+
+name:		Pre-Open Stock Movers 09/08: (RPRX) (RAD) (JUNO) Higher; (GEVO) (NLST) (TSCO) (PIR) Lower (more...)
+href:		Special+Dividends/Pre-Open+Stock+Movers+0908%3A+%28RPRX%29+%28RAD%29+%28JUNO%29+Higher%3B+%28GEVO%29+%28NLST%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12013515.html
+date:		September 8, 2016
+tickers:	['RPRX', 'RAD', 'JUNO', 'GEVO', 'NLST', 'TSCO', 'PIR']
+
+name:		Tractor Supply (TSCO) volatility low into cutting guidance
+href:		Options/Tractor+Supply+%28TSCO%29+volatility+low+into+cutting+guidance/12012665.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Notable 52-Week Highs and Lows 9/8: (EOG) (VUZI) (ENB) High; (TSCO) (KR) Low
+href:		Special+Reports/Notable+52-Week+Highs+and+Lows+98%3A+%28EOG%29+%28VUZI%29+%28ENB%29+High%3B+%28TSCO%29+%28KR%29+Low/12015375.html
+date:		September 8, 2016
+tickers:	['EOG', 'VUZI', 'ENB', 'TSCO', 'KR']
+
+name:		Unusual 11 Mid-Day Movers 9/8: (GTXI) (TLRD) (RPRX) Higher; (GEVO) (TSCO) (PIR) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+98%3A+%28GTXI%29+%28TLRD%29+%28RPRX%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower/12014596.html
+date:		September 8, 2016
+tickers:	['GTXI', 'TLRD', 'RPRX', 'GEVO', 'TSCO', 'PIR']
+
+name:		After-Hours Stock Movers 09/07: (RPRX) (JUNO) (ABEO) Higher; (GEVO) (TSCO) (PIR) Lower (more...)
+href:		Special+Reports/After-Hours+Stock+Movers+0907%3A+%28RPRX%29+%28JUNO%29+%28ABEO%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12011421.html
+date:		September 7, 2016
+tickers:	['RPRX', 'JUNO', 'ABEO', 'GEVO', 'TSCO', 'PIR']
+
+name:		UBS Cuts Price Target on Tractor Supply (TSCO) to $88; Reiterates Buy
+href:		Analyst+Comments/UBS+Cuts+Price+Target+on+Tractor+Supply+%28TSCO%29+to+%2488%3B+Reiterates+Buy/12013064.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Deutsche Bank Downgrades Tractor Supply Company (TSCO) to Hold
+href:		Analyst+Comments/Deutsche+Bank+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Hold/12012564.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Wedbush Downgrades Tractor Supply Company (TSCO) to Neutral
+href:		Analyst+Comments/Wedbush+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Neutral/12012519.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Credit Suisse Downgrades Tractor Supply Company (TSCO) to Neutral
+href:		Analyst+Comments/Credit+Suisse+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Neutral/12012416.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Piper Jaffray Downgrades Tractor Supply Company (TSCO) to Neutral Following Warning
+href:		Analyst+Comments/Piper+Jaffray+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Neutral+Following+Warning/12012355.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		RBC Capital Downgrades Tractor Supply Company (TSCO) to Sector Perform
+href:		Analyst+PT+Change/RBC+Capital+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Sector+Perform/12012569.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		BTIG Downgrades Tractor Supply Company (TSCO) to Neutral
+href:		Downgrades/BTIG+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Neutral/12012575.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+name:		Raymond James Downgrades Tractor Supply Company (TSCO) to Market Perform
+href:		Downgrades/Raymond+James+Downgrades+Tractor+Supply+Company+%28TSCO%29+to+Market+Perform/12012572.html
+date:		September 8, 2016
+tickers:	['TSCO']
+
+
+
 -----------------------------------------------------------
+[#3 / 811 total tickers] FNSR
 -----------------------------------------------------------
-name:		New York AG Schneiderman Begins Antitrust Investigation into Mylan (MYL) Over EpiPen Pacts
-href:		Corporate+News/New+York+AG+Schneiderman+Begins+Antitrust+Investigation+into+Mylan+%28MYL%29+Over+EpiPen+Pacts/12004397.html
+
+-----------------------------
+Stock info for FNSR at 2016-09-11 19:30:15.324064
+-----------------------------
+200day_moving_avg: 17.85
+50day_moving_avg: 20.40
+avg_daily_volume: 1565870
+book_value: 10.84
+change: +2.97
+days_high: 27.50
+days_low: 25.82
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: 1.13
+earnings_share: 0.32
+ebitda: 157.07M
+market_cap: 2.89B
+name: FNSR
+open: 26.50
+prev_close: 23.23
+price: 26.20
+price_book: 2.14
+price_earnings_ratio: 51.27
+price_sales: 1.98
+short_ratio: 6.62
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 13111924
+year_high: 27.50
+year_low: 10.66
+
+-----------------------------
+All 13 articles for FNSR
+-----------------------------
+name:		Finisar (FNSR) Tops Q1 EPS by 8c; Offers Strong Q2 Outlook
+href:		Management+Comments/Finisar+%28FNSR%29+Tops+Q1+EPS+by+8c%3B+Offers+Strong+Q2+Outlook/12015532.html
+date:		September 8, 2016
+tickers:	['FNSR']
+
+name:		Finisar (FNSR): Great Quarter But Will It Last? - Jefferies
+href:		Earnings/Finisar+%28FNSR%29%3A+Great+Quarter+But+Will+It+Last%3F+-+Jefferies/12018021.html
+date:		September 9, 2016
+tickers:	['FNSR']
+
+name:		Finisar (FNSR): Needham Raises EPS 42% For '17
+href:		Earnings/Finisar+%28FNSR%29%3A+Needham+Raises+EPS+42%25+For+%2717/12017780.html
+date:		September 9, 2016
+tickers:	['FNSR']
+
+name:		Notable 52-Week Highs and Lows 9/9: (LXRX) (FNSR) (SWFT) High; (VMEM) (NCLH) (NVO) Low
+href:		Special+Reports/Notable+52-Week+Highs+and+Lows+99%3A+%28LXRX%29+%28FNSR%29+%28SWFT%29+High%3B+%28VMEM%29+%28NCLH%29+%28NVO%29+Low/12019358.html
+date:		September 9, 2016
+tickers:	['LXRX', 'FNSR', 'SWFT', 'VMEM', 'NCLH', 'NVO']
+
+name:		Pre-Open Stock Movers 09/09: (LXRX) (FNSR) (RH) Higher; (VMEM) (LNTH) (SDLP) Lower (more...)
+href:		Special+Reports/Pre-Open+Stock+Movers+0909%3A+%28LXRX%29+%28FNSR%29+%28RH%29+Higher%3B+%28VMEM%29+%28LNTH%29+%28SDLP%29+Lower+%28more...%29/12018215.html
+date:		September 9, 2016
+tickers:	['LXRX', 'FNSR', 'RH', 'VMEM', 'LNTH', 'SDLP']
+
+name:		After-Hours Stock Movers 09/08: (RH) (FNSR) (LOCO) Higher; (VMEM) (VNCE) (RESN) Lower (more...)
+href:		Special+Reports/After-Hours+Stock+Movers+0908%3A+%28RH%29+%28FNSR%29+%28LOCO%29+Higher%3B+%28VMEM%29+%28VNCE%29+%28RESN%29+Lower+%28more...%29/12016879.html
+date:		September 8, 2016
+tickers:	['RH', 'FNSR', 'LOCO', 'VMEM', 'VNCE', 'RESN']
+
+name:		Notable Analyst Rating Changes 9/6: (EQIX) (FNSR) (HP) Upgraded; (BIIB) (CACC) (CSTM) Downgraded
+href:		Special+Reports/Notable+Analyst+Rating+Changes+96%3A+%28EQIX%29+%28FNSR%29+%28HP%29+Upgraded%3B+%28BIIB%29+%28CACC%29+%28CSTM%29+Downgraded/12003780.html
 date:		September 6, 2016
-tickers:	['MYL']
+tickers:	['EQIX', 'FNSR', 'HP', 'BIIB', 'CACC', 'CSTM']
 
-name:		Mylan (MYL) Denies Rumors CEO Bresch to Step Down
-href:		Corporate+News/Mylan+%28MYL%29+Denies+Rumors+CEO+Bresch+to+Step+Down/11998956.html
-date:		September 2, 2016
-tickers:	['MYL']
+name:		UPDATE: MKM Partners Upgrades Finisar (FNSR) to Buy
+href:		Analyst+Comments/UPDATE%3A+MKM+Partners+Upgrades+Finisar+%28FNSR%29+to+Buy/12017634.html
+date:		September 9, 2016
+tickers:	['FNSR']
 
-name:		Mylan (MYL) Receives Favorable PTO Verdict for Third Copaxone IPR (TEVA)
-href:		Corporate+News/Mylan+%28MYL%29+Receives+Favorable+PTO+Verdict+for+Third+Copaxone+IPR+%28TEVA%29/11996159.html
-date:		September 1, 2016
-tickers:	['MYL', 'TEVA']
+name:		Stifel Raises Price Target on Finisar (FNSR) Following Strong 1Q Report
+href:		Analyst+Comments/Stifel+Raises+Price+Target+on+Finisar+%28FNSR%29+Following+Strong+1Q+Report/12017986.html
+date:		September 9, 2016
+tickers:	['FNSR']
 
-name:		U.S. House Oversight Committee Sends Letter to Mylan (MYL) CEO Bresch; Requests EpiPen Info
-href:		Corporate+News/U.S.+House+Oversight+Committee+Sends+Letter+to+Mylan+%28MYL%29+CEO+Bresch%3B+Requests+EpiPen+Info/11981894.html
-date:		August 29, 2016
-tickers:	['MYL']
-
-name:		Mylan (MYL) Plans to Launch Generic EpiPen; Will Cost 50% Less than Name Brand
-href:		Corporate+News/Mylan+%28MYL%29+Plans+to+Launch+Generic+EpiPen%3B+Will+Cost+50%25+Less+than+Name+Brand/11979395.html
-date:		August 29, 2016
-tickers:	['MYL']
-
-name:		Mylan (MYL) agrees to brief House Committee next week - Bloomberg
-href:		Litigation/Mylan+%28MYL%29+agrees+to+brief+House+Committee+next+week+-+Bloomberg/11999384.html
-date:		September 2, 2016
-tickers:	['MYL']
-
-name:		Congress Letter to FDA Questioning Generic EpiPen Alternatives (MYL) (TEVA) (ADMP) (IPXL)
-href:		FDA/Congress+Letter+to+FDA+Questioning+Generic+EpiPen+Alternatives+%28MYL%29+%28TEVA%29+%28ADMP%29+%28IPXL%29/11981554.html
-date:		August 29, 2016
-tickers:	['MYL', 'TEVA', 'ADMP', 'IPXL']
-
-name:		Mylan (MYL) Pulled from Morgan Stanley Conference Due to Scheduling Conflict - Spokesperson
-href:		Rumors/Mylan+%28MYL%29+Pulled+from+Morgan+Stanley+Conference+Due+to+Scheduling+Conflict+-+Spokesperson/11998773.html
-date:		September 2, 2016
-tickers:	['MYL']
-
-name:		Rumors Abound on Mylan (MYL) After Conference Cancellation
-href:		Rumors/Rumors+Abound+on+Mylan+%28MYL%29+After+Conference+Cancellation/11998755.html
-date:		September 2, 2016
-tickers:	['MYL']
-
-name:		UPDATE: MannKind (MNKD) May Not Be Able to Compete with Mylan's (MYL) EpiPen; Co. to Raise $10M - Feuerstein
-href:		Rumors/UPDATE%3A+MannKind+%28MNKD%29+May+Not+Be+Able+to+Compete+with+Mylan%27s+%28MYL%29+EpiPen%3B+Co.+to+Raise+%2410M+-+Feuerstein/11991080.html
-date:		August 31, 2016
-tickers:	['MNKD', 'MYL']
-
-name:		Mylan (MYL), Valeant (VRX), Related Stocks Pressured Following Market Open
-href:		Momentum+Movers/Mylan+%28MYL%29%2C+Valeant+%28VRX%29%2C+Related+Stocks+Pressured+Following+Market+Open/11998741.html
-date:		September 2, 2016
-tickers:	['MYL', 'VRX']
-
-name:		Mylan (MYL) puts active on sell off
-href:		Options/Mylan+%28MYL%29+puts+active+on+sell+off/11999478.html
-date:		September 2, 2016
-tickers:	['MYL']
-
-name:		Mylan's (MYL) Epipen4Schools Program is a Complicated Maze of Specialty Distribution Cos - Wells Fargo's Maris
-href:		Short+Sales/Mylan%27s+%28MYL%29+Epipen4Schools+Program+is+a+Complicated+Maze+of+Specialty+Distribution+Cos+-+Wells+Fargo%27s+Maris/11979781.html
-date:		August 29, 2016
-tickers:	['MYL']
-
-name:		Pre-Open Stock Movers 08/29: (MCUR) (HLF) (MYL) Higher; (CZR) (ADMP) (KTOS) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0829%3A+%28MCUR%29+%28HLF%29+%28MYL%29+Higher%3B+%28CZR%29+%28ADMP%29+%28KTOS%29+Lower+%28more...%29/11980510.html
-date:		August 29, 2016
-tickers:	['MCUR', 'HLF', 'MYL', 'CZR', 'ADMP', 'KTOS']
-
-name:		Mylan (MYL) Weakness on Headlines it May Have Misclassified EpiPen Under Medicaid
-href:		Trader+Talk/Mylan+%28MYL%29+Weakness+on+Headlines+it+May+Have+Misclassified+EpiPen+Under+Medicaid/11999278.html
-date:		September 2, 2016
-tickers:	['MYL']
-
-name:		Mylan (MYL): Cutting Ests On Continued Headline Risk - RBC
-href:		Analyst+Comments/Mylan+%28MYL%29%3A+Cutting+Ests+On+Continued+Headline+Risk+-+RBC/12002342.html
+name:		Needham & Company Raises Price Target on Finisar (FNSR) Ahead of 1Q Report
+href:		Analyst+Comments/Needham+%26+Company+Raises+Price+Target+on+Finisar+%28FNSR%29+Ahead+of+1Q+Report/12002959.html
 date:		September 6, 2016
-tickers:	['MYL']
+tickers:	['FNSR']
 
-name:		Express Scripts (ESRX) Looks to Battle EpiPen with New Program; Leerink Affirms at 'Market Perform' (MYL)
-href:		Analyst+Comments/Express+Scripts+%28ESRX%29+Looks+to+Battle+EpiPen+with+New+Program%3B+Leerink+Affirms+at+%27Market+Perform%27+%28MYL%29/11989932.html
-date:		August 31, 2016
-tickers:	['ESRX', 'MYL']
-
-name:		BTIG Affirms Mylan (MYL) at 'Buy'; Generic EpiPen Highlights Challenges to U.S. Healthcare System
-href:		Analyst+Comments/BTIG+Affirms+Mylan+%28MYL%29+at+%27Buy%27%3B+Generic+EpiPen+Highlights+Challenges+to+U.S.+Healthcare+System/11981823.html
-date:		August 29, 2016
-tickers:	['MYL']
-
-name:		Generic EpiPen to Hit Mylan (MYL) EPS by a Modest 2% - Leerink
-href:		Analyst+Comments/Generic+EpiPen+to+Hit+Mylan+%28MYL%29+EPS+by+a+Modest+2%25+-+Leerink/11980734.html
-date:		August 29, 2016
-tickers:	['MYL']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#3 / 996 tickers] All 17 articles for LULU:
------------------------------------------------------------
------------------------------------------------------------
-name:		lululemon athletica (LULU) Reports In-Line Q2 EPS; Comps Outpaced Views
-href:		Retail+Sales/lululemon+athletica+%28LULU%29+Reports+In-Line+Q2+EPS%3B+Comps+Outpaced+Views/11996493.html
-date:		September 1, 2016
-tickers:	['LULU']
-
-name:		lululemon athletica (LULU) on Watch Amid Renewed, Unconfirmed Chatter Regarding Potential CEO Change
-href:		Rumors/lululemon+athletica+%28LULU%29+on+Watch+Amid+Renewed%2C+Unconfirmed+Chatter+Regarding+Potential+CEO+Change/11999084.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		Lululemon Athetica (LULU) volatility elevated into Q2 and outlook
-href:		Options/Lululemon+Athetica+%28LULU%29+volatility+elevated+into+Q2+and+outlook/11994527.html
-date:		September 1, 2016
-tickers:	['LULU']
-
-name:		Lululemon Athetica (LULU) puts active on elevated volatility into Q2 and outlook
-href:		Options/Lululemon+Athetica+%28LULU%29+puts+active+on+elevated+volatility+into+Q2+and+outlook/11991295.html
-date:		August 31, 2016
-tickers:	['LULU']
-
-name:		Pre-Open Stock Movers 09/02: (ACW) (PES) (MGT) Higher; (PAY) (LULU) (PQ) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0902%3A+%28ACW%29+%28PES%29+%28MGT%29+Higher%3B+%28PAY%29+%28LULU%29+%28PQ%29+Lower+%28more...%29/11998700.html
-date:		September 2, 2016
-tickers:	['ACW', 'PES', 'MGT', 'PAY', 'LULU', 'PQ']
-
-name:		After-Hours Stock Movers 09/01: (MGT) Higher; (PAY) (LULU) (PQ) Lower (more...)
-href:		Special+Reports/After-Hours+Stock+Movers+0901%3A+%28MGT%29+Higher%3B+%28PAY%29+%28LULU%29+%28PQ%29+Lower+%28more...%29/11997429.html
-date:		September 1, 2016
-tickers:	['MGT', 'PAY', 'LULU', 'PQ']
-
-name:		Trading Radar for 9/1: lululemon (LULU), Joy Global (JOY), Campbell Soup (CPB), Ciena (CIEN), Ambarella (AMBA) Report
-href:		Special+Reports/Trading+Radar+for+91%3A+lululemon+%28LULU%29%2C+Joy+Global+%28JOY%29%2C+Campbell+Soup+%28CPB%29%2C+Ciena+%28CIEN%29%2C+Ambarella+%28AMBA%29+Report/11991261.html
-date:		August 31, 2016
-tickers:	['LULU', 'JOY', 'CPB', 'CIEN', 'AMBA']
-
-name:		MKM Partners Reiterates Buy on lululemon athletica (LULU) Following 2Q
-href:		Analyst+Comments/MKM+Partners+Reiterates+Buy+on+lululemon+athletica+%28LULU%29+Following+2Q/11999037.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		Oppenheimer Reiterates Outperform on lululemon athletica (LULU) Following 2Q
-href:		Analyst+Comments/Oppenheimer+Reiterates+Outperform+on+lululemon+athletica+%28LULU%29+Following+2Q/11998684.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		Cowen Reiterates Outperform on lululemon athletica (LULU) Following 2Q
-href:		Analyst+Comments/Cowen+Reiterates+Outperform+on+lululemon+athletica+%28LULU%29+Following+2Q/11998521.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		UBS Remains Sidelined on lululemon athletica (LULU) Following In-Line 2Q
-href:		Analyst+Comments/UBS+Remains+Sidelined+on+lululemon+athletica+%28LULU%29+Following+In-Line+2Q/11998508.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		Wedbush Raises Price Target on lululemon athletica (LULU) to $84
-href:		Analyst+Comments/Wedbush+Raises+Price+Target+on+lululemon+athletica+%28LULU%29+to+%2484/11998375.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		Deutsche Bank Comments on Weakness in Lululemon (LULU) Following Q2 Results
-href:		Analyst+Comments/Deutsche+Bank+Comments+on+Weakness+in+Lululemon+%28LULU%29+Following+Q2+Results/11998311.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		FBR Keeps 'Underperform' Rating on lululemon (LULU); Promotions, Light Traffic Should Hamper Rest of 2016
-href:		Analyst+Comments/FBR+Keeps+%27Underperform%27+Rating+on+lululemon+%28LULU%29%3B+Promotions%2C+Light+Traffic+Should+Hamper+Rest+of+2016/11998135.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-name:		MKM Partners Reiterates Buy on lululemon athletica (LULU) Following Proprietary Survey
-href:		Analyst+Comments/MKM+Partners+Reiterates+Buy+on+lululemon+athletica+%28LULU%29+Following+Proprietary+Survey/11980959.html
-date:		August 29, 2016
-tickers:	['LULU']
-
-name:		Lululemon (LULU) Earnings Turnaround Likely Underway - Credit Suisse
-href:		Analyst+Comments/Lululemon+%28LULU%29+Earnings+Turnaround+Likely+Underway+-+Credit+Suisse/11980014.html
-date:		August 29, 2016
-tickers:	['LULU']
-
-name:		Morgan Stanley Downgrades Lululemon Athletica Inc. (LULU) to Equalweight
-href:		Analyst+PT+Change/Morgan+Stanley+Downgrades+Lululemon+Athletica+Inc.+%28LULU%29+to+Equalweight/11998858.html
-date:		September 2, 2016
-tickers:	['LULU']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#4 / 996 tickers] All 17 articles for AVGO:
------------------------------------------------------------
------------------------------------------------------------
-name:		Broadcom Ltd. (AVGO) Raises Quarterly Dividend 2% to $0.51; 1.2% Yield
-href:		Dividends/Broadcom+Ltd.+%28AVGO%29+Raises+Quarterly+Dividend+2%25+to+%240.51%3B+1.2%25+Yield/11996496.html
-date:		September 1, 2016
-tickers:	['AVGO']
-
-name:		Broadcom Ltd. (AVGO) Tops Q3 EPS by 12c, Offers Outlook
-href:		Earnings/Broadcom+Ltd.+%28AVGO%29+Tops+Q3+EPS+by+12c%2C+Offers+Outlook/11996469.html
-date:		September 1, 2016
-tickers:	['AVGO']
-
-name:		Brean Capital Raises Price Target on Broadcom Ltd. (AVGO) to $205 Following 3Q
-href:		Analyst+Comments/Brean+Capital+Raises+Price+Target+on+Broadcom+Ltd.+%28AVGO%29+to+%24205+Following+3Q/11998769.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Oppenheimer Raises Price Target on Broadcom Ltd. (AVGO) to $200 Following 3Q
-href:		Analyst+Comments/Oppenheimer+Raises+Price+Target+on+Broadcom+Ltd.+%28AVGO%29+to+%24200+Following+3Q/11998738.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Cowen Boosts PT on Broadcom (AVGO) to $205; 'Beat and Raise' Becoming Par for the Course
-href:		Analyst+Comments/Cowen+Boosts+PT+on+Broadcom+%28AVGO%29+to+%24205%3B+%27Beat+and+Raise%27+Becoming+Par+for+the+Course/11998529.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Broadcom's (AVGO) Price Target Raised to $200 at Pacific Crest
-href:		Analyst+Comments/Broadcom%27s+%28AVGO%29+Price+Target+Raised+to+%24200+at+Pacific+Crest/11998401.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Baird Reiterates Outperform on Broadcom Ltd. (AVGO) Following Solid 3Q
-href:		Analyst+Comments/Baird+Reiterates+Outperform+on+Broadcom+Ltd.+%28AVGO%29+Following+Solid+3Q/11998396.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Broadcom (AVGO) PT Raised to $209 at Jefferies Following 'Beat and Raise'
-href:		Analyst+Comments/Broadcom+%28AVGO%29+PT+Raised+to+%24209+at+Jefferies+Following+%27Beat+and+Raise%27/11998309.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		RBC Capital Remains Bullish on Broadcom Ltd. (AVGO) Following Strong 3Q
-href:		Analyst+Comments/RBC+Capital+Remains+Bullish+on+Broadcom+Ltd.+%28AVGO%29+Following+Strong+3Q/11998282.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Mizuho Securities Raises Price Target on Broadcom Ltd. (AVGO) Following Solid 3Q Results
-href:		Analyst+Comments/Mizuho+Securities+Raises+Price+Target+on+Broadcom+Ltd.+%28AVGO%29+Following+Solid+3Q+Results/11998248.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Broadcom's (AVGO) Price Target Raised to $205 at Deutsche Bank
-href:		Analyst+Comments/Broadcom%27s+%28AVGO%29+Price+Target+Raised+to+%24205+at+Deutsche+Bank/11998228.html
-date:		September 2, 2016
-tickers:	['AVGO']
-
-name:		Oppenheimer Raises Price Target on Broadcom Ltd. (AVGO) Ahead of 3Q Report
-href:		Analyst+Comments/Oppenheimer+Raises+Price+Target+on+Broadcom+Ltd.+%28AVGO%29+Ahead+of+3Q+Report/11990050.html
-date:		August 31, 2016
-tickers:	['AVGO']
-
-name:		Cowen Remains Bullish on Broadcom Ltd. (AVGO) Ahead of 3Q Report
-href:		Analyst+Comments/Cowen+Remains+Bullish+on+Broadcom+Ltd.+%28AVGO%29+Ahead+of+3Q+Report/11984792.html
-date:		August 30, 2016
-tickers:	['AVGO']
-
-name:		Brean Capital Raises price Target on Broadcom Ltd. (AVGO); Expects Strong 3Q Results
-href:		Analyst+Comments/Brean+Capital+Raises+price+Target+on+Broadcom+Ltd.+%28AVGO%29%3B+Expects+Strong+3Q+Results/11980581.html
-date:		August 29, 2016
-tickers:	['AVGO']
-
-name:		Mizuho Securities Reiterates Buy on Broadcom Ltd. (AVGO) Ahead of 3Q Report
-href:		Analyst+Comments/Mizuho+Securities+Reiterates+Buy+on+Broadcom+Ltd.+%28AVGO%29+Ahead+of+3Q+Report/11980135.html
-date:		August 29, 2016
-tickers:	['AVGO']
-
-name:		Broadcom Ltd. (AVGO): Raising PT Ahead Of Earnings - RBC
-href:		Analyst+Comments/Broadcom+Ltd.+%28AVGO%29%3A+Raising+PT+Ahead+Of+Earnings+-+RBC/11979464.html
-date:		August 29, 2016
-tickers:	['AVGO']
-
-name:		Citi Resumes Broadcom Limited (AVGO) at Buy
-href:		New+Coverage/Citi+Resumes+Broadcom+Limited+%28AVGO%29+at+Buy/11984538.html
-date:		August 30, 2016
-tickers:	['AVGO']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#5 / 996 tickers] All 16 articles for PANW:
------------------------------------------------------------
------------------------------------------------------------
-name:		Palo Alto Networks (PANW) Reports In-Line Q4 EPS; Guides FY17 EPS Above Views; Approves $500M Stock Buyback
-href:		Stock+Buybacks/Palo+Alto+Networks+%28PANW%29+Reports+In-Line+Q4+EPS%3B+Guides+FY17+EPS+Above+Views%3B+Approves+%24500M+Stock+Buyback/11987226.html
-date:		August 30, 2016
-tickers:	['PANW']
-
-name:		Palo Alto Networks (PANW): Hyper Growth Phase Is Over - UBS
-href:		Earnings/Palo+Alto+Networks+%28PANW%29%3A+Hyper+Growth+Phase+Is+Over+-+UBS/11990025.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Palo Alto Networks (PANW): Wells Fargo Looks On The Bright Side
-href:		Earnings/Palo+Alto+Networks+%28PANW%29%3A+Wells+Fargo+Looks+On+The+Bright+Side/11989392.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Palo Alto Networks (PANW) September weekly option volume and volatility increases into Q2 and outlook
-href:		Options/Palo+Alto+Networks+%28PANW%29+September+weekly+option+volume+and+volatility+increases+into+Q2+and+outlook/11986687.html
-date:		August 30, 2016
-tickers:	['PANW']
-
-name:		Pre-Open Stock Movers 08/31: (CHS) (ININ) (VEEV) Higher; (AVAV) (PANW) (HRB) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0831%3A+%28CHS%29+%28ININ%29+%28VEEV%29+Higher%3B+%28AVAV%29+%28PANW%29+%28HRB%29+Lower+%28more...%29/11989969.html
-date:		August 31, 2016
-tickers:	['CHS', 'ININ', 'VEEV', 'AVAV', 'PANW', 'HRB']
-
-name:		After-Hours Stock Movers 08/30: (VEEV) (GSAT) (NCS) Higher;  (AVAV) (MDCO) (HRB) (PANW) Lower (more...)
-href:		Special+Reports/After-Hours+Stock+Movers+0830%3A+%28VEEV%29+%28GSAT%29+%28NCS%29+Higher%3B++%28AVAV%29+%28MDCO%29+%28HRB%29+%28PANW%29+Lower+%28more...%29/11988044.html
-date:		August 30, 2016
-tickers:	['VEEV', 'GSAT', 'NCS', 'AVAV', 'MDCO', 'HRB', 'PANW']
-
-name:		Trading Radar for 8/30: Abercrombie & Fitch (ANF), Palo Alto Networks (PANW), Veeva Systems (VEEV) Report
-href:		Special+Reports/Trading+Radar+for+830%3A+Abercrombie+%26+Fitch+%28ANF%29%2C+Palo+Alto+Networks+%28PANW%29%2C+Veeva+Systems+%28VEEV%29+Report/11981976.html
-date:		August 29, 2016
-tickers:	['ANF', 'PANW', 'VEEV']
-
-name:		Imperial Capital Reiterates Outperform as Palo Alto Networks (PANW) Reports 4Q Results
-href:		Analyst+Comments/Imperial+Capital+Reiterates+Outperform+as+Palo+Alto+Networks+%28PANW%29+Reports+4Q+Results/11991245.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Stifel Reiterates Buy on Palo Alto Networks (PANW) Following 4Q Report
-href:		Analyst+Comments/Stifel+Reiterates+Buy+on+Palo+Alto+Networks+%28PANW%29+Following+4Q+Report/11990267.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Nomura Securities Cuts price Target on Palo Alto Networks (PANW) Following 4Q
-href:		Analyst+Comments/Nomura+Securities+Cuts+price+Target+on+Palo+Alto+Networks+%28PANW%29+Following+4Q/11990018.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Oppenheimer Remains bullish on Palo Alto Networks (PANW) Following In-Line 4Q Results
-href:		Analyst+Comments/Oppenheimer+Remains+bullish+on+Palo+Alto+Networks+%28PANW%29+Following+In-Line+4Q+Results/11989620.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		BTIG Sees Palo Alto's (PANW) Outlook as Conservative; Affirms at 'Buy'
-href:		Analyst+Comments/BTIG+Sees+Palo+Alto%27s+%28PANW%29+Outlook+as+Conservative%3B+Affirms+at+%27Buy%27/11989528.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Needham & Company Reiterates Hold on Palo Alto Networks (PANW) following 4Q Beat and Guide
-href:		Analyst+Comments/Needham+%26+Company+Reiterates+Hold+on+Palo+Alto+Networks+%28PANW%29+following+4Q+Beat+and+Guide/11989508.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Palo Alto Networks (PANW) PT Lifted to $170 at Piper Jaffray Following Solid Q4
-href:		Analyst+Comments/Palo+Alto+Networks+%28PANW%29+PT+Lifted+to+%24170+at+Piper+Jaffray+Following+Solid+Q4/11989075.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Palo Alto Networks (PANW): Aggressive Pricing Limits Upside And Leads To Weaker Than Expected Guidance - Baird
-href:		Analyst+Comments/Palo+Alto+Networks+%28PANW%29%3A+Aggressive+Pricing+Limits+Upside+And+Leads+To+Weaker+Than+Expected+Guidance+-+Baird/11988975.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-name:		Raymond James Downgrades Palo Alto Networks (PANW) to Outperform
-href:		Analyst+PT+Change/Raymond+James+Downgrades+Palo+Alto+Networks+%28PANW%29+to+Outperform/11989024.html
-date:		August 31, 2016
-tickers:	['PANW']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#6 / 996 tickers] All 15 articles for CRM:
------------------------------------------------------------
------------------------------------------------------------
-name:		salesforce.com (CRM) Tops Q2 EPS by 2c; Issues Light Q3 Outlook
-href:		Earnings/salesforce.com+%28CRM%29+Tops+Q2+EPS+by+2c%3B+Issues+Light+Q3+Outlook/11991836.html
-date:		August 31, 2016
-tickers:	['CRM']
-
-name:		Salesforce.com (CRM) September implied volatility elevated into Q2 and outlook
-href:		Options/Salesforce.com+%28CRM%29+September+implied+volatility+elevated+into+Q2+and+outlook/11991145.html
-date:		August 31, 2016
-tickers:	['CRM']
-
-name:		Pre-Open Stock Movers 09/01: (CYNA) (OXM) (OLLI) Higher; (GCO) (CRM) (SCVL) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0901%3A+%28CYNA%29+%28OXM%29+%28OLLI%29+Higher%3B+%28GCO%29+%28CRM%29+%28SCVL%29+Lower+%28more...%29/11994523.html
-date:		September 1, 2016
-tickers:	['CYNA', 'OXM', 'OLLI', 'GCO', 'CRM', 'SCVL']
-
-name:		After-Hours Stock Movers 08/31: (CYNA) (OXM) (OLLI) Higher; (CRM) (SCVL) (FIVE) Lower (more...)
-href:		Special+Reports/After-Hours+Stock+Movers+0831%3A+%28CYNA%29+%28OXM%29+%28OLLI%29+Higher%3B+%28CRM%29+%28SCVL%29+%28FIVE%29+Lower+%28more...%29/11992535.html
-date:		August 31, 2016
-tickers:	['CYNA', 'OXM', 'OLLI', 'CRM', 'SCVL', 'FIVE']
-
-name:		Trading Radar for 08/31: salesforce.com (CRM), Box (BOX), Ctrip (CTRP), Brown-Forman (BF-A) Report
-href:		Special+Reports/Trading+Radar+for+0831%3A+salesforce.com+%28CRM%29%2C+Box+%28BOX%29%2C+Ctrip+%28CTRP%29%2C+Brown-Forman+%28BF-A%29+Report/11986884.html
-date:		August 30, 2016
-tickers:	['CRM', 'BOX', 'CTRP', 'BF-A']
-
-name:		BMO Capital Cuts Price Target on salesforce.com (CRM) to $86 Following 2Q Report
-href:		Analyst+Comments/BMO+Capital+Cuts+Price+Target+on+salesforce.com+%28CRM%29+to+%2486+Following+2Q+Report/11994762.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		Oppenheimer Reiterates Outperform on salesforce.com (CRM) Following 2Q Report
-href:		Analyst+Comments/Oppenheimer+Reiterates+Outperform+on+salesforce.com+%28CRM%29+Following+2Q+Report/11994653.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		UBS Reiterates Buy on salesforce.com (CRM) Following 2Q Report
-href:		Analyst+Comments/UBS+Reiterates+Buy+on+salesforce.com+%28CRM%29+Following+2Q+Report/11994608.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		salesforce.com (CRM): Time To Buy, Not Cry - Piper Jaffray
-href:		Analyst+Comments/salesforce.com+%28CRM%29%3A+Time+To+Buy%2C+Not+Cry+-+Piper+Jaffray/11994149.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		salesforce.com's (CRM) Q2 Miss Seen as "Perplexing' - Deutsche Bank
-href:		Analyst+Comments/salesforce.com%27s+%28CRM%29+Q2+Miss+Seen+as+%22Perplexing%27+-+Deutsche+Bank/11994047.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		Cowen Remains Bullish on salesforce.com (CRM) Following 2Q
-href:		Analyst+Comments/Cowen+Remains+Bullish+on+salesforce.com+%28CRM%29+Following+2Q/11993971.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		Wedbush Reiterates Outperform on salesforce.com (CRM) Following 2Q Report
-href:		Analyst+Comments/Wedbush+Reiterates+Outperform+on+salesforce.com+%28CRM%29+Following+2Q+Report/11993803.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		Jefferies Maintains Cautious Stance on Salesforce (CRM) Following Weak Qtr
-href:		Analyst+Comments/Jefferies+Maintains+Cautious+Stance+on+Salesforce+%28CRM%29+Following+Weak+Qtr/11993736.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		BTIG Affirms salesforce.com (CRM) at 'Buy'; Q2 Results May Draw Questions, but L-T Targets Remain in Focus
-href:		Analyst+Comments/BTIG+Affirms+salesforce.com+%28CRM%29+at+%27Buy%27%3B+Q2+Results+May+Draw+Questions%2C+but+L-T+Targets+Remain+in+Focus/11993650.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-name:		salesforce.com (CRM): Billings Deceleration Forces A PT Cut - Mizuho
-href:		Analyst+Comments/salesforce.com+%28CRM%29%3A+Billings+Deceleration+Forces+A+PT+Cut+-+Mizuho/11993649.html
-date:		September 1, 2016
-tickers:	['CRM']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#7 / 996 tickers] All 11 articles for ANF:
------------------------------------------------------------
------------------------------------------------------------
-name:		Abercrombie & Fitch (ANF) Misses Q2 EPS by 5c
-href:		Retail+Sales/Abercrombie+%26+Fitch+%28ANF%29+Misses+Q2+EPS+by+5c/11984577.html
-date:		August 30, 2016
-tickers:	['ANF']
-
-name:		Abercrombie & Fitch (ANF) puts more active than calls into Q2 and outlook
-href:		Options/Abercrombie+%26+Fitch+%28ANF%29+puts+more+active+than+calls+into+Q2+and+outlook/11981889.html
-date:		August 29, 2016
-tickers:	['ANF']
-
-name:		Unusual 11 Mid-Day Movers 8/30: (RIGL) (KPTI) (RBA) Higher; (ANF) (CBK) (GIII) Lower
-href:		Special+Reports/Unusual+11+Mid-Day+Movers+830%3A+%28RIGL%29+%28KPTI%29+%28RBA%29+Higher%3B+%28ANF%29+%28CBK%29+%28GIII%29+Lower/11986421.html
-date:		August 30, 2016
-tickers:	['RIGL', 'KPTI', 'RBA', 'ANF', 'CBK', 'GIII']
-
-name:		Pre-Open Stock Movers 08/30: (RIGL) (RBA) (MDLZ) Higher; (GIII) (ANF) (HSY) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0830%3A+%28RIGL%29+%28RBA%29+%28MDLZ%29+Higher%3B+%28GIII%29+%28ANF%29+%28HSY%29+Lower+%28more...%29/11985250.html
-date:		August 30, 2016
-tickers:	['RIGL', 'RBA', 'MDLZ', 'GIII', 'ANF', 'HSY']
-
-name:		Trading Radar for 8/30: Abercrombie & Fitch (ANF), Palo Alto Networks (PANW), Veeva Systems (VEEV) Report
-href:		Special+Reports/Trading+Radar+for+830%3A+Abercrombie+%26+Fitch+%28ANF%29%2C+Palo+Alto+Networks+%28PANW%29%2C+Veeva+Systems+%28VEEV%29+Report/11981976.html
-date:		August 29, 2016
-tickers:	['ANF', 'PANW', 'VEEV']
-
-name:		UBS Remains Sidelined on Abercrombie & Fitch (ANF) Following 2Q - PT to $18
-href:		Analyst+Comments/UBS+Remains+Sidelined+on+Abercrombie+%26+Fitch+%28ANF%29+Following+2Q+-+PT+to+%2418/11989949.html
-date:		August 31, 2016
-tickers:	['ANF']
-
-name:		BMO Capital Cut Price Target on Abercrombie & Fitch (ANF) to $19 Following 2Q
-href:		Analyst+Comments/BMO+Capital+Cut+Price+Target+on+Abercrombie+%26+Fitch+%28ANF%29+to+%2419+Following+2Q/11989909.html
-date:		August 31, 2016
-tickers:	['ANF']
-
-name:		Stifel Downgrades Abercrombie & Fitch (ANF) to Hold
-href:		Analyst+Comments/Stifel+Downgrades+Abercrombie+%26+Fitch+%28ANF%29+to+Hold/11988997.html
-date:		August 31, 2016
-tickers:	['ANF']
-
-name:		Mizuho Securities Cuts Price Target on Abercrombie & Fitch (ANF) Following 2Q Miss
-href:		Analyst+Comments/Mizuho+Securities+Cuts+Price+Target+on+Abercrombie+%26+Fitch+%28ANF%29+Following+2Q+Miss/11986518.html
-date:		August 30, 2016
-tickers:	['ANF']
-
-name:		Abercrombie & Fitch's (ANF) Flagship, Tourist Locations Pressured Q2 Results Amid Light Traffic - Stifel
-href:		Analyst+Comments/Abercrombie+%26+Fitch%27s+%28ANF%29+Flagship%2C+Tourist+Locations+Pressured+Q2+Results+Amid+Light+Traffic+-+Stifel/11984987.html
-date:		August 30, 2016
-tickers:	['ANF']
-
-name:		Standpoint Research Upgrades Abercrombie & Fitch (ANF) to Buy
-href:		Upgrades/Standpoint+Research+Upgrades+Abercrombie+%26+Fitch+%28ANF%29+to+Buy/11986731.html
-date:		August 30, 2016
-tickers:	['ANF']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#8 / 996 tickers] All 11 articles for TSLA:
------------------------------------------------------------
------------------------------------------------------------
-name:		Tesla (TSLA) on Watch After Filing Form S-4 Discussing Cash Raise by Year End
-href:		Corporate+News/Tesla+%28TSLA%29+on+Watch+After+Filing+Form+S-4+Discussing+Cash+Raise+by+Year+End/11989260.html
-date:		August 31, 2016
-tickers:	['TSLA']
-
-name:		UPDATE: Tesla (TSLA) Ticks Higher as CEO Musk Plans Autopilot Improvements
-href:		Management+Comments/UPDATE%3A+Tesla+%28TSLA%29+Ticks+Higher+as+CEO+Musk+Plans+Autopilot+Improvements/11990517.html
-date:		August 31, 2016
-tickers:	['TSLA']
-
-name:		Tesla (TSLA) CEO Musk talked about merger with SolarCity (SCTY) ahead of stock sale - Bloomberg
-href:		Mergers+and+Acquisitions/Tesla+%28TSLA%29+CEO+Musk+talked+about+merger+with+SolarCity+%28SCTY%29+ahead+of+stock+sale+-+Bloomberg/11991413.html
-date:		August 31, 2016
-tickers:	['TSLA', 'SCTY']
-
-name:		Tesla (TSLA) U.S. Sales Said to Be Robust in August
-href:		Insiders+Blog/Tesla+%28TSLA%29+U.S.+Sales+Said+to+Be+Robust+in+August/11995152.html
-date:		September 1, 2016
-tickers:	['TSLA']
-
-name:		Tesla (TSLA) volatility increases as shares pullback to $200
-href:		Options/Tesla+%28TSLA%29+volatility+increases+as+shares+pullback+to+%24200/11995222.html
-date:		September 1, 2016
-tickers:	['TSLA']
-
-name:		Streetinsider.com's Hot Lunchtime Reads 9/1: (AMD) (TSLA) (SFLY) (WMT)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+91%3A+%28AMD%29+%28TSLA%29+%28SFLY%29+%28WMT%29/11995387.html
-date:		September 1, 2016
-tickers:	['AMD', 'TSLA', 'SFLY', 'WMT']
-
-name:		Tesla (TSLA) Breaks Below $200
-href:		Trader+Talk/Tesla+%28TSLA%29+Breaks+Below+%24200/11999013.html
-date:		September 2, 2016
-tickers:	['TSLA']
-
-name:		Tesla (TSLA) Tests $200 Level
-href:		Trader+Talk/Tesla+%28TSLA%29+Tests+%24200+Level/11998736.html
-date:		September 2, 2016
-tickers:	['TSLA']
-
-name:		Tesla (TSLA) Musk to Delay Post on Auto Pilot
-href:		Trader+Talk/Tesla+%28TSLA%29+Musk+to+Delay+Post+on+Auto+Pilot/11996875.html
-date:		September 1, 2016
-tickers:	['TSLA']
-
-name:		Buy Tesla (TSLA) Weakness - Baird
-href:		Trader+Talk/Buy+Tesla+%28TSLA%29+Weakness+-+Baird/11995252.html
-date:		September 1, 2016
-tickers:	['TSLA']
-
-name:		Tesla (TSLA), SolarCity (SCTY) Sink in Fast Trading
-href:		Trader+Talk/Tesla+%28TSLA%29%2C+SolarCity+%28SCTY%29+Sink+in+Fast+Trading/11994948.html
-date:		September 1, 2016
-tickers:	['TSLA', 'SCTY']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#9 / 996 tickers] All 11 articles for PAY:
------------------------------------------------------------
------------------------------------------------------------
-name:		VeriFone Systems (PAY) Tops Q3 EPS by 2c; Guides Well Below the Street
-href:		Earnings/VeriFone+Systems+%28PAY%29+Tops+Q3+EPS+by+2c%3B+Guides+Well+Below+the+Street/11996468.html
-date:		September 1, 2016
-tickers:	['PAY']
-
-name:		VeriFone Systems (PAY) volatility elevated into lower guidance
-href:		Options/VeriFone+Systems+%28PAY%29+volatility+elevated+into+lower+guidance/11998426.html
-date:		September 2, 2016
-tickers:	['PAY']
-
-name:		VeriFone Systems (PAY) September volatility elevated into Q3 and outlook
-href:		Options/VeriFone+Systems+%28PAY%29+September+volatility+elevated+into+Q3+and+outlook/11996048.html
-date:		September 1, 2016
-tickers:	['PAY']
-
-name:		Notable 52-Week Highs and Lows 9/2: (MRVL) (OCLR) (REN) High; (PAY) (DVAX) Low
-href:		Special+Reports/Notable+52-Week+Highs+and+Lows+92%3A+%28MRVL%29+%28OCLR%29+%28REN%29+High%3B+%28PAY%29+%28DVAX%29+Low/12000014.html
-date:		September 2, 2016
-tickers:	['MRVL', 'OCLR', 'REN', 'PAY', 'DVAX']
-
-name:		Unusual 11 Mid-Day Movers 9/2: (ACW) (SIEB) (VSR) Higher; (PAY) (CCXI) (DVAX) Lower
-href:		Special+Reports/Unusual+11+Mid-Day+Movers+92%3A+%28ACW%29+%28SIEB%29+%28VSR%29+Higher%3B+%28PAY%29+%28CCXI%29+%28DVAX%29+Lower/11999474.html
-date:		September 2, 2016
-tickers:	['ACW', 'SIEB', 'VSR', 'PAY', 'CCXI', 'DVAX']
-
-name:		Pre-Open Stock Movers 09/02: (ACW) (PES) (MGT) Higher; (PAY) (LULU) (PQ) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0902%3A+%28ACW%29+%28PES%29+%28MGT%29+Higher%3B+%28PAY%29+%28LULU%29+%28PQ%29+Lower+%28more...%29/11998700.html
-date:		September 2, 2016
-tickers:	['ACW', 'PES', 'MGT', 'PAY', 'LULU', 'PQ']
-
-name:		After-Hours Stock Movers 09/01: (MGT) Higher; (PAY) (LULU) (PQ) Lower (more...)
-href:		Special+Reports/After-Hours+Stock+Movers+0901%3A+%28MGT%29+Higher%3B+%28PAY%29+%28LULU%29+%28PQ%29+Lower+%28more...%29/11997429.html
-date:		September 1, 2016
-tickers:	['MGT', 'PAY', 'LULU', 'PQ']
-
-name:		Argus Downgrades VeriFone (PAY) to Hold
-href:		Analyst+Comments/Argus+Downgrades+VeriFone+%28PAY%29+to+Hold/12002655.html
+name:		UPDATE: Stifel Upgrades Finisar (FNSR) to Buy
+href:		Analyst+Comments/UPDATE%3A+Stifel+Upgrades+Finisar+%28FNSR%29+to+Buy/12002354.html
 date:		September 6, 2016
-tickers:	['PAY']
+tickers:	['FNSR']
 
-name:		Wedbush Downgrades VeriFone (PAY) to Neutral
-href:		Analyst+Comments/Wedbush+Downgrades+VeriFone+%28PAY%29+to+Neutral/11998239.html
-date:		September 2, 2016
-tickers:	['PAY']
-
-name:		Piper Jaffray Downgrades VeriFone (PAY) to Neutral
-href:		Analyst+Comments/Piper+Jaffray+Downgrades+VeriFone+%28PAY%29+to+Neutral/11998164.html
-date:		September 2, 2016
-tickers:	['PAY']
-
-name:		Stifel Likes VeriFone Systems (PAY) Into Earnings
-href:		Analyst+Comments/Stifel+Likes+VeriFone+Systems+%28PAY%29+Into+Earnings/11990052.html
-date:		August 31, 2016
-tickers:	['PAY']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#10 / 996 tickers] All 10 articles for ESI:
------------------------------------------------------------
------------------------------------------------------------
-name:		NYSE to Suspend Trading in ITT Educational (ESI) and Commence Delisting
-href:		Corporate+News/NYSE+to+Suspend+Trading+in+ITT+Educational+%28ESI%29+and+Commence+Delisting/12003952.html
+name:		Piper Jaffray Remains Bullish on Finisar (FNSR) Ahead of 1Q Report
+href:		Analyst+Comments/Piper+Jaffray+Remains+Bullish+on+Finisar+%28FNSR%29+Ahead+of+1Q+Report/12002346.html
 date:		September 6, 2016
-tickers:	['ESI']
+tickers:	['FNSR']
 
-name:		ITT Educational Services (ESI) to End Operations at ITT Technical Institutes
-href:		Corporate+News/ITT+Educational+Services+%28ESI%29+to+End+Operations+at+ITT+Technical+Institutes/12002365.html
-date:		September 6, 2016
-tickers:	['ESI']
+name:		William Blair Upgrades Finisar (FNSR) to Outperform
+href:		Upgrades/William+Blair+Upgrades+Finisar+%28FNSR%29+to+Outperform/12017629.html
+date:		September 9, 2016
+tickers:	['FNSR']
 
-name:		ITT Educational's (ESI) Daniel Webster College Receives Letter from NEASC Regarding Standards
-href:		Corporate+News/ITT+Educational%27s+%28ESI%29+Daniel+Webster+College+Receives+Letter+from+NEASC+Regarding+Standards/11998512.html
-date:		September 2, 2016
-tickers:	['ESI']
-
-name:		ITT Educational Services (ESI) Says Chubb (CB) Demands Company Post $19.8M in Collateral
-href:		Corporate+News/ITT+Educational+Services+%28ESI%29+Says+Chubb+%28CB%29+Demands+Company+Post+%2419.8M+in+Collateral/11995767.html
-date:		September 1, 2016
-tickers:	['ESI', 'CB']
-
-name:		Streetinsider.com's Hot Lunchtime Reads 9/6: (FDML) (ESI) (HTZ) (MRVL)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+96%3A+%28FDML%29+%28ESI%29+%28HTZ%29+%28MRVL%29/12004296.html
-date:		September 6, 2016
-tickers:	['FDML', 'ESI', 'HTZ', 'MRVL']
-
-name:		Notable 52-Week Highs and Lows 9/1: (CHTR) (OCLR) (MRVL) High; (ESI) (GCO) Low
-href:		Special+Reports/Notable+52-Week+Highs+and+Lows+91%3A+%28CHTR%29+%28OCLR%29+%28MRVL%29+High%3B+%28ESI%29+%28GCO%29+Low/11996231.html
-date:		September 1, 2016
-tickers:	['CHTR', 'OCLR', 'MRVL', 'ESI', 'GCO']
-
-name:		Notable 52-Week Highs and Lows 8/29: (OSUR) (AREX) (OCLR) High; (CZR) (ESI) Low
-href:		Special+Reports/Notable+52-Week+Highs+and+Lows+829%3A+%28OSUR%29+%28AREX%29+%28OCLR%29+High%3B+%28CZR%29+%28ESI%29+Low/11981902.html
-date:		August 29, 2016
-tickers:	['OSUR', 'AREX', 'OCLR', 'CZR', 'ESI']
-
-name:		ITT Educational Services (ESI) Opening Delay, News Pending
-href:		Trading+Halts/ITT+Educational+Services+%28ESI%29+Opening+Delay%2C+News+Pending/12002496.html
-date:		September 6, 2016
-tickers:	['ESI']
-
-name:		ITT Educational Services (ESI) Shares Drop Upon Resumption
-href:		Trading+Halts/ITT+Educational+Services+%28ESI%29+Shares+Drop+Upon+Resumption/11995847.html
-date:		September 1, 2016
-tickers:	['ESI']
-
-name:		ITT Educational Services (ESI) trading halted with news pending
-href:		Trading+Halts/ITT+Educational+Services+%28ESI%29+trading+halted+with+news+pending/11995540.html
-date:		September 1, 2016
-tickers:	['ESI']
 
 
 -----------------------------------------------------------
+[#4 / 811 total tickers] NAV
 -----------------------------------------------------------
-[#11 / 996 tickers] All 10 articles for NAV:
------------------------------------------------------------
------------------------------------------------------------
+
+-----------------------------
+Stock info for NAV at 2016-09-11 19:30:16.355916
+-----------------------------
+200day_moving_avg: 12.55
+50day_moving_avg: 14.04
+avg_daily_volume: 1461470
+book_value: -62.98
+change: -0.63
+days_high: 19.82
+days_low: 18.49
+dividend_share: 0.00
+dividend_yield: 0.00
+earnings_growth_ratio: 19.02
+earnings_share: -1.31
+ebitda: 395.00M
+market_cap: 1.51B
+name: NAV
+open: 19.40
+prev_close: 19.12
+price: 18.49
+price_book: None
+price_earnings_ratio: None
+price_sales: 0.18
+short_ratio: 12.57
+stock_exchange: NYQ
+trade_datetime: 2016-09-09 20:03:00 UTC+0000
+volume: 2930151
+year_high: 23.45
+year_low: 5.78
+
+-----------------------------
+All 12 articles for NAV
+-----------------------------
 name:		Navistar (NAV) Enters Strategic Alliance with Volkswagen Truck & Bus, Including Equity Investment
 href:		Corporate+News/Navistar+%28NAV%29+Enters+Strategic+Alliance+with+Volkswagen+Truck+%26+Bus%2C+Including+Equity+Investment/12002457.html
 date:		September 6, 2016
@@ -863,15 +504,15 @@ href:		Management+Changes/Navistar+%28NAV%29+Announces+Retirement+of+Two+Directo
 date:		September 6, 2016
 tickers:	['NAV']
 
+name:		Navistar (NAV) Misses Q3 EPS Views
+href:		Earnings/Navistar+%28NAV%29+Misses+Q3+EPS+Views/12012539.html
+date:		September 8, 2016
+tickers:	['NAV']
+
 name:		Navistar (NAV) volatility elevated, Volkswagen (VLKAY) plans to take a minority stake, Reuters says
 href:		Hot+M+and+A/Navistar+%28NAV%29+volatility+elevated%2C+Volkswagen+%28VLKAY%29+plans+to+take+a+minority+stake%2C+Reuters+says/12002288.html
 date:		September 6, 2016
 tickers:	['NAV', 'VLKAY']
-
-name:		Navistar (NAV) puts more active than calls on elevated volatility into Q3 and outlook
-href:		Options/Navistar+%28NAV%29+puts+more+active+than+calls+on+elevated+volatility+into+Q3+and+outlook/11991298.html
-date:		August 31, 2016
-tickers:	['NAV']
 
 name:		Notable 52-Week Highs and Lows 9/6: (NAV) (CLCD) (XIN) High; (TNXP) (ETRM) Low
 href:		Special+Reports/Notable+52-Week+Highs+and+Lows+96%3A+%28NAV%29+%28CLCD%29+%28XIN%29+High%3B+%28TNXP%29+%28ETRM%29+Low/12004943.html
@@ -893,6 +534,16 @@ href:		Analyst+Comments/Stifel+Boosts+PT+on+Navistar+%28NAV%29+to+%2414+Amid+Vol
 date:		September 6, 2016
 tickers:	['NAV']
 
+name:		Goldman Sachs Upgrades Navistar International (NAV) to Neutral
+href:		Analyst+PT+Change/Goldman+Sachs+Upgrades+Navistar+International+%28NAV%29+to+Neutral/12017759.html
+date:		September 9, 2016
+tickers:	['NAV']
+
+name:		S&P Places Navistar (NAV) Ratings on CreditWatch Positive Amid Volkswagen Deal
+href:		Credit+Ratings/S%26P+Places+Navistar+%28NAV%29+Ratings+on+CreditWatch+Positive+Amid+Volkswagen+Deal/12009472.html
+date:		September 7, 2016
+tickers:	['NAV']
+
 name:		Macquarie Downgrades Navistar International (NAV) to Underperform
 href:		Downgrades/Macquarie+Downgrades+Navistar+International+%28NAV%29+to+Underperform/12004911.html
 date:		September 6, 2016
@@ -904,222 +555,867 @@ date:		September 6, 2016
 tickers:	['NAV']
 
 
------------------------------------------------------------
------------------------------------------------------------
-[#12 / 996 tickers] All 10 articles for TWTR:
------------------------------------------------------------
------------------------------------------------------------
-name:		Twitter (TWTR) will now share video revenue with individual content creators - CNBC
-href:		Corporate+News/Twitter+%28TWTR%29+will+now+share+video+revenue+with+individual+content+creators+-+CNBC/11985945.html
-date:		August 30, 2016
-tickers:	['TWTR']
 
-name:		Potential Sale to Be Discussed at Twitter (TWTR) Board Meeting This Week - Re/Code
-href:		Mergers+and+Acquisitions/Potential+Sale+to+Be+Discussed+at+Twitter+%28TWTR%29+Board+Meeting+This+Week+-+ReCode/12002663.html
+-----------------------------------------------------------
+[#5 / 811 total tickers] HPE
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for HPE at 2016-09-11 19:30:17.397845
+-----------------------------
+200day_moving_avg: 18.37
+50day_moving_avg: 21.49
+avg_daily_volume: 10545700
+book_value: 19.49
+change: -0.46
+days_high: 21.47
+days_low: 20.92
+dividend_share: 0.22
+dividend_yield: 1.03
+earnings_growth_ratio: 5.20
+earnings_share: 1.22
+ebitda: 7.44B
+market_cap: 34.84B
+name: HPE
+open: 21.15
+prev_close: 21.38
+price: 20.92
+price_book: 1.10
+price_earnings_ratio: 8.73
+price_sales: 0.70
+short_ratio: 5.13
+stock_exchange: NYQ
+trade_datetime: 2016-09-09 20:02:00 UTC+0000
+volume: 15764988
+year_high: 22.32
+year_low: 11.62
+
+-----------------------------
+All 10 articles for HPE
+-----------------------------
+name:		Hewlett Packard Enterprise (HPE) Announces Spin-off of non-Core Software Assets; Deal Valued at ~$8.8B
+href:		Corporate+News/Hewlett+Packard+Enterprise+%28HPE%29+Announces+Spin-off+of+non-Core+Software+Assets%3B+Deal+Valued+at+%7E%248.8B/12010457.html
+date:		September 7, 2016
+tickers:	['HPE']
+
+name:		Hewlett Packard Enterprise (HPE) Tops Q3 EPS by 4c; Boosts FY16 EPS Outlook
+href:		Earnings/Hewlett+Packard+Enterprise+%28HPE%29+Tops+Q3+EPS+by+4c%3B+Boosts+FY16+EPS+Outlook/12010491.html
+date:		September 7, 2016
+tickers:	['HPE']
+
+name:		Hewlett Packard Enterprise (HPE) said to receive $2.5 billion in cash for spin-off, merger - CNBC
+href:		Mergers+and+Acquisitions/Hewlett+Packard+Enterprise+%28HPE%29+said+to+receive+%242.5+billion+in+cash+for+spin-off%2C+merger+-+CNBC/12010278.html
+date:		September 7, 2016
+tickers:	['HPE']
+
+name:		HP Enterprise (HPE) September weekly volatility increases into Q3 and outlook
+href:		Options/HP+Enterprise+%28HPE%29+September+weekly+volatility+increases+into+Q3+and+outlook/12004284.html
 date:		September 6, 2016
-tickers:	['TWTR']
+tickers:	['HPE']
 
-name:		Twitter (TWTR) says number of activist investors looking at it - CNBC
-href:		Mergers+and+Acquisitions/Twitter+%28TWTR%29+says+number+of+activist+investors+looking+at+it+-+CNBC/11994688.html
-date:		September 1, 2016
-tickers:	['TWTR']
+name:		Notable Mergers and Acquisitions 9/8: (HPE) (LMCA) (APIC) (INTC)
+href:		Special+Reports/Notable+Mergers+and+Acquisitions+98%3A+%28HPE%29+%28LMCA%29+%28APIC%29+%28INTC%29/12013580.html
+date:		September 8, 2016
+tickers:	['HPE', 'LMCA', 'APIC', 'INTC']
 
-name:		Twitter (TWTR) board to meet on Sept. 8, likely to discuss future growth rate of company & options if growth remains anemic - CNBC
-href:		Rumors/Twitter+%28TWTR%29+board+to+meet+on+Sept.+8%2C+likely+to+discuss+future+growth+rate+of+company+%26+options+if+growth+remains+anemic+-+CNBC/11994777.html
-date:		September 1, 2016
-tickers:	['TWTR']
-
-name:		Twitter (TWTR) Rumors Resurface Following Comments from Co-Founder Evan Williams
-href:		Rumors/Twitter+%28TWTR%29+Rumors+Resurface+Following+Comments+from+Co-Founder+Evan+Williams/11990597.html
-date:		August 31, 2016
-tickers:	['TWTR']
-
-name:		Twitter (TWTR) September 20 calls active into September 8 board meeting
-href:		Options/Twitter+%28TWTR%29+September+20+calls+active+into+September+8+board+meeting/11996202.html
-date:		September 1, 2016
-tickers:	['TWTR']
-
-name:		Twitter (TWTR) call volume increases into September 8 board meeting
-href:		Options/Twitter+%28TWTR%29+call+volume+increases+into+September+8+board+meeting/11995059.html
-date:		September 1, 2016
-tickers:	['TWTR']
-
-name:		Twitter (TWTR) September weekly calls active, 9 calls to 1 put
-href:		Options/Twitter+%28TWTR%29+September+weekly+calls+active%2C+9+calls+to+1+put/11990051.html
-date:		August 31, 2016
-tickers:	['TWTR']
-
-name:		Streetinsider.com's Hot Lunchtime Reads 8/31: (NFLX) (TWTR) (CMG) (BLOX)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+831%3A+%28NFLX%29+%28TWTR%29+%28CMG%29+%28BLOX%29/11990781.html
-date:		August 31, 2016
-tickers:	['NFLX', 'TWTR', 'CMG', 'BLOX']
-
-name:		Twitter (TWTR) Sees Early Gains
-href:		Trader+Talk/Twitter+%28TWTR%29+Sees+Early+Gains/11990036.html
-date:		August 31, 2016
-tickers:	['TWTR']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#13 / 996 tickers] All 10 articles for MRVL:
------------------------------------------------------------
------------------------------------------------------------
-name:		Marvell Technology (MRVL) Tops Q2 EPS by 7c
-href:		Earnings/Marvell+Technology+%28MRVL%29+Tops+Q2+EPS+by+7c/12002327.html
+name:		Trading Radar for 9/7: Hewlett Packard Enterprise (HPE), Francesca's (FRAN), HD Supply (HDS) Report
+href:		Special+Reports/Trading+Radar+for+97%3A+Hewlett+Packard+Enterprise+%28HPE%29%2C+Francesca%27s+%28FRAN%29%2C+HD+Supply+%28HDS%29+Report/12004717.html
 date:		September 6, 2016
-tickers:	['MRVL']
+tickers:	['HPE', 'FRAN', 'HDS']
 
-name:		Marvell Technology (MRVL) Remains an Excellent Take-Out Candidate - Rosenblatt
-href:		Rumors/Marvell+Technology+%28MRVL%29+Remains+an+Excellent+Take-Out+Candidate+-+Rosenblatt/12004150.html
+name:		BMO Capital Raises Price Target on Hewlett Packard Enterprise (HPE) Following Mixed 3Q Report
+href:		Analyst+Comments/BMO+Capital+Raises+Price+Target+on+Hewlett+Packard+Enterprise+%28HPE%29+Following+Mixed+3Q+Report/12013561.html
+date:		September 8, 2016
+tickers:	['HPE']
+
+name:		UPDATE: Wells Fargo Downgrades HP Enterprise (HPE) to Market Perform
+href:		Analyst+Comments/UPDATE%3A+Wells+Fargo+Downgrades+HP+Enterprise+%28HPE%29+to+Market+Perform/12012362.html
+date:		September 8, 2016
+tickers:	['HPE']
+
+name:		Hewlett Packard Enterprise (HPE): Raising PT Despite Weak Quarter - Jefferies
+href:		Analyst+Comments/Hewlett+Packard+Enterprise+%28HPE%29%3A+Raising+PT+Despite+Weak+Quarter+-+Jefferies/12012636.html
+date:		September 8, 2016
+tickers:	['HPE']
+
+name:		Needham & Company Raises Price Target on Hewlett Packard Enterprise (HPE) Following 3Q
+href:		Analyst+Comments/Needham+%26+Company+Raises+Price+Target+on+Hewlett+Packard+Enterprise+%28HPE%29+Following+3Q/12012440.html
+date:		September 8, 2016
+tickers:	['HPE']
+
+
+
+-----------------------------------------------------------
+[#6 / 811 total tickers] CPHD
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for CPHD at 2016-09-11 19:30:17.724277
+-----------------------------
+200day_moving_avg: 32.53
+50day_moving_avg: 37.19
+avg_daily_volume: 1420110
+book_value: 5.17
+change: -0.03
+days_high: 52.58
+days_low: 52.36
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: 7.98
+earnings_share: -0.68
+ebitda: 588000.00
+market_cap: 3.83B
+name: CPHD
+open: 52.46
+prev_close: 52.46
+price: 52.43
+price_book: 10.14
+price_earnings_ratio: None
+price_sales: 6.79
+short_ratio: 4.84
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 5043894
+year_high: 53.19
+year_low: 25.09
+
+-----------------------------
+All 9 articles for CPHD
+-----------------------------
+name:		Danaher (DHR) to Acquire Cepheid (CPHD) for $4B
+href:		Corporate+News/Danaher+%28DHR%29+to+Acquire+Cepheid+%28CPHD%29+for+%244B/12002320.html
 date:		September 6, 2016
-tickers:	['MRVL']
+tickers:	['DHR', 'CPHD']
 
-name:		Marvell (MRVL) volatility increase into Q2 and outlook
-href:		Options/Marvell+%28MRVL%29+volatility+increase+into+Q2+and+outlook/11999714.html
-date:		September 2, 2016
-tickers:	['MRVL']
-
-name:		Streetinsider.com's Hot Lunchtime Reads 9/6: (FDML) (ESI) (HTZ) (MRVL)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+96%3A+%28FDML%29+%28ESI%29+%28HTZ%29+%28MRVL%29/12004296.html
+name:		Cepheid (CPHD) volatility low into Danaher (DHR) acquiring for $53 per share
+href:		Hot+M+and+A/Cepheid+%28CPHD%29+volatility+low+into+Danaher+%28DHR%29+acquiring+for+%2453+per+share/12002399.html
 date:		September 6, 2016
-tickers:	['FDML', 'ESI', 'HTZ', 'MRVL']
+tickers:	['CPHD', 'DHR']
 
-name:		Trading Radar for 9/6: Marvell (MRVL), Layne Christensen (LAYN), SecureWorks (SCWX), Sparton (SPA) Report
-href:		Special+Reports/Trading+Radar+for+96%3A+Marvell+%28MRVL%29%2C+Layne+Christensen+%28LAYN%29%2C+SecureWorks+%28SCWX%29%2C+Sparton+%28SPA%29+Report/12000102.html
-date:		September 2, 2016
-tickers:	['MRVL', 'LAYN', 'SCWX', 'SPA']
-
-name:		Notable 52-Week Highs and Lows 9/2: (MRVL) (OCLR) (REN) High; (PAY) (DVAX) Low
-href:		Special+Reports/Notable+52-Week+Highs+and+Lows+92%3A+%28MRVL%29+%28OCLR%29+%28REN%29+High%3B+%28PAY%29+%28DVAX%29+Low/12000014.html
-date:		September 2, 2016
-tickers:	['MRVL', 'OCLR', 'REN', 'PAY', 'DVAX']
-
-name:		Notable 52-Week Highs and Lows 9/1: (CHTR) (OCLR) (MRVL) High; (ESI) (GCO) Low
-href:		Special+Reports/Notable+52-Week+Highs+and+Lows+91%3A+%28CHTR%29+%28OCLR%29+%28MRVL%29+High%3B+%28ESI%29+%28GCO%29+Low/11996231.html
-date:		September 1, 2016
-tickers:	['CHTR', 'OCLR', 'MRVL', 'ESI', 'GCO']
-
-name:		J.C. Penney (JCP) and Marvell Technology (MRVL) Added to Focus List at B. Riley
-href:		Analyst+Comments/J.C.+Penney+%28JCP%29+and+Marvell+Technology+%28MRVL%29+Added+to+Focus+List+at+B.+Riley/11993542.html
-date:		September 1, 2016
-tickers:	['JCP', 'MRVL']
-
-name:		Cowen Remains Bullish on Marvell Technology (MRVL) Ahead of 2Q
-href:		Analyst+Comments/Cowen+Remains+Bullish+on+Marvell+Technology+%28MRVL%29+Ahead+of+2Q/11984619.html
-date:		August 30, 2016
-tickers:	['MRVL']
-
-name:		Stephens Starts Marvell (MRVL) at Overweight
-href:		New+Coverage/Stephens+Starts+Marvell+%28MRVL%29+at+Overweight/11989181.html
-date:		August 31, 2016
-tickers:	['MRVL']
-
-
------------------------------------------------------------
------------------------------------------------------------
-[#14 / 996 tickers] All 10 articles for HLF:
------------------------------------------------------------
------------------------------------------------------------
-name:		Herbalife (HLF) Posts Second Ackman-Focused Video: 'Costly Missteps'
-href:		Corporate+News/Herbalife+%28HLF%29+Posts+Second+Ackman-Focused+Video%3A+%27Costly+Missteps%27/11989786.html
-date:		August 31, 2016
-tickers:	['HLF']
-
-name:		Herbalife (HLF) Launches Video Series Against Pershing Square's Bill Ackman
-href:		Corporate+News/Herbalife+%28HLF%29+Launches+Video+Series+Against+Pershing+Square%27s+Bill+Ackman/11981294.html
-date:		August 29, 2016
-tickers:	['HLF']
-
-name:		Herbalife (HLF) Issues Response to Icahn Share Purchase; Grateful for Support of All Investors
-href:		Corporate+News/Herbalife+%28HLF%29+Issues+Response+to+Icahn+Share+Purchase%3B+Grateful+for+Support+of+All+Investors/11978934.html
-date:		August 28, 2016
-tickers:	['HLF']
-
-name:		Icahn Adds Another ~307K Herbalife (HLF) Shares
-href:		13Ds/Icahn+Adds+Another+%7E307K+Herbalife+%28HLF%29+Shares/12003100.html
+name:		Unusual 11 Mid-Day Movers 9/6: (CLCD) (CPHD) (NAV) Higher; (TNXP) (KPTI) (PTI) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+96%3A+%28CLCD%29+%28CPHD%29+%28NAV%29+Higher%3B+%28TNXP%29+%28KPTI%29+%28PTI%29+Lower/12004435.html
 date:		September 6, 2016
-tickers:	['HLF']
+tickers:	['CLCD', 'CPHD', 'NAV', 'TNXP', 'KPTI', 'PTI']
 
-name:		Bill Ackman Backed Into a Corner on Herbalife (HLF), Icahn Tells CNBC
-href:		Hedge+Funds/Bill+Ackman+Backed+Into+a+Corner+on+Herbalife+%28HLF%29%2C+Icahn+Tells+CNBC/11986380.html
-date:		August 30, 2016
-tickers:	['HLF']
+name:		Pre-Open Stock Movers 09/06: (NAVB) (CLCD) (CPHD) Higher; (TNXP) (KPTI) (SCOR) Lower (more...)
+href:		Special+Reports/Pre-Open+Stock+Movers+0906%3A+%28NAVB%29+%28CLCD%29+%28CPHD%29+Higher%3B+%28TNXP%29+%28KPTI%29+%28SCOR%29+Lower+%28more...%29/12003533.html
+date:		September 6, 2016
+tickers:	['NAVB', 'CLCD', 'CPHD', 'TNXP', 'KPTI', 'SCOR']
 
-name:		Herbalife (HLF) Gains on Chatter Icahn Adding More as He Looks to Bury Ackman
-href:		Hedge+Funds/Herbalife+%28HLF%29+Gains+on+Chatter+Icahn+Adding+More+as+He+Looks+to+Bury+Ackman/11981584.html
-date:		August 29, 2016
-tickers:	['HLF']
+name:		Citi Downgrades Cepheid (CPHD) to Neutral
+href:		Downgrades/Citi+Downgrades+Cepheid+%28CPHD%29+to+Neutral/12012906.html
+date:		September 8, 2016
+tickers:	['CPHD']
 
-name:		Herbalife (HLF) September calls active after Icahn announced purchasing another 2.3M shares
-href:		Options/Herbalife+%28HLF%29+September+calls+active+after+Icahn+announced+purchasing+another+2.3M+shares/11980949.html
-date:		August 29, 2016
-tickers:	['HLF']
+name:		BTIG Downgrades Cepheid (CPHD) to Neutral
+href:		Downgrades/BTIG+Downgrades+Cepheid+%28CPHD%29+to+Neutral/12007531.html
+date:		September 7, 2016
+tickers:	['CPHD']
 
-name:		Herbalife (HLF) volatility flat into Icahn purchasing another 2.3M shares
-href:		Options/Herbalife+%28HLF%29+volatility+flat+into+Icahn+purchasing+another+2.3M+shares/11979541.html
-date:		August 29, 2016
-tickers:	['HLF']
+name:		Cowen Downgrades Cepheid (CPHD) to Market Perform
+href:		Downgrades/Cowen+Downgrades+Cepheid+%28CPHD%29+to+Market+Perform/12007528.html
+date:		September 7, 2016
+tickers:	['CPHD']
 
-name:		Streetinsider.com's Hot Lunchtime Reads 8/29: (AAPL) (TTWO) (HLF) (CNAT)
-href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+829%3A+%28AAPL%29+%28TTWO%29+%28HLF%29+%28CNAT%29/11981310.html
-date:		August 29, 2016
-tickers:	['AAPL', 'TTWO', 'HLF', 'CNAT']
+name:		Needham & Company Downgrades Cepheid (CPHD) to Hold Following Takeover
+href:		Downgrades/Needham+%26+Company+Downgrades+Cepheid+%28CPHD%29+to+Hold+Following+Takeover/12003565.html
+date:		September 6, 2016
+tickers:	['CPHD']
 
-name:		Pre-Open Stock Movers 08/29: (MCUR) (HLF) (MYL) Higher; (CZR) (ADMP) (KTOS) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0829%3A+%28MCUR%29+%28HLF%29+%28MYL%29+Higher%3B+%28CZR%29+%28ADMP%29+%28KTOS%29+Lower+%28more...%29/11980510.html
-date:		August 29, 2016
-tickers:	['MCUR', 'HLF', 'MYL', 'CZR', 'ADMP', 'KTOS']
+name:		Piper Jaffray Downgrades Cepheid (CPHD) to Neutral
+href:		Downgrades/Piper+Jaffray+Downgrades+Cepheid+%28CPHD%29+to+Neutral/12003447.html
+date:		September 6, 2016
+tickers:	['CPHD']
+
 
 
 -----------------------------------------------------------
+[#7 / 811 total tickers] PIR
 -----------------------------------------------------------
-[#15 / 996 tickers] All 9 articles for RIGL:
+
+-----------------------------
+Stock info for PIR at 2016-09-11 19:30:19.014901
+-----------------------------
+200day_moving_avg: 5.69
+50day_moving_avg: 4.83
+avg_daily_volume: 2589780
+book_value: 3.31
+change: -0.24
+days_high: 4.12
+days_low: 3.81
+dividend_share: 0.28
+dividend_yield: 6.86
+earnings_growth_ratio: -1.28
+earnings_share: 0.32
+ebitda: 111.65M
+market_cap: 313.59M
+name: PIR
+open: 4.08
+prev_close: 4.08
+price: 3.84
+price_book: 1.23
+price_earnings_ratio: 12.15
+price_sales: 0.18
+short_ratio: 10.04
+stock_exchange: NYQ
+trade_datetime: 2016-09-09 20:03:00 UTC+0000
+volume: 7175866
+year_high: 10.36
+year_low: 3.76
+
+-----------------------------
+All 8 articles for PIR
+-----------------------------
+name:		Pier 1 Imports (PIR) Prelim. Q2 Loss Wider than Expected
+href:		Corporate+News/Pier+1+Imports+%28PIR%29+Prelim.+Q2+Loss+Wider+than+Expected/12010993.html
+date:		September 7, 2016
+tickers:	['PIR']
+
+name:		Pre-Open Stock Movers 09/08: (RPRX) (RAD) (JUNO) Higher; (GEVO) (NLST) (TSCO) (PIR) Lower (more...)
+href:		Special+Dividends/Pre-Open+Stock+Movers+0908%3A+%28RPRX%29+%28RAD%29+%28JUNO%29+Higher%3B+%28GEVO%29+%28NLST%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12013515.html
+date:		September 8, 2016
+tickers:	['RPRX', 'RAD', 'JUNO', 'GEVO', 'NLST', 'TSCO', 'PIR']
+
+name:		Unusual 11 Mid-Day Movers 9/8: (GTXI) (TLRD) (RPRX) Higher; (GEVO) (TSCO) (PIR) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+98%3A+%28GTXI%29+%28TLRD%29+%28RPRX%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower/12014596.html
+date:		September 8, 2016
+tickers:	['GTXI', 'TLRD', 'RPRX', 'GEVO', 'TSCO', 'PIR']
+
+name:		After-Hours Stock Movers 09/07: (RPRX) (JUNO) (ABEO) Higher; (GEVO) (TSCO) (PIR) Lower (more...)
+href:		Special+Reports/After-Hours+Stock+Movers+0907%3A+%28RPRX%29+%28JUNO%29+%28ABEO%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12011421.html
+date:		September 7, 2016
+tickers:	['RPRX', 'JUNO', 'ABEO', 'GEVO', 'TSCO', 'PIR']
+
+name:		UPDATE: Oppenheimer Downgrades Pier 1 Imports (PIR) to Perform
+href:		Analyst+Comments/UPDATE%3A+Oppenheimer+Downgrades+Pier+1+Imports+%28PIR%29+to+Perform/12012403.html
+date:		September 8, 2016
+tickers:	['PIR']
+
+name:		Jefferies Cuts Price Target on Pier 1 Imports (PIR) Following 2Q Pre-Announcement
+href:		Analyst+Comments/Jefferies+Cuts+Price+Target+on+Pier+1+Imports+%28PIR%29+Following+2Q+Pre-Announcement/12012680.html
+date:		September 8, 2016
+tickers:	['PIR']
+
+name:		Credit Suisse Downgrades Pier 1 Imports (PIR) to Underperform
+href:		Analyst+Comments/Credit+Suisse+Downgrades+Pier+1+Imports+%28PIR%29+to+Underperform/12012401.html
+date:		September 8, 2016
+tickers:	['PIR']
+
+name:		Raymond James Downgrades Pier 1 Imports (PIR) to Market Perform
+href:		Downgrades/Raymond+James+Downgrades+Pier+1+Imports+%28PIR%29+to+Market+Perform/12012413.html
+date:		September 8, 2016
+tickers:	['PIR']
+
+
+
 -----------------------------------------------------------
+[#8 / 811 total tickers] MON
 -----------------------------------------------------------
-name:		Rigel Pharma (RIGL) Oral Spleen Tyrosine Kinase (SYK) Inhibitor Met Primary Endpoint in Phase 3 Study
-href:		Corporate+News/Rigel+Pharma+%28RIGL%29+Oral+Spleen+Tyrosine+Kinase+%28SYK%29+Inhibitor+Met+Primary+Endpoint+in+Phase+3+Study/11984491.html
-date:		August 30, 2016
-tickers:	['RIGL', 'SYK']
 
-name:		Rigel Pharmaceuticals (RIGL) PT Raised to $11 at Piper Jaffray
-href:		FDA/Rigel+Pharmaceuticals+%28RIGL%29+PT+Raised+to+%2411+at+Piper+Jaffray/11985035.html
-date:		August 30, 2016
-tickers:	['RIGL']
+-----------------------------
+Stock info for MON at 2016-09-11 19:30:19.432541
+-----------------------------
+200day_moving_avg: 99.42
+50day_moving_avg: 106.15
+avg_daily_volume: 3603430
+book_value: 11.68
+change: -1.27
+days_high: 109.07
+days_low: 106.67
+dividend_share: 2.16
+dividend_yield: 2.00
+earnings_growth_ratio: 3.58
+earnings_share: 2.27
+ebitda: 3.64B
+market_cap: 46.72B
+name: MON
+open: 108.35
+prev_close: 108.05
+price: 106.78
+price_book: 9.25
+price_earnings_ratio: 47.00
+price_sales: 3.56
+short_ratio: 1.46
+stock_exchange: NYQ
+trade_datetime: 2016-09-09 20:01:00 UTC+0000
+volume: 9126749
+year_high: 114.26
+year_low: 81.22
 
-name:		Rigel Pharma (RIGL) Sees Wild Rollercoaster Pre-Open Trading Amid Data
-href:		FDA/Rigel+Pharma+%28RIGL%29+Sees+Wild+Rollercoaster+Pre-Open+Trading+Amid+Data/11984994.html
-date:		August 30, 2016
-tickers:	['RIGL']
+-----------------------------
+All 8 articles for MON
+-----------------------------
+name:		Monsanto (MON) Affirms Receipt of Increased Offer from Bayer
+href:		Corporate+News/Monsanto+%28MON%29+Affirms+Receipt+of+Increased+Offer+from+Bayer/12002641.html
+date:		September 6, 2016
+tickers:	['MON']
 
-name:		Rigel Pharmaceuticals (RIGL) PT Raised to $6 at BMO Capital Following Positive ITP Study
-href:		FDA/Rigel+Pharmaceuticals+%28RIGL%29+PT+Raised+to+%246+at+BMO+Capital+Following+Positive+ITP+Study/11984856.html
-date:		August 30, 2016
-tickers:	['RIGL']
+name:		UPDATE: Monsanto (MON) Said to Push Bayer for Price Closer to $130/Share - Bloomberg
+href:		Mergers+and+Acquisitions/UPDATE%3A+Monsanto+%28MON%29+Said+to+Push+Bayer+for+Price+Closer+to+%24130Share+-+Bloomberg/12018522.html
+date:		September 9, 2016
+tickers:	['MON']
 
-name:		Rigel Pharma (RIGL) Could Rise Up to 90% Today - JP Morgan
-href:		FDA/Rigel+Pharma+%28RIGL%29+Could+Rise+Up+to+90%25+Today+-+JP+Morgan/11984557.html
-date:		August 30, 2016
-tickers:	['RIGL']
+name:		Bayer, Monsanto (MON) deal likely to be announced late next week; price seen to be in high $120s - CNBC
+href:		Mergers+and+Acquisitions/Bayer%2C+Monsanto+%28MON%29+deal+likely+to+be+announced+late+next+week%3B+price+seen+to+be+in+high+%24120s+-+CNBC/12018285.html
+date:		September 9, 2016
+tickers:	['MON']
 
-name:		Rigel Pharma (RIGL) Shares Tick Lower Early Following Strong Tostamatinib Data-Related Trading
-href:		Momentum+Movers/Rigel+Pharma+%28RIGL%29+Shares+Tick+Lower+Early+Following+Strong+Tostamatinib+Data-Related+Trading/11989648.html
-date:		August 31, 2016
-tickers:	['RIGL']
+name:		Monsanto (MON), Bayer talks are 'strongly progressing' - Fox
+href:		Mergers+and+Acquisitions/Monsanto+%28MON%29%2C+Bayer+talks+are+%27strongly+progressing%27+-+Fox/12014434.html
+date:		September 8, 2016
+tickers:	['MON']
 
-name:		Rigel Pharma (RIGL) Pushes to Highs; Shares Up 53%
-href:		Momentum+Movers/Rigel+Pharma+%28RIGL%29+Pushes+to+Highs%3B+Shares+Up+53%25/11986357.html
-date:		August 30, 2016
-tickers:	['RIGL']
+name:		Bayer, Monsanto (MON) deal could happen within a week or two, people familiar say - CNBC
+href:		Mergers+and+Acquisitions/Bayer%2C+Monsanto+%28MON%29+deal+could+happen+within+a+week+or+two%2C+people+familiar+say+-+CNBC/12003453.html
+date:		September 6, 2016
+tickers:	['MON']
 
-name:		Unusual 11 Mid-Day Movers 8/30: (RIGL) (KPTI) (RBA) Higher; (ANF) (CBK) (GIII) Lower
-href:		Special+Reports/Unusual+11+Mid-Day+Movers+830%3A+%28RIGL%29+%28KPTI%29+%28RBA%29+Higher%3B+%28ANF%29+%28CBK%29+%28GIII%29+Lower/11986421.html
-date:		August 30, 2016
-tickers:	['RIGL', 'KPTI', 'RBA', 'ANF', 'CBK', 'GIII']
+name:		Monsanto (MON) volatility elevated into Bayer (BAYRY) increasing takeover bid
+href:		Mergers+and+Acquisitions/Monsanto+%28MON%29+volatility+elevated+into+Bayer+%28BAYRY%29+increasing+takeover+bid/12002277.html
+date:		September 6, 2016
+tickers:	['MON', 'BAYRY']
 
-name:		Pre-Open Stock Movers 08/30: (RIGL) (RBA) (MDLZ) Higher; (GIII) (ANF) (HSY) Lower (more...)
-href:		Special+Reports/Pre-Open+Stock+Movers+0830%3A+%28RIGL%29+%28RBA%29+%28MDLZ%29+Higher%3B+%28GIII%29+%28ANF%29+%28HSY%29+Lower+%28more...%29/11985250.html
-date:		August 30, 2016
-tickers:	['RIGL', 'RBA', 'MDLZ', 'GIII', 'ANF', 'HSY']
+name:		Bayer Raises Monsanto (MON) Offer to $127.50/Share
+href:		Mergers+and+Acquisitions/Bayer+Raises+Monsanto+%28MON%29+Offer+to+%24127.50Share/12001734.html
+date:		September 5, 2016
+tickers:	['MON']
+
+name:		Notable Mergers and Acquisitions 9/6: (ENB/(SE) (ARMH) (EOG) (CPHD/(DHR) (GE) (MON)
+href:		Special+Reports/Notable+Mergers+and+Acquisitions+96%3A+%28ENB%28SE%29+%28ARMH%29+%28EOG%29+%28CPHD%28DHR%29+%28GE%29+%28MON%29/12003610.html
+date:		September 6, 2016
+tickers:	['ENB/(SE', 'ARMH', 'EOG', 'CPHD/(DHR', 'GE', 'MON']
+
+
+
+-----------------------------------------------------------
+[#9 / 811 total tickers] CLCD
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for CLCD at 2016-09-11 19:30:20.654123
+-----------------------------
+200day_moving_avg: 7.78
+50day_moving_avg: 10.40
+avg_daily_volume: 396553
+book_value: 2.03
+change: +1.22
+days_high: 23.37
+days_low: 21.50
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: 0.00
+earnings_share: -3.24
+ebitda: 0.00
+market_cap: 335.20M
+name: CLCD
+open: 21.74
+prev_close: 20.64
+price: 21.86
+price_book: 10.19
+price_earnings_ratio: None
+price_sales: None
+short_ratio: 1.41
+stock_exchange: NGM
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 4805921
+year_high: 25.75
+year_low: 3.57
+
+-----------------------------
+All 8 articles for CLCD
+-----------------------------
+name:		CoLucid Pharmaceuticals (CLCD) to Offer Common Shares
+href:		Corporate+News/CoLucid+Pharmaceuticals+%28CLCD%29+to+Offer+Common+Shares/12015543.html
+date:		September 8, 2016
+tickers:	['CLCD']
+
+name:		CoLucid Pharmaceuticals' (CLCD) SAMURAI Phase 3 Trial of Lasmiditan in Migraine Meets Primary and Secondary Endpoints
+href:		Corporate+News/CoLucid+Pharmaceuticals%27+%28CLCD%29+SAMURAI+Phase+3+Trial+of+Lasmiditan+in+Migraine+Meets+Primary+and+Secondary+Endpoints/12002657.html
+date:		September 6, 2016
+tickers:	['CLCD']
+
+name:		CoLucid Pharmaceuticals (CLCD) Results Reduce Clinical and Regulatory Risk - Piper Jaffray
+href:		FDA/CoLucid+Pharmaceuticals+%28CLCD%29+Results+Reduce+Clinical+and+Regulatory+Risk+-+Piper+Jaffray/12003843.html
+date:		September 6, 2016
+tickers:	['CLCD']
+
+name:		Notable 52-Week Highs and Lows 9/6: (NAV) (CLCD) (XIN) High; (TNXP) (ETRM) Low
+href:		Special+Reports/Notable+52-Week+Highs+and+Lows+96%3A+%28NAV%29+%28CLCD%29+%28XIN%29+High%3B+%28TNXP%29+%28ETRM%29+Low/12004943.html
+date:		September 6, 2016
+tickers:	['NAV', 'CLCD', 'XIN', 'TNXP', 'ETRM']
+
+name:		Unusual 11 Mid-Day Movers 9/6: (CLCD) (CPHD) (NAV) Higher; (TNXP) (KPTI) (PTI) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+96%3A+%28CLCD%29+%28CPHD%29+%28NAV%29+Higher%3B+%28TNXP%29+%28KPTI%29+%28PTI%29+Lower/12004435.html
+date:		September 6, 2016
+tickers:	['CLCD', 'CPHD', 'NAV', 'TNXP', 'KPTI', 'PTI']
+
+name:		Pre-Open Stock Movers 09/06: (NAVB) (CLCD) (CPHD) Higher; (TNXP) (KPTI) (SCOR) Lower (more...)
+href:		Special+Reports/Pre-Open+Stock+Movers+0906%3A+%28NAVB%29+%28CLCD%29+%28CPHD%29+Higher%3B+%28TNXP%29+%28KPTI%29+%28SCOR%29+Lower+%28more...%29/12003533.html
+date:		September 6, 2016
+tickers:	['NAVB', 'CLCD', 'CPHD', 'TNXP', 'KPTI', 'SCOR']
+
+name:		CoLucid Pharmaceuticals' (CLCD) Price Target Raised to $52 at Ladenburg Thalmann
+href:		Trader+Talk/CoLucid+Pharmaceuticals%27+%28CLCD%29+Price+Target+Raised+to+%2452+at+Ladenburg+Thalmann/12003430.html
+date:		September 6, 2016
+tickers:	['CLCD']
+
+name:		CoLucid Pharmaceuticals (CLCD) Prices 3.25M Shares at $20
+href:		Equity+Offerings/CoLucid+Pharmaceuticals+%28CLCD%29+Prices+3.25M+Shares+at+%2420/12018192.html
+date:		September 9, 2016
+tickers:	['CLCD']
+
+
+
+-----------------------------------------------------------
+[#10 / 811 total tickers] TSLA
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for TSLA at 2016-09-11 19:30:22.091388
+-----------------------------
+200day_moving_avg: 221.68
+50day_moving_avg: 220.47
+avg_daily_volume: 4077010
+book_value: 17.03
+change: -2.89
+days_high: 199.92
+days_low: 193.70
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: -6.73
+earnings_share: -8.45
+ebitda: -336.48M
+market_cap: 28.92B
+name: TSLA
+open: 199.09
+prev_close: 197.36
+price: 194.47
+price_book: 11.59
+price_earnings_ratio: None
+price_sales: 6.42
+short_ratio: 8.74
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 3756992
+year_high: 271.57
+year_low: 141.05
+
+-----------------------------
+All 8 articles for TSLA
+-----------------------------
+name:		Tesla (TSLA) Enters $300M Warehouse Agreement with Deutsche Bank
+href:		Corporate+News/Tesla+%28TSLA%29+Enters+%24300M+Warehouse+Agreement+with+Deutsche+Bank/12010697.html
+date:		September 7, 2016
+tickers:	['TSLA']
+
+name:		Tesla (TSLA) CEO Musk: Will Get Back to Work on Autopilot Blog Tomorrow
+href:		Management+Comments/Tesla+%28TSLA%29+CEO+Musk%3A+Will+Get+Back+to+Work+on+Autopilot+Blog+Tomorrow/12017587.html
+date:		September 9, 2016
+tickers:	['TSLA']
+
+name:		Axiom's Johnson Sees Tesla (TSLA) Tapping Equity Market for Another $3B; Lowers SolarCity (SCTY) Target to $14
+href:		Rumors/Axiom%27s+Johnson+Sees+Tesla+%28TSLA%29+Tapping+Equity+Market+for+Another+%243B%3B+Lowers+SolarCity+%28SCTY%29+Target+to+%2414/12018577.html
+date:		September 9, 2016
+tickers:	['TSLA', 'SCTY']
+
+name:		Norway No Longer Reigns as Tesla's (TSLA) Biggest European Market
+href:		Insiders+Blog/Norway+No+Longer+Reigns+as+Tesla%27s+%28TSLA%29+Biggest+European+Market/12013927.html
+date:		September 8, 2016
+tickers:	['TSLA']
+
+name:		Tesla (TSLA) Rated 'Underperform' at Cowen on Concerns More Can Go Wrong Than Go Right
+href:		Momentum+Movers/Tesla+%28TSLA%29+Rated+%27Underperform%27+at+Cowen+on+Concerns+More+Can+Go+Wrong+Than+Go+Right/12012350.html
+date:		September 8, 2016
+tickers:	['TSLA']
+
+name:		Streetinsider.com's Hot Lunchtime Reads 9/9: (PPHM) (LXRX) (TASR) (TSLA)
+href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+99%3A+%28PPHM%29+%28LXRX%29+%28TASR%29+%28TSLA%29/12018756.html
+date:		September 9, 2016
+tickers:	['PPHM', 'LXRX', 'TASR', 'TSLA']
+
+name:		Streetinsider.com's Hot Lunchtime Reads 9/8: (MU) (TSLA) (WLK) (MPEL)
+href:		Special+Reports/Streetinsider.com%27s+Hot+Lunchtime+Reads+98%3A+%28MU%29+%28TSLA%29+%28WLK%29+%28MPEL%29/12014331.html
+date:		September 8, 2016
+tickers:	['MU', 'TSLA', 'WLK', 'MPEL']
+
+name:		Tesla (TSLA) Ticks Higher Amid Anticipation of Autopilot 2.0 News
+href:		Trader+Talk/Tesla+%28TSLA%29+Ticks+Higher+Amid+Anticipation+of+Autopilot+2.0+News/12007863.html
+date:		September 7, 2016
+tickers:	['TSLA']
+
+
+
+-----------------------------------------------------------
+[#11 / 811 total tickers] CMG
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for CMG at 2016-09-11 19:30:22.704687
+-----------------------------
+200day_moving_avg: 438.14
+50day_moving_avg: 411.44
+avg_daily_volume: 1148480
+book_value: 50.98
+change: -9.76
+days_high: 436.26
+days_low: 426.41
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: 10.65
+earnings_share: 6.94
+ebitda: 483.82M
+market_cap: 12.42B
+name: CMG
+open: 434.83
+prev_close: 436.31
+price: 426.55
+price_book: 8.56
+price_earnings_ratio: 61.45
+price_sales: 3.14
+short_ratio: 4.50
+stock_exchange: NYQ
+trade_datetime: 2016-09-09 20:02:00 UTC+0000
+volume: 992495
+year_high: 757.00
+year_low: 384.77
+
+-----------------------------
+All 8 articles for CMG
+-----------------------------
+name:		Chipotle (CMG) held 'introductory call' with Pershing Square's Ackman today - Bloomberg
+href:		13Ds/Chipotle+%28CMG%29+held+%27introductory+call%27+with+Pershing+Square%27s+Ackman+today+-+Bloomberg/12009613.html
+date:		September 7, 2016
+tickers:	['CMG']
+
+name:		Could Activist Trigger McDonald's (MCD) to Repurchase Chipotle (CMG)? - Buckingham Research
+href:		13Ds/Could+Activist+Trigger+McDonald%27s+%28MCD%29+to+Repurchase+Chipotle+%28CMG%29%3F+-+Buckingham+Research/12007674.html
+date:		September 7, 2016
+tickers:	['MCD', 'CMG']
+
+name:		Ackman's Pershing Square Files 13D on Chipotle Mexican Grill (CMG); Will Seek Talks
+href:		13Ds/Ackman%27s+Pershing+Square+Files+13D+on+Chipotle+Mexican+Grill+%28CMG%29%3B+Will+Seek+Talks/12005890.html
+date:		September 6, 2016
+tickers:	['CMG']
+
+name:		Chipotle Mexican Grill (CMG) volatility low into Pershing Square reports 9.9% stake
+href:		Options/Chipotle+Mexican+Grill+%28CMG%29+volatility+low+into+Pershing+Square+reports+9.9%25+stake/12007091.html
+date:		September 7, 2016
+tickers:	['CMG']
+
+name:		Pre-Open Stock Movers 09/07: (RTRX) (AAOI) (FRAN) (CMG) Higher; (SFM) (HDS) (CASY) Lower (more...)
+href:		Special+Reports/Pre-Open+Stock+Movers+0907%3A+%28RTRX%29+%28AAOI%29+%28FRAN%29+%28CMG%29+Higher%3B+%28SFM%29+%28HDS%29+%28CASY%29+Lower+%28more...%29/12008534.html
+date:		September 7, 2016
+tickers:	['RTRX', 'AAOI', 'FRAN', 'CMG', 'SFM', 'HDS', 'CASY']
+
+name:		After-Hours Stock Movers 09/06: (AAOI) (PGNX) (CMG) Higher; (CASY) (PLAY) (SIGM) Lower (more...)
+href:		Special+Reports/After-Hours+Stock+Movers+0906%3A+%28AAOI%29+%28PGNX%29+%28CMG%29+Higher%3B+%28CASY%29+%28PLAY%29+%28SIGM%29+Lower+%28more...%29/12006348.html
+date:		September 6, 2016
+tickers:	['AAOI', 'PGNX', 'CMG', 'CASY', 'PLAY', 'SIGM']
+
+name:		Sell the Ackman Rally in Chipotle (CMG) - Oppenheimer
+href:		Trader+Talk/Sell+the+Ackman+Rally+in+Chipotle+%28CMG%29+-+Oppenheimer/12008634.html
+date:		September 7, 2016
+tickers:	['CMG']
+
+name:		Piper Jaffray Slashes Numbers on Chipotle (CMG) But Keeps 'Overweight' Rating
+href:		Analyst+Comments/Piper+Jaffray+Slashes+Numbers+on+Chipotle+%28CMG%29+But+Keeps+%27Overweight%27+Rating/12012573.html
+date:		September 8, 2016
+tickers:	['CMG']
+
+
+
+-----------------------------------------------------------
+[#12 / 811 total tickers] WDC
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for WDC at 2016-09-11 19:30:23.934771
+-----------------------------
+200day_moving_avg: 45.85
+50day_moving_avg: 47.45
+avg_daily_volume: 5237700
+book_value: 39.24
+change: -1.88
+days_high: 54.41
+days_low: 51.30
+dividend_share: 2.00
+dividend_yield: 3.74
+earnings_growth_ratio: 13.31
+earnings_share: 1.00
+ebitda: 2.12B
+market_cap: 14.67B
+name: WDC
+open: 52.91
+prev_close: 53.47
+price: 51.59
+price_book: 1.36
+price_earnings_ratio: 51.59
+price_sales: 1.17
+short_ratio: 3.63
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 6034300
+year_high: 86.39
+year_low: 34.99
+
+-----------------------------
+All 7 articles for WDC
+-----------------------------
+name:		Western Digital (WDC) Boosts Q1 Outlook
+href:		Corporate+News/Western+Digital+%28WDC%29+Boosts+Q1+Outlook/12007306.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+name:		Western Digital (WDC) PT Raised to $67 at Craig-Hallum
+href:		Analyst+Comments/Western+Digital+%28WDC%29+PT+Raised+to+%2467+at+Craig-Hallum/12013672.html
+date:		September 8, 2016
+tickers:	['WDC']
+
+name:		Mizuho Securities Raises Price Target as Western Digital (WDC) Releases SepQ Pre-Announcement
+href:		Analyst+Comments/Mizuho+Securities+Raises+Price+Target+as+Western+Digital+%28WDC%29+Releases+SepQ+Pre-Announcement/12011020.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+name:		Western Digital (WDC) PT Raised to $70 at Baird
+href:		Analyst+Comments/Western+Digital+%28WDC%29+PT+Raised+to+%2470+at+Baird/12009000.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+name:		Western Digital (WDC) PT Raised to $60 at RBC Capital Following Raised Outlook
+href:		Analyst+Comments/Western+Digital+%28WDC%29+PT+Raised+to+%2460+at+RBC+Capital+Following+Raised+Outlook/12008774.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+name:		FBN Lifts PT on Western Digital (WDC) to $55 Amid Positive Q1 Preannouncement
+href:		Analyst+Comments/FBN+Lifts+PT+on+Western+Digital+%28WDC%29+to+%2455+Amid+Positive+Q1+Preannouncement/12008621.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+name:		Western Digital (WDC): Tight Flash Market Is Here To Stay - Baird
+href:		Analyst+Comments/Western+Digital+%28WDC%29%3A+Tight+Flash+Market+Is+Here+To+Stay+-+Baird/12007166.html
+date:		September 7, 2016
+tickers:	['WDC']
+
+
+
+-----------------------------------------------------------
+[#13 / 811 total tickers] RTRX
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for RTRX at 2016-09-11 19:30:25.573275
+-----------------------------
+200day_moving_avg: 16.39
+50day_moving_avg: 17.70
+avg_daily_volume: 741461
+book_value: 8.56
+change: -0.07
+days_high: 21.96
+days_low: 21.07
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: 11.56
+earnings_share: 2.46
+ebitda: -15.75M
+market_cap: 782.37M
+name: RTRX
+open: 21.21
+prev_close: 21.37
+price: 21.30
+price_book: 2.50
+price_earnings_ratio: 8.65
+price_sales: 6.50
+short_ratio: 12.75
+stock_exchange: NGM
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 940023
+year_high: 29.64
+year_low: 11.60
+
+-----------------------------
+All 7 articles for RTRX
+-----------------------------
+name:		Ligand Pharma (LGND) Says Retrophin (RTRX) Presented Sparsentan Phase 2 Study Data
+href:		Corporate+News/Ligand+Pharma+%28LGND%29+Says+Retrophin+%28RTRX%29+Presented+Sparsentan+Phase+2+Study+Data/12008503.html
+date:		September 7, 2016
+tickers:	['LGND', 'RTRX']
+
+name:		Retrophin (RTRX) Announces Significant Top-Line Data from Sparsentan Phase 2 as FSGS Treatment
+href:		Corporate+News/Retrophin+%28RTRX%29+Announces+Significant+Top-Line+Data+from+Sparsentan+Phase+2+as+FSGS+Treatment/12007222.html
+date:		September 7, 2016
+tickers:	['RTRX']
+
+name:		Retrophin (RTRX) PT Raised to $32 at Leerink Partners Following Clear Efficacy from Sparsentan
+href:		FDA/Retrophin+%28RTRX%29+PT+Raised+to+%2432+at+Leerink+Partners+Following+Clear+Efficacy+from+Sparsentan/12009612.html
+date:		September 7, 2016
+tickers:	['RTRX']
+
+name:		Unusual 11 Mid-Day Movers 9/7: (CGNT) (RTRX) (AGIO) Higher; (SHLO) (ADPT) (HDS) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+97%3A+%28CGNT%29+%28RTRX%29+%28AGIO%29+Higher%3B+%28SHLO%29+%28ADPT%29+%28HDS%29+Lower/12009602.html
+date:		September 7, 2016
+tickers:	['CGNT', 'RTRX', 'AGIO', 'SHLO', 'ADPT', 'HDS']
+
+name:		Pre-Open Stock Movers 09/07: (RTRX) (AAOI) (FRAN) (CMG) Higher; (SFM) (HDS) (CASY) Lower (more...)
+href:		Special+Reports/Pre-Open+Stock+Movers+0907%3A+%28RTRX%29+%28AAOI%29+%28FRAN%29+%28CMG%29+Higher%3B+%28SFM%29+%28HDS%29+%28CASY%29+Lower+%28more...%29/12008534.html
+date:		September 7, 2016
+tickers:	['RTRX', 'AAOI', 'FRAN', 'CMG', 'SFM', 'HDS', 'CASY']
+
+name:		Ligand Pharma (LGND) Gains After Retrophin (RTRX) Announces Positive Sparsentan Phase 2 Data
+href:		Trader+Talk/Ligand+Pharma+%28LGND%29+Gains+After+Retrophin+%28RTRX%29+Announces+Positive+Sparsentan+Phase+2+Data/12007499.html
+date:		September 7, 2016
+tickers:	['LGND', 'RTRX']
+
+name:		Retrophin (RTRX) PT Raised to $40 at BMO Capital
+href:		Analyst+Comments/Retrophin+%28RTRX%29+PT+Raised+to+%2440+at+BMO+Capital/12010542.html
+date:		September 7, 2016
+tickers:	['RTRX']
+
+
+
+-----------------------------------------------------------
+[#14 / 811 total tickers] INTC
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for INTC at 2016-09-11 19:30:27.416705
+-----------------------------
+200day_moving_avg: 32.56
+50day_moving_avg: 35.19
+avg_daily_volume: 22272800
+book_value: 12.98
+change: -1.00
+days_high: 36.39
+days_low: 35.44
+dividend_share: 1.04
+dividend_yield: 2.85
+earnings_growth_ratio: 1.46
+earnings_share: 2.06
+ebitda: 22.53B
+market_cap: 167.67B
+name: INTC
+open: 36.10
+prev_close: 36.44
+price: 35.44
+price_book: 2.81
+price_earnings_ratio: 17.19
+price_sales: 3.05
+short_ratio: 2.73
+stock_exchange: NMS
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 29457900
+year_high: 36.65
+year_low: 27.68
+
+-----------------------------
+All 7 articles for INTC
+-----------------------------
+name:		Intel (INTC), TPG to Form Cybersecurity Joint Venture; TPG to Own Majority of McAfee
+href:		Corporate+News/Intel+%28INTC%29%2C+TPG+to+Form+Cybersecurity+Joint+Venture%3B+TPG+to+Own+Majority+of+McAfee/12010480.html
+date:		September 7, 2016
+tickers:	['INTC']
+
+name:		MGT Capital Investments (MGT) Files Complaint Against Intel (INTC)
+href:		Corporate+News/MGT+Capital+Investments+%28MGT%29+Files+Complaint+Against+Intel+%28INTC%29/12003156.html
+date:		September 6, 2016
+tickers:	['MGT', 'INTC']
+
+name:		Intel (INTC) said to near sale of McAfee unit to TPG - DJ
+href:		Mergers+and+Acquisitions/Intel+%28INTC%29+said+to+near+sale+of+McAfee+unit+to+TPG+-+DJ/12010202.html
+date:		September 7, 2016
+tickers:	['INTC']
+
+name:		Intel (INTC) to Acquire SoC Platform Provider Movidius
+href:		Mergers+and+Acquisitions/Intel+%28INTC%29+to+Acquire+SoC+Platform+Provider+Movidius/12004112.html
+date:		September 6, 2016
+tickers:	['INTC']
+
+name:		Notable Mergers and Acquisitions 9/8: (HPE) (LMCA) (APIC) (INTC)
+href:		Special+Reports/Notable+Mergers+and+Acquisitions+98%3A+%28HPE%29+%28LMCA%29+%28APIC%29+%28INTC%29/12013580.html
+date:		September 8, 2016
+tickers:	['HPE', 'LMCA', 'APIC', 'INTC']
+
+name:		Intel (INTC): Raising PT On Stronger Than Expected Channel Checks - Baird
+href:		Analyst+Comments/Intel+%28INTC%29%3A+Raising+PT+On+Stronger+Than+Expected+Channel+Checks+-+Baird/12002636.html
+date:		September 6, 2016
+tickers:	['INTC']
+
+name:		Evercore ISI Upgrades Intel (INTC) to Buy
+href:		Upgrades/Evercore+ISI+Upgrades+Intel+%28INTC%29+to+Buy/12002364.html
+date:		September 6, 2016
+tickers:	['INTC']
+
+
+
+-----------------------------------------------------------
+[#15 / 811 total tickers] GEVO
+-----------------------------------------------------------
+
+-----------------------------
+Stock info for GEVO at 2016-09-11 19:30:28.432237
+-----------------------------
+200day_moving_avg: 0.4449
+50day_moving_avg: 0.5689
+avg_daily_volume: 9626530
+book_value: 1.1850
+change: -0.0058
+days_high: 0.5104
+days_low: 0.4710
+dividend_share: None
+dividend_yield: None
+earnings_growth_ratio: -0.0200
+earnings_share: -1.4810
+ebitda: -20.64M
+market_cap: 24.16M
+name: GEVO
+open: 0.5100
+prev_close: 0.4980
+price: 0.4922
+price_book: 0.4203
+price_earnings_ratio: None
+price_sales: 0.8217
+short_ratio: 0.9400
+stock_exchange: NCM
+trade_datetime: 2016-09-09 20:00:00 UTC+0000
+volume: 14881835
+year_high: 2.4500
+year_low: 0.2200
+
+-----------------------------
+All 7 articles for GEVO
+-----------------------------
+name:		Gevo (GEVO) Prices Common Stock, Warrants Offering for Proceeds of $15.6M
+href:		Corporate+News/Gevo+%28GEVO%29+Prices+Common+Stock%2C+Warrants+Offering+for+Proceeds+of+%2415.6M/12013498.html
+date:		September 8, 2016
+tickers:	['GEVO']
+
+name:		Gevo (GEVO) Enters Conv. Note Exchange Agreements
+href:		Corporate+News/Gevo+%28GEVO%29+Enters+Conv.+Note+Exchange+Agreements/12012438.html
+date:		September 8, 2016
+tickers:	['GEVO']
+
+name:		Gevo (GEVO) Plans Common Stock, Warrants Equity Raise
+href:		Corporate+News/Gevo+%28GEVO%29+Plans+Common+Stock%2C+Warrants+Equity+Raise/12010642.html
+date:		September 7, 2016
+tickers:	['GEVO']
+
+name:		Gevo (GEVO) Enters ATJ Supply Heads of Agreement with Lufthansa
+href:		Corporate+News/Gevo+%28GEVO%29+Enters+ATJ+Supply+Heads+of+Agreement+with+Lufthansa/12008278.html
+date:		September 7, 2016
+tickers:	['GEVO']
+
+name:		Pre-Open Stock Movers 09/08: (RPRX) (RAD) (JUNO) Higher; (GEVO) (NLST) (TSCO) (PIR) Lower (more...)
+href:		Special+Dividends/Pre-Open+Stock+Movers+0908%3A+%28RPRX%29+%28RAD%29+%28JUNO%29+Higher%3B+%28GEVO%29+%28NLST%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12013515.html
+date:		September 8, 2016
+tickers:	['RPRX', 'RAD', 'JUNO', 'GEVO', 'NLST', 'TSCO', 'PIR']
+
+name:		Unusual 11 Mid-Day Movers 9/8: (GTXI) (TLRD) (RPRX) Higher; (GEVO) (TSCO) (PIR) Lower
+href:		Special+Reports/Unusual+11+Mid-Day+Movers+98%3A+%28GTXI%29+%28TLRD%29+%28RPRX%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower/12014596.html
+date:		September 8, 2016
+tickers:	['GTXI', 'TLRD', 'RPRX', 'GEVO', 'TSCO', 'PIR']
+
+name:		After-Hours Stock Movers 09/07: (RPRX) (JUNO) (ABEO) Higher; (GEVO) (TSCO) (PIR) Lower (more...)
+href:		Special+Reports/After-Hours+Stock+Movers+0907%3A+%28RPRX%29+%28JUNO%29+%28ABEO%29+Higher%3B+%28GEVO%29+%28TSCO%29+%28PIR%29+Lower+%28more...%29/12011421.html
+date:		September 7, 2016
+tickers:	['RPRX', 'JUNO', 'ABEO', 'GEVO', 'TSCO', 'PIR']
 
 

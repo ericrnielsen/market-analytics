@@ -20,7 +20,7 @@ import xml.etree.ElementTree as ET
 #import investorplace
 import dominate
 from dominate.tags import *
-import TickerInfo
+from StockInfo import StockInfo
 
 class form:
     form = web.form.Form(
@@ -71,6 +71,11 @@ if __name__ == "__main__":
     print ''
     var = raw_input("How many days back do you want to search? ")
     days_to_search = int(float(var))
+
+    # Have user input number of top tickers they're interested in for the run
+    print ''
+    var = raw_input("How many top tickers do you want to learn about? ")
+    num_top_tickers = int(float(var))
     print ''
 
     # Start timer
@@ -141,53 +146,69 @@ if __name__ == "__main__":
 
     #########################################################################
     #########################################################################
-    # Save articles to a file for later reference
+    # Save all articles to a file for later reference
     sites_searched_string = "_".join(sites_searched)
-    file_name = '{0}_{1}.txt'.format(datetime.date.today(), sites_searched_string)
+    file_name = 'previous-runs/{0}_{1}.txt'.format(datetime.date.today(), sites_searched_string)
     f = open(file_name, 'w')
     f.write('Run date: {0}\n'.format(datetime.date.today()))
     f.write('Searched back to: {0}\n'.format(datetime.date.today() - datetime.timedelta(days=days_to_search)))
     f.write('Sites searched: {0}\n'.format(sites_searched))
     f.write('Total articles: {0}\n'.format(len(master_articles)))
-    f.write('Top 10 most common tickers:\n')
-    top_10 = master_articles.return_top(10)
-    for item in top_10:
+    f.write('Top {0} most common tickers:\n'.format(str(num_top_tickers)))
+    top_tickers = master_articles.return_top(num_top_tickers)
+    for item in top_tickers:
         f.write('{0}:\t{1}\n'.format(item[0], item[1]))
-
-    # Kyle's testing
-    #f.write('\n----------------------------\n----------------------------\n\n')
-    #f.write('Kyle Tests\n')
-    #print master_articles.to_JSON()
-    #f.write(master_articles.to_JSON())
-
+    f.write('')
     f.write(str(master_articles))
     f.close()
 
     #########################################################################
     #########################################################################
-    # Print article details for top 15 highest recurring
-    top_15 = master_articles.return_top(15)
-    num_tickers = len(master_articles.count_tickers())
+    # Print stock stats and article details for user specified number of top tickers
+    num_total_tickers = len(master_articles.count_tickers())
     n = 0
     with open('latesttoptickers.txt', 'w') as f2:
         sys.stdout = f2
-        print 'Top 15 most common tickers:'
-        for item in top_15:
+        print 'Top {0} most common tickers:'.format(str(num_top_tickers))
+        for item in top_tickers:
             print '{0}:\t{1}'.format(item[0], item[1])
-        print '\n----------------------------\n----------------------------\n'
-        for item in top_15:
+        for item in top_tickers:
             n += 1
-            print '-----------------------------------------------------------'
-            print '-----------------------------------------------------------'
-            print '[#{0} / {1} tickers] All {2} articles for {3}:'.format(n, num_tickers, item[1], item[0])
-            print '-----------------------------------------------------------'
-            print '-----------------------------------------------------------'
+            print '\n-----------------------------------------------------------'
+            print '[#{0} / {1} total tickers] {2}'.format(n, num_total_tickers, item[0])
+            print '-----------------------------------------------------------\n'
+            print '-----------------------------'
+            print 'Stock info for {0} at {1}'.format(item[0], str(datetime.datetime.now()))
+            print '-----------------------------'
+            stock_info = StockInfo(item[0])
+            print stock_info
+            print '-----------------------------'
+            print 'All {0} articles for {1}'.format(item[1], item[0])
+            print '-----------------------------'
             print master_articles.all_for_ticker(item[0])
     f2.close()
     sys.stdout = sys.__stdout__
 
     #########################################################################
     #########################################################################
+    # Get stock info for user specified number of top tickers (highest recurring)
+    #print ""
+    #print "--------------------------"
+    #print 'Info for top {0} most common tickers:'.format(str(num_top_tickers))
+    #print "--------------------------\n"
+    #for item in top_tickers:
+    #    stock_info = StockInfo(item[0])
+    #    print "--------------------------"
+    #    print stock_info
+
+    #########################################################################
+    #########################################################################
+    # Kyle's testing
+    #f.write('\n----------------------------\n----------------------------\n\n')
+    #f.write('Kyle Tests\n')
+    #print master_articles.to_JSON()
+    #f.write(master_articles.to_JSON())
+
     # Kyle's html printing
     #doc = dominate.document(title='Articles')
     #with doc:
@@ -196,6 +217,9 @@ if __name__ == "__main__":
     #print doc
     #with open('articles.html', 'w') as f:
     #    f.write(doc.render())
+
+
+
 
     #########################################################################
     #########################################################################

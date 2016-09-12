@@ -144,7 +144,7 @@ def search(num_days):
     #########################################################################
 
     # Get StreetInsider Premium authentication information from local file
-    file_name = os.path.expanduser("~/Desktop/StreetInsiderAUTH/streetinsiderauth.txt")
+    file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
     f = open(file_name, 'r')
     lines = f.readlines()
     login_payload = {}
