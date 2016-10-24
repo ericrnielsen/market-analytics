@@ -20,8 +20,12 @@ import xml.etree.ElementTree as ET
 #import investorplace
 import dominate
 from dominate.tags import *
-from StockInfo import StockInfo
+import glob2
+import retrieve_articles
+import get_ticker_info
 
+# Kyle's stuff commented out for now
+'''
 class form:
     form = web.form.Form(
         web.form.Checkbox('zergwatch', value=True),
@@ -43,191 +47,147 @@ class form:
         if not form.validates():
             print 'uh oh'
         raise web.seeother('/success')
-
+'''
 
 if __name__ == "__main__":
 
-    # Eric, change this if you dont want to use the server for inputs
-    server = False
-
-    # For Justin's stock data analytics testing
-    #TickerInfo.get_info('MSTX')
-
-
-    urls = (
-        '/articles', 'form'
-    )
-    render = web.template.render('templates/')
-    app = web.application(urls, globals())
-    if server:
-        app.run()
-
-    # Ask user what sites they want to search
-    prompt = 'Which site(s) do you want to search?\n[1] zergwatch\n[2] streetupdates' + \
-    '\n[3] newsoracle\n[4] smarteranalyst\n[5] streetinsider !!\n\nEnter number(s): '
-    response_list = raw_input(prompt).split(' ')
-
-    # Have user input number of days worth of articles they want to search
-    print ''
-    var = raw_input("How many days back do you want to search? ")
-    days_to_search = int(float(var))
-
-    # Have user input number of top tickers they're interested in for the run
-    print ''
-    var = raw_input("How many top tickers do you want to learn about? ")
-    num_top_tickers = int(float(var))
-    print ''
-
-    # Start timer
-    start_time = time.time()
-
-    # Create master tickers list
-    master_articles = Article_List()
-    sites_searched = []
+    # Variable that allows the code to loop until the user chooses to exit
+    continue_code = True
 
     #########################################################################
     #########################################################################
-    # Search zergwatch.com and get all articles within past 'days_to_search'
-    if '1' in response_list:
-        sites_searched.append('zergwatch')
-        zergwatch_articles = zergwatch.search(days_to_search)
-    else:
-        zergwatch_articles = Article_List()
+    #########################################################################
+    # Master while loop - continues until user chooses to exit
+    while continue_code == True:
 
-    #########################################################################
-    #########################################################################
-    # Search streetupdates.com and get all articles within past 'days_to_search'
-    if '2' in response_list:
-        sites_searched.append('streetupdates')
-        streetupdates_articles = streetupdates.search(days_to_search)
-    else:
-        streetupdates_articles = Article_List()
+        # Kyle's stuff commented out for now
+        # Eric, change this if you dont want to use the server for inputs
+        '''
+        server = False
 
-    #########################################################################
-    #########################################################################
-    # Search newsoracle.com and get all articles within past 'days_to_search'
-    if '3' in response_list:
-        sites_searched.append('newsoracle')
-        newsoracle_articles = newsoracle.search(days_to_search)
-    else:
-        newsoracle_articles = Article_List()
+        urls = (
+            '/articles', 'form'
+        )
+        render = web.template.render('templates/')
+        app = web.application(urls, globals())
+        if server:
+            app.run()
+        '''
 
-    #########################################################################
-    #########################################################################
-    # Search smarteranalyst.com and get all articles within past 'days_to_search'
-    if '4' in response_list:
-        sites_searched.append('smarteranalyst')
-        smarteranalyst_articles = smarteranalyst.search(days_to_search)
-    else:
-        smarteranalyst_articles = Article_List()
+        # Ask user what they want to do with the code
+        prompt = '\nWhat do you want to do?\n' + \
+        '[1] Retrieve articles\n[2] Get info for ticker\n\nEnter number: '
+        use = int(float(raw_input(prompt)))
 
-    #########################################################################
-    #########################################################################
-    # Search streetinsider.com and get all articles within past 'days_to_search'
-    if '5' in response_list:
-        sites_searched.append('streetinsider')
-        streetinsider_articles = streetinsider.search(days_to_search)
-    else:
-        streetinsider_articles = Article_List()
+        #########################################################################
+        #########################################################################
+        # If user wants to retrieve articles
+        if use == 1:
 
-    #########################################################################
-    #########################################################################
-    # Add all returned articles to master Article_List object
-    for article in zergwatch_articles.articles:
-        master_articles.add_article(article)
-    for article in streetupdates_articles.articles:
-        master_articles.add_article(article)
-    for article in newsoracle_articles.articles:
-        master_articles.add_article(article)
-    for article in smarteranalyst_articles.articles:
-        master_articles.add_article(article)
-    for article in streetinsider_articles.articles:
-        master_articles.add_article(article)
+            # Ask user if they want to search site(s) live or load articles from previous run
+            prompt = '\nHow do you want to retrieve articles?\n[1] Search site(s) live\n' + \
+            '[2] Load from previous run\n\nEnter number: '
+            choice = int(float(raw_input(prompt)))
 
-    #########################################################################
-    #########################################################################
-    # Save all articles to a file for later reference
-    sites_searched_string = "_".join(sites_searched)
-    file_name = 'previous-runs/{0}_{1}.txt'.format(datetime.date.today(), sites_searched_string)
-    f = open(file_name, 'w')
-    f.write('Run date: {0}\n'.format(datetime.date.today()))
-    f.write('Searched back to: {0}\n'.format(datetime.date.today() - datetime.timedelta(days=days_to_search)))
-    f.write('Sites searched: {0}\n'.format(sites_searched))
-    f.write('Total articles: {0}\n'.format(len(master_articles)))
-    f.write('Top {0} most common tickers:\n'.format(str(num_top_tickers)))
-    top_tickers = master_articles.return_top(num_top_tickers)
-    for item in top_tickers:
-        f.write('{0}:\t{1}\n'.format(item[0], item[1]))
-    f.write('')
-    f.write(str(master_articles))
-    f.close()
+            # Make sure user doesn't try to select load from previous run if there are
+            # no previous runs available
+            if choice == 2 and len(glob2.glob('previous-runs/all-articles/*.txt')) == 0:
+                print '\nNo previous runs available to load from. You will need to search site(s) live.'
+                choice = 1
 
-    #########################################################################
-    #########################################################################
-    # Print stock stats and article details for user specified number of top tickers
-    num_total_tickers = len(master_articles.count_tickers())
-    n = 0
-    with open('latesttoptickers.txt', 'w') as f2:
-        sys.stdout = f2
-        print 'Top {0} most common tickers:'.format(str(num_top_tickers))
-        for item in top_tickers:
-            print '{0}:\t{1}'.format(item[0], item[1])
-        for item in top_tickers:
-            n += 1
-            print '\n-----------------------------------------------------------'
-            print '[#{0} / {1} total tickers] {2}'.format(n, num_total_tickers, item[0])
-            print '-----------------------------------------------------------\n'
-            print '-----------------------------'
-            print 'Stock info for {0} at {1}'.format(item[0], str(datetime.datetime.now()))
-            print '-----------------------------'
-            stock_info = StockInfo(item[0])
-            print stock_info
-            print '-----------------------------'
-            print 'All {0} articles for {1}'.format(item[1], item[0])
-            print '-----------------------------'
-            print master_articles.all_for_ticker(item[0])
-    f2.close()
-    sys.stdout = sys.__stdout__
+            # If user wants to (or needs to) search live
+            if choice == 1:
+                master_articles, num_top_tickers = retrieve_articles.load_live()
 
-    #########################################################################
-    #########################################################################
-    # Get stock info for user specified number of top tickers (highest recurring)
-    #print ""
-    #print "--------------------------"
-    #print 'Info for top {0} most common tickers:'.format(str(num_top_tickers))
-    #print "--------------------------\n"
-    #for item in top_tickers:
-    #    stock_info = StockInfo(item[0])
-    #    print "--------------------------"
-    #    print stock_info
+            # Else if user wants to load articles from previous run
+            else:
+                master_articles, num_top_tickers = retrieve_articles.load_previous_run()
 
-    #########################################################################
-    #########################################################################
-    # Kyle's testing
-    #f.write('\n----------------------------\n----------------------------\n\n')
-    #f.write('Kyle Tests\n')
-    #print master_articles.to_JSON()
-    #f.write(master_articles.to_JSON())
+            # If wanted, print stock stats and article details for specified number of top tickers
+            prompt = '\nDo you want to see information about the top tickers? (Y/N) '
+            answer = raw_input(prompt)
+            if answer == 'Y' or answer == 'Yes':
+                retrieve_articles.display_top_tickers(master_articles, num_top_tickers)
 
-    # Kyle's html printing
-    #doc = dominate.document(title='Articles')
-    #with doc:
-    #    with div():
-    #        ul(li(a(article.name, href=article.href), __pretty=False) for article in master_articles.articles)
-    #print doc
-    #with open('articles.html', 'w') as f:
-    #    f.write(doc.render())
+            #########################################################################
+            # This is where I need to add the link to the stock info!
 
 
+            #########################################################################
+
+        # End use instance of retrieving articles
+        #########################################################################
+        #########################################################################
 
 
+        #########################################################################
+        #########################################################################
+        # If user wants to get info about a stock
+        else:
+            # Ask user what ticker they want to get info for
+            prompt = '\nEnter the ticker you want to get info for: '
+            ticker_choice = raw_input(prompt)
+
+            # Ask user if they want current info or historical info
+            prompt = '\nWhat info do you want?\n[1] Current info\n[2] Historical info\n\nEnter number: '
+            info_choice = int(float(raw_input(prompt)))
+
+            # If the user selects current info
+            if info_choice == 1:
+                # Get info
+                stock_info = get_ticker_info.get_current(ticker_choice)
+                # Print info
+                get_ticker_info.print_info(ticker_choice, stock_info)
+
+            # Else if the user selects historical info
+            else:
+                # Ask user to specify the date range they want to use
+                prompt = '\nEnter start date you would like to use (YYYY-MM-DD): '
+                start_date = raw_input(prompt)
+                prompt = '\nEnter end date you would like to use (YYYY-MM-DD): '
+                end_date = raw_input(prompt)
+                # Get info
+                stock_info = get_ticker_info.get_historical(ticker_choice, start_date, end_date)
+                # Print info
+                get_ticker_info.print_info(ticker_choice, stock_info)
+
+        # End use instance of getting info about a stock
+        #########################################################################
+        #########################################################################
+
+        # Kyle's stuff commented out for now
+        '''
+        f.write('\n----------------------------\n----------------------------\n\n')
+        f.write('Kyle Tests\n')
+        print master_articles.to_JSON()
+        f.write(master_articles.to_JSON())
+
+        # Kyle's html printing
+        doc = dominate.document(title='Articles')
+        with doc:
+            with div():
+                ul(li(a(article.name, href=article.href), __pretty=False) for article in master_articles.articles)
+        print doc
+        with open('articles.html', 'w') as f:
+            f.write(doc.render())
+        '''
+
+        #########################################################################
+        #########################################################################
+        # Ask user if they want to continue using the code of if they want to exit
+        prompt = '\n-----------------------------------------------------------\n' + \
+        '-----------------------------------------------------------\n\n' + \
+        'Do you want to continue with additional actions? (Y/N) '
+        answer = raw_input(prompt)
+        if answer == 'N' or answer == 'No':
+            continue_code = False
+            print '\nAdios.\n'
+
+        # End ask if user wants to continue
+        #########################################################################
+        #########################################################################
+
+    # End master while loop
     #########################################################################
     #########################################################################
-    # End timer and print total time elapsed
-    end_time = time.time()
-    hours, rem = divmod(end_time - start_time, 3600)
-    minutes, seconds = divmod(rem, 60)
-    print ""
-    print "----------------------------"
-    print"Run time: ", "{:0>2}:{:05.2f}".format(int(minutes),seconds)
-    print "----------------------------"
+    #########################################################################

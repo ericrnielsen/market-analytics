@@ -5,6 +5,7 @@ def search(num_days):
     # Import everything I need
     import os
     import objc
+    import sys
     import time
     import datetime
     from tqdm import tqdm
@@ -19,6 +20,10 @@ def search(num_days):
     from collections import defaultdict
     from Article import Article
     from Article_List import Article_List
+    import logging
+
+    # Suppress logging messages
+    logging.getLogger("requests").setLevel(logging.WARNING)
 
     # Create dictionary for all Article objects from this website
     all_articles = Article_List()
@@ -37,8 +42,6 @@ def search(num_days):
         day = item.strftime("%e").replace(' ', '')
         year = item.strftime("%Y")
         dates.append(month + ' ' + day + ", " + year)
-
-    #print "dates: ", dates
 
     # Creat list of base URLs to search
     urls = []
@@ -225,6 +228,9 @@ def search(num_days):
             for link in main_links:
                 # Get the name and href for the article
                 a_tag = link.find('a', {'class':['news_title', 'story_title']})
+                # Error checking
+                if len(a_tag) < 1:
+                    continue
                 name = a_tag.contents[0]
                 href = a_tag.get('href')
 
@@ -240,13 +246,6 @@ def search(num_days):
                 else:
                     date = "error"
                     break
-
-                # Test print
-                #print name
-                #print href
-                #print date
-                #print ""
-                # End test print
 
                 # Check to see if date matches dates for last num_days
                 # If so, add article to all_articles object
@@ -272,11 +271,13 @@ def search(num_days):
                 time_to_move = 0
                 num_urls_searched += 1
                 url_add = str(0)
-                print "--------------------------"
-                print '{0}/{1} Ended on: {2}'.format(num_urls_searched, len(urls), url)
-                print ''
+                #print "--------------------------"
+                #print '{0}/{1} Ended on: {2}'.format(num_urls_searched, len(urls), url)
+                #print ''
+                sys.stdout.write("\rSearched %s of 62 pages" % num_urls_searched)
+                sys.stdout.flush()
             else:
-                print "Just searched: ", url
+                #print "Just searched: ", url
                 url_add_int = int(float(url_add))
                 url_add_int += 50
                 url_add = str(url_add_int)

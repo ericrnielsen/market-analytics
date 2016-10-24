@@ -12,7 +12,7 @@ class Article:
         self.keywords = []
 
     def __str__(self):
-        to_return = 'name:\t\t{0}\nhref:\t\t{1}\ndate:\t\t{2}\ntickers:\t{3}\n'.format( \
+        to_return = 'name:    {0}\nhref:    {1}\ndate:    {2}\ntickers: {3}\n'.format( \
         self.name, self.href, self.date, self.tickers)
         return to_return
 
