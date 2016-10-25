@@ -38,10 +38,7 @@ def load_live():
     var = raw_input("How many days back do you want to search? ")
     days_to_search = int(float(var))
 
-    # Have user input number of top tickers they're interested in for the run
-    print ''
-    var = raw_input("How many top tickers do you want to learn about? ")
-    num_top_tickers = int(float(var))
+    # Print extra line
     print ''
 
     # Create master tickers list
@@ -106,38 +103,10 @@ def load_live():
     sites_searched_string = "_".join(sites_searched)
     format = "%m-%d-%Y_%H-%M-%S"
     now = datetime.datetime.today().strftime(format)
-    file_name = 'previous-runs/all-articles/{0}_{1}_{2}_{3}_aa.txt'.format(now, sites_searched_string, days_to_search, num_top_tickers)
-    f = open(file_name, 'w')
+    aa_file_name = 'previous-runs/{0}_{1}_{2}.txt'.format(now, sites_searched_string, days_to_search)
+    f = open(aa_file_name, 'w')
     f.write(str(master_articles))
     f.close()
-
-    #########################################################################
-    # Save articles for just top tickers for later reference
-    num_total_tickers = len(master_articles.count_tickers())
-    top_tickers = master_articles.return_top(num_top_tickers)
-    n = 0
-    file_name = 'previous-runs/top-tickers/{0}_{1}_{2}_{3}_tt.txt'.format(now, sites_searched_string, days_to_search, num_top_tickers)
-    with open(file_name, 'w') as f2:
-        sys.stdout = f2
-        print 'Top {0} most common tickers:'.format(str(num_top_tickers))
-        for item in top_tickers:
-            print '{0}:\t{1}'.format(item[0], item[1])
-        for item in top_tickers:
-            n += 1
-            print '\n-----------------------------------------------------------'
-            print '[#{0} / {1} total tickers] {2}'.format(n, num_total_tickers, item[0])
-            print '-----------------------------------------------------------\n'
-            #print '-----------------------------'
-            #print 'Stock info for {0} at {1}'.format(item[0], str(datetime.datetime.now()))
-            #print '-----------------------------'
-            #stock_info = Current_StockInfo(item[0])
-            #print stock_info
-            print '-----------------------------'
-            print 'All {0} articles for {1}'.format(item[1], item[0])
-            print '-----------------------------'
-            print master_articles.all_for_ticker(item[0])
-    f2.close()
-    sys.stdout = sys.__stdout__
 
     # End timer and print total time elapsed to live search
     end_time = time.time()
@@ -145,9 +114,18 @@ def load_live():
     minutes, seconds = divmod(rem, 60)
     print"\nSearch completed. Time to complete:", "{:0>2}:{:05.2f}".format(int(minutes),seconds)
 
+    # Create string that describes the master_articles object
+    file_info = aa_file_name.split('_')
+    file_date = file_info[0][14:]
+    file_time = ':'.join(file_info[1].split('-'))
+    file_site = file_info[2]
+    file_days_back = file_info[3][:-4]
+    articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
+    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles), file_site, len(master_articles.count_tickers()))
+
     #########################################################################
-    # Return master_articles object and num_top_tickers
-    return master_articles, num_top_tickers
+    # Return master_articles object, description, and num_top_tickers
+    return master_articles, articles_description
 
 #########################################################################
 #########################################################################
@@ -156,7 +134,7 @@ def load_live():
 def load_previous_run():
 
     # Get list of available files from previous runs
-    previous_runs = glob2.glob('previous-runs/all-articles/*.txt')
+    previous_runs = glob2.glob('previous-runs/*.txt')
 
     # Ask user which file they want to  use to load articles
     prompt = '\nWhich previous run do you want to load from?\n'
@@ -164,19 +142,14 @@ def load_previous_run():
     for item in previous_runs:
         n += 1
         file_info = item.split('_')
-        file_date = file_info[0][27:]
+        file_date = file_info[0][14:]
         file_time = ':'.join(file_info[1].split('-'))
         file_site = file_info[2]
-        file_days_back = file_info[3]
-        file_num_top =  file_info[4]
-        prompt += '[{0}] {1} at {2} | '.format(n, file_date, file_time)
-        prompt += 'Articles for {0} days from: {1} | '.format(file_days_back, file_site)
-        prompt += 'IDd {0} top tickers\n'.format(file_num_top)
+        file_days_back = file_info[3][:-4]
+        prompt += '[{0}] {1} at {2} for previous {3} days | '.format(n, file_date, file_time, file_days_back)
+        prompt += 'Articles from: {0}\n'.format(file_site)
     prompt += '\nEnter number(s): '
     chosen_file = int(float(raw_input(prompt)))
-
-    # Set num_top_tickers variable for later use
-    num_top_tickers = int(float(previous_runs[chosen_file-1].split('_')[4]))
 
     # Read from selected file and load master_articles object
     master_articles = Article_List()
@@ -203,27 +176,10 @@ def load_previous_run():
             master_articles.add_article(current_article)
     load_file.close()
 
+    # Create string that describes the master_articles object
+    articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
+    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles), file_site, len(master_articles.count_tickers()))
+
     #########################################################################
     # Return master_articles object and num_top_tickers
-    return master_articles, num_top_tickers
-
-#########################################################################
-#########################################################################
-#########################################################################
-# Printing out info about identified top tickers
-def display_top_tickers(master_articles, num_top_tickers):
-    num_total_tickers = len(master_articles.count_tickers())
-    top_tickers = master_articles.return_top(num_top_tickers)
-    n = 0
-    print '\nTop {0} most common tickers:'.format(str(num_top_tickers))
-    for item in top_tickers:
-        print '{0}:\t{1}'.format(item[0], item[1])
-    for item in top_tickers:
-        n += 1
-        print '\n-----------------------------------------------------------'
-        print '[#{0} / {1} total tickers] {2}'.format(n, num_total_tickers, item[0])
-        print '-----------------------------------------------------------\n'
-        print '-----------------------------'
-        print 'All {0} articles for {1}'.format(item[1], item[0])
-        print '-----------------------------'
-        print master_articles.all_for_ticker(item[0])
+    return master_articles, articles_description

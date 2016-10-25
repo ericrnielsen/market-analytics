@@ -33,10 +33,14 @@ def search(num_days):
                 "May":"May", "Jun":"June", "Jul":"July",  "Aug":"August", \
                 "Sep":"September", "Oct":"October", "Nov":"November",  "Dec":"December"}
 
-    # Create list of dates for the past 'num_days' + 4
+    # Create list of dates for the past 'num_days' (excluding weekends)
     dates = []
-    today = datetime.datetime.today()
-    temp_dates = [today - datetime.timedelta(days=x) for x in range(0, (num_days))]
+    temp_dates = []
+    day_to_add = datetime.datetime.today()
+    while len(temp_dates) < num_days:
+        if day_to_add.weekday() < 5:
+            temp_dates.append(day_to_add)
+        day_to_add -= datetime.timedelta(days=1)
     for item in temp_dates:
         month = item.strftime("%B")
         day = item.strftime("%e").replace(' ', '')
