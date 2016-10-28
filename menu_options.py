@@ -20,6 +20,10 @@ from dominate.tags import *
 import glob2
 import load_support
 from StockInfo import StockInfo
+import pandas as pd
+from calculation_support import calc_gain
+from calculation_support import calc_loss
+
 
 #########################################################################
 #########################################################################
@@ -351,6 +355,11 @@ def get_market_data(master_tickers, master_stock_data):
 # THIS STILL NEEDS TO BE FULLY IMPLEMENTED
 def analyze_market_data(master_stock_data):
 
+    # Tells pandas not to limit # columns in printing
+    pd.set_option('expand_frame_repr', False)
+    pd.set_option('display.max_rows', 50)
+    pd.set_option('display.max_columns', 50)
+
     # Print intro text
     print '\n------------------------------------------------------------'
     print 'Begin [6] Analyze market data'
@@ -372,10 +381,106 @@ def analyze_market_data(master_stock_data):
         data_choice = int(float(raw_input(prompt)))
         data_choice -= 1
 
+        # df_ticker = ticker for the current object, df_data = all the actual data
+        df_ticker = master_stock_data[data_choice].ticker
+        df_data = master_stock_data[data_choice].data
+
+        # Reverse the data so it's in decending order
+        df_data = df_data.sort_index(axis=0 ,ascending=False)
+
+        # Make new column containing dates (currently in index)
+        df_data['Date'] = df_data.index
+        cols = df_data.columns.tolist()
+        cols.insert(0, cols.pop(cols.index('Date')))
+        df_data = df_data.reindex(columns= cols)
+
+        # Make index be a count up from 0
+        indices = range(0, len(df_data.index))
+        df_data.index = indices
+
+        # Add spread column
+        df_data['Spread'] = df_data['High'] - df_data['Low']
+
+        # Add gain and loss columns
+        df_data['Gain'] = df_data.apply(lambda row: calc_gain(row['Open'], row['Close']), axis=1)
+        df_data['Loss'] = df_data.apply(lambda row: calc_loss(row['Open'], row['Close']), axis=1)
+
+        # Filling more columns
+        df_data['10Avg'] = 0.0
+        df_data['10Per'] = 0.0
+        df_data['15Avg'] = 0.0
+        df_data['15Per'] = 0.0
+        df_data['50Avg'] = 0.0
+        df_data['50Per'] = 0.0
+        df_data['100Avg'] = 0.0
+        df_data['100Per'] = 0.0
+        df_data['200Avg'] = 0.0
+        df_data['200Per'] = 0.0
+        df_data['52DHigh'] = 0.0
+        df_data['52DLow'] = 0.0
+        for index, row in df_data.iterrows():
+            # Getting 10, 15, 50, 100, 200 day moving average
+            current_slice_10 = df_data[index:index+10]
+            current_slice_15 = df_data[index:index+15]
+            current_slice_50 = df_data[index:index+50]
+            current_slice_100 = df_data[index:index+100]
+            current_slice_200 = df_data[index:index+200]
+            mean_10 = current_slice_10['Adj Close'].mean()
+            mean_15 = current_slice_15['Adj Close'].mean()
+            mean_50 = current_slice_50['Adj Close'].mean()
+            mean_100 = current_slice_100['Adj Close'].mean()
+            mean_200 = current_slice_200['Adj Close'].mean()
+            df_data.set_value(index, '10Avg', mean_10)
+            df_data.set_value(index, '15Avg', mean_15)
+            df_data.set_value(index, '50Avg', mean_50)
+            df_data.set_value(index, '100Avg', mean_100)
+            df_data.set_value(index, '200Avg', mean_200)
+            # Getting 52 week high
+            current_slice_52 = df_data[index:index+52]
+            high_52 = current_slice_52['Adj Close'].max()
+            df_data.set_value(index, '52DHigh', high_52)
+            # Getting 52 week low
+            low_52 = current_slice_52['Adj Close'].min()
+            df_data.set_value(index, '52DLow', low_52)
+
+        for index in df_data.index:
+            # Getting 10, 15, 50, 100, 200 day percent gains
+            try:
+                # 10, 15, 50, 100, and 200 day moving averages percent gains
+                today_10 = df_data.get_value(index, '10Avg')
+                today_15 = df_data.get_value(index, '15Avg')
+                today_50 = df_data.get_value(index, '50Avg')
+                today_100 = df_data.get_value(index, '100Avg')
+                today_200 = df_data.get_value(index, '200Avg')
+                yesterday_10 = df_data.get_value(index+1, '10Avg')
+                yesterday_15 = df_data.get_value(index+1, '15Avg')
+                yesterday_50 = df_data.get_value(index+1, '50Avg')
+                yesterday_100 = df_data.get_value(index+1, '100Avg')
+                yesterday_200 = df_data.get_value(index+1, '200Avg')
+                gain_10 = ((today_10 / yesterday_10) - 1) * 100
+                gain_15 = ((today_15 / yesterday_15) - 1) * 100
+                gain_50 = ((today_50 / yesterday_50) - 1) * 100
+                gain_100 = ((today_100 / yesterday_100) - 1) * 100
+                gain_200 = ((today_200 / yesterday_200) - 1) * 100
+            except:
+                gain_10 = None
+                gain_15 = None
+                gain_50 = None
+                gain_100 = None
+                gain_200 = None
+            df_data.set_value(index, '10Per', gain_10)
+            df_data.set_value(index, '15Per', gain_15)
+            df_data.set_value(index, '50Per', gain_50)
+            df_data.set_value(index, '100Per', gain_100)
+            df_data.set_value(index, '200Per', gain_200)
+
         # Will eventually start analysis here, for now just print
         print '\nTHIS IS TEMPORARY. WILL EVENTUALLY DO ANALYSIS HERE.'
-        print 'Market data for {0}'.format(master_stock_data[data_choice].ticker)
-        print master_stock_data[data_choice].data
+        print 'Market data for {0}'.format(df_ticker)
+        print df_data
+
+        # Return item to main function
+        return df_data
 
     # Print exit text
     print '\n------------------------------------------------------------'

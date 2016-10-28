@@ -120,7 +120,13 @@ if __name__ == "__main__":
         # Option [6] Analyze market data
         # THIS STILL NEEDS TO BE FULLY IMPLEMENTED
         elif use == 6:
+            current_dataframe_table = \
             menu_options.analyze_market_data(master_stock_data)
+
+            # !!!!!!!!!!!!!!!!!!!!!!!!
+            # KYLE current_dataframe_table IS THE TABLE THAT YOU SHOULD USE
+            # TO MAKE HTML OR XML file_site
+            # !!!!!!!!!!!!!!!!!!!!!!!!        
 
         #########################################################################
         # Option [7] Exit program
