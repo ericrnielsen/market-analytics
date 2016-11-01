@@ -114,7 +114,7 @@ if __name__ == "__main__":
         # Option [4] Manually edit ticker list
         elif use == 4:
             master_tickers = \
-            menu_options.edit_ticker_list(master_tickers)
+            menu_options.edit_ticker_list(master_tickers, 'manual', [])
 
         #########################################################################
         # Option [5] Get market data for ticker(s)

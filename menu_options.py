@@ -109,7 +109,8 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
     # Ask user what type of quick run they want to do
     prompt = '\nWhich quick run do you want to do?\n' + \
     '[1] Search streetinsider live -> determine top tickers -> get financial data\n' + \
-    '[2] Enter ticker(s) -> get financial data\n\n' + \
+    '[2] Enter ticker(s) -> get financial data\n' + \
+    '[3] Current test configuration (TWX from 2015-01-01 to today)\n\n' + \
     'Enter number: '
     choice = int(float(raw_input(prompt)))
 
@@ -118,7 +119,7 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
         # Need to get all input necessary to make function calls
         prompt1 = raw_input("\nHow many days back do you want to search? ")
         days_to_search = int(float(prompt1))
-        prompt2 = '\nHow many top tickers would you like to know about? '
+        prompt2 = '\nHow many top tickers would you like to identify? '
         num_top_tickers = int(float(raw_input(prompt2)))
         prompt3 = '\nHow many years of financial data would you like to get? '
         data_years = int(float(raw_input(prompt3)))
@@ -151,7 +152,57 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
         master_stock_data = \
         analyze_market_data(master_stock_data, 'quick', selections)
 
+    # If user selects option 2
+    elif choice == 2:
+        # Need to get all input necessary to make function calls
+        prompt1 = '\nWhat tickers would you like to get financial data for? '
+        desired_tickers = raw_input(prompt1).split(' ')
+        prompt2 = '\nHow many years of financial data would you like to get? '
+        data_years = int(float(raw_input(prompt2)))
 
+        # Fill selections list to be passed to required functions
+        selections = []
+        selections.append(desired_tickers)
+        selections.append('blank')
+        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        past_date = today_date - datetime.timedelta(days=(365*data_years))
+        selections.append(past_date)
+        selections.append(today_date)
+
+        # Add tickers to ticker list
+        master_tickers_new = \
+        edit_ticker_list(master_tickers, 'quick', selections)
+
+        # Get market data for identified tickers
+        master_stock_data = \
+        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+
+        # Analyze market data (do calculations) for identified tickers
+        master_stock_data = \
+        analyze_market_data(master_stock_data, 'quick', selections)
+
+    # If user selects option 3
+    else:
+        # Fill selections list to be passed to required functions
+        selections = []
+        selections.append(['TWX'])
+        selections.append('blank')
+        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        past_date = datetime.datetime(2015, 01, 01)
+        selections.append(past_date)
+        selections.append(today_date)
+
+        # Add tickers to ticker list
+        master_tickers_new = \
+        edit_ticker_list(master_tickers, 'quick', selections)
+
+        # Get market data for identified tickers
+        master_stock_data = \
+        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+
+        # Analyze market data (do calculations) for identified tickers
+        master_stock_data = \
+        analyze_market_data(master_stock_data, 'quick', selections)
 
     # Print exit text
     print '\n------------------------------------------------------------'
@@ -323,59 +374,66 @@ def view_ticker_list(master_articles, master_tickers):
 #########################################################################
 #########################################################################
 # Start Option [4] Manually edit ticker list
-def edit_ticker_list(master_tickers):
+def edit_ticker_list(master_tickers, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [4] Manually edit ticker list'
+    print 'Begin [4] Manually edit ticker list (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Make new master_tickers list that will eventually be returned
     master_tickers_new = master_tickers
 
-    # Allow user to edit list as much as they want
-    done_editing = False
-    while done_editing == False:
+    # If need to get user input manually (not a quick run)
+    if run_type == 'manual':
+        # Allow user to edit list as much as they want
+        done_editing = False
+        while done_editing == False:
 
-        # Display current ticker list and associated article counts
-        print '\nCurrent ticker list:'
-        n = 1
-        for item in master_tickers_new:
-            print '[{0}] {1}:\t{2}'.format(n, item[0], item[1]).expandtabs(6)
-            n += 1
+            # Display current ticker list and associated article counts
+            print '\nCurrent ticker list:'
+            n = 1
+            for item in master_tickers_new:
+                print '[{0}] {1}:\t{2}'.format(n, item[0], item[1]).expandtabs(6)
+                n += 1
 
-        # Ask user how they want to edit the list
-        prompt = '\nHow do you want to edit the list? (Add or Delete) '
-        choice = raw_input(prompt)
+            # Ask user how they want to edit the list
+            prompt = '\nHow do you want to edit the list? (Add or Delete) '
+            choice = raw_input(prompt)
 
-        # If user wants to delete
-        if choice == 'Delete':
-            prompt = '\nWhat number item do you want to delete? '
-            to_delete = int(float(raw_input(prompt)))
-            if to_delete <= len(master_tickers):
-                master_tickers_new.pop(to_delete-1)
+            # If user wants to delete
+            if choice == 'Delete':
+                prompt = '\nWhat number item do you want to delete? '
+                to_delete = int(float(raw_input(prompt)))
+                if to_delete <= len(master_tickers):
+                    master_tickers_new.pop(to_delete-1)
+                else:
+                    print '\nInvalid selection.'
+
+            # If user wants to add
+            elif choice == 'Add':
+                prompt = '\nWhat ticker do you want to add? '
+                to_add = raw_input(prompt)
+                master_tickers_new.append([to_add, 'user added'])
+
+            # Error checking
             else:
                 print '\nInvalid selection.'
 
-        # If user wants to add
-        elif choice == 'Add':
-            prompt = '\nWhat ticker do you want to add? '
-            to_add = raw_input(prompt)
-            master_tickers_new.append([to_add, 'user added'])
+            # Ask if the user has any more edits to make
+            prompt = '\nDo you want to make any more edits? (Y or N) '
+            choice = raw_input(prompt)
+            if choice == 'N' or choice == 'No':
+                done_editing = True
 
-        # Error checking
-        else:
-            print '\nInvalid selection.'
-
-        # Ask if the user has any more edits to make
-        prompt = '\nDo you want to make any more edits? (Y or N) '
-        choice = raw_input(prompt)
-        if choice == 'N' or choice == 'No':
-            done_editing = True
+    # Else it's a quick run so user inputs already entered
+    else:
+        for item in selections[0]:
+            master_tickers_new.append([item, 'user added'])
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [4] Manually edit ticker list'
+    print 'End [4] Manually edit ticker list (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Return item to main function
@@ -510,6 +568,8 @@ def analyze_market_data(master_stock_data, run_type, selections):
             df_data = df_data.sort_index(axis=0 ,ascending=False)
 
             # Make new column containing dates (currently in index)
+            # !!!!!!! Need to think about how to make this conditional on whether
+            # !!!!!!! or not the tableframe object has already been edited once 
             df_data['Date'] = df_data.index
             cols = df_data.columns.tolist()
             cols.insert(0, cols.pop(cols.index('Date')))
