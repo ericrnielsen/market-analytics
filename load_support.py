@@ -23,20 +23,27 @@ import glob2
 #########################################################################
 #########################################################################
 # If user wants to search live
-def load_live():
+def load_live(run_type, selections):
 
     # Start timer
     start_time = time.time()
 
-    # Ask user what sites they want to search
-    prompt = '\nWhich site(s) do you want to search?\n[1] zergwatch\n[2] streetupdates' + \
-    '\n[3] newsoracle\n[4] smarteranalyst\n[5] streetinsider !!\n\nEnter number(s): '
-    response_list = raw_input(prompt).split(' ')
+    # If need to get user input manually (not a quick run)
+    if run_type == 'manual':
+        # Ask user what sites they want to search
+        prompt = '\nWhich site(s) do you want to search?\n[1] zergwatch\n[2] streetupdates' + \
+        '\n[3] newsoracle\n[4] smarteranalyst\n[5] streetinsider !!\n\nEnter number(s): '
+        response_list = raw_input(prompt).split(' ')
 
-    # Have user input number of days worth of articles they want to search
-    print ''
-    var = raw_input("How many days back do you want to search? ")
-    days_to_search = int(float(var))
+        # Have user input number of days worth of articles they want to search
+        print ''
+        var = raw_input("How many days back do you want to search? ")
+        days_to_search = int(float(var))
+
+    # Else it's a quick run so user inputs already entered
+    else:
+        response_list = '5'
+        days_to_search = selections[0]
 
     # Print extra line
     print ''

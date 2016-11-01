@@ -78,6 +78,7 @@ def print_main_menu(master_articles, master_articles_description, master_tickers
 
     # Ask user what they want to do with the code
     prompt = '\nWHAT DO YOU WANT TO DO?\n' + \
+    '[0] Quick run\n' + \
     '[1] Load articles\n' + \
     '[2] Determine most frequent tickers in loaded articles\n' + \
     '[3] View ticker list (and associated articles)\n' + \
@@ -97,28 +98,106 @@ def print_main_menu(master_articles, master_articles_description, master_tickers
 
 #########################################################################
 #########################################################################
-# Start Option [1] Load articles
-def load_articles(master_tickers):
+# Start Option [0] Quick run
+def quick_run(master_articles, master_articles_description, master_tickers, master_stock_data):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [1] Load articles'
+    print 'Begin [0] Quick run'
     print '------------------------------------------------------------'
 
-    # Ask user if they want to search site(s) live or load articles from previous run
-    prompt = '\nHow do you want to load articles?\n[1] Search site(s) live\n' + \
-    '[2] Load from previous run\n\nEnter number: '
+    # Ask user what type of quick run they want to do
+    prompt = '\nWhich quick run do you want to do?\n' + \
+    '[1] Search streetinsider live -> determine top tickers -> get financial data\n' + \
+    '[2] Enter ticker(s) -> get financial data\n\n' + \
+    'Enter number: '
     choice = int(float(raw_input(prompt)))
 
-    # Make sure user doesn't try to select load from previous run if there are
-    # no previous runs available
-    if choice == 2 and len(glob2.glob('previous-runs/*.txt')) == 0:
-        print '\nNo previous runs available to load from. You will need to search site(s) live.'
+    # If user selects option 1
+    if choice == 1:
+        # Need to get all input necessary to make function calls
+        prompt1 = raw_input("\nHow many days back do you want to search? ")
+        days_to_search = int(float(prompt1))
+        prompt2 = '\nHow many top tickers would you like to know about? '
+        num_top_tickers = int(float(raw_input(prompt2)))
+        prompt3 = '\nHow many years of financial data would you like to get? '
+        data_years = int(float(raw_input(prompt3)))
+
+        # Fill selections list to be passed to required functions
+        selections = []
+        selections.append(days_to_search)
+        selections.append(num_top_tickers)
+        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        past_date = today_date - datetime.timedelta(days=(365*data_years))
+        selections.append(past_date)
+        selections.append(today_date)
+
+        # Load articles from streetinsider
+        master_articles, master_articles_description, master_tickers =  \
+        load_articles(master_tickers, 'quick', selections)
+
+        # Need to clear out non-user added top tickers
+        master_tickers_clear = [item for item in master_tickers if (item[1] == 'user added')]
+
+        # Determine top tickers
+        master_tickers_new = \
+        determine_top_tickers(master_articles, master_tickers_clear, 'quick', selections)
+
+        # Get market data for identified tickers
+        master_stock_data = \
+        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+
+        # Analyze market data (do calculations) for identified tickers
+        master_stock_data = \
+        analyze_market_data(master_stock_data, 'quick', selections)
+
+
+
+    # Print exit text
+    print '\n------------------------------------------------------------'
+    print 'End [0] Quick run'
+    print '------------------------------------------------------------'
+
+    # Return items to main function
+    return master_articles, master_articles_description, master_tickers_new, master_stock_data
+
+# End Option [0] Quick run
+#########################################################################
+#########################################################################
+
+#########################################################################
+#########################################################################
+# Start Option [1] Load articles
+def load_articles(master_tickers, run_type, selections):
+
+    # Print intro text
+    print '\n------------------------------------------------------------'
+    print 'Begin [1] Load articles (' + run_type + ')'
+    print '------------------------------------------------------------'
+
+    # If need to get user input manually (not a quick run)
+    if run_type == 'manual':
+        # Ask user if they want to search site(s) live or load articles from previous run
+        prompt = '\nHow do you want to load articles?\n[1] Search site(s) live\n' + \
+        '[2] Load from previous run\n\nEnter number: '
+        choice = int(float(raw_input(prompt)))
+
+        # Make sure user doesn't try to select load from previous run if there are
+        # no previous runs available
+        if choice == 2 and len(glob2.glob('previous-runs/*.txt')) == 0:
+            print '\nNo previous runs available to load from. You will need to search site(s) live.'
+            choice = 1
+
+    # Else it's a quick run so user inputs already entered
+    else:
         choice = 1
 
     # If user wants to (or needs to) search live
     if choice == 1:
-        master_articles, master_articles_description = load_live()
+        if run_type == 'manual':
+            master_articles, master_articles_description = load_live('manual', [])
+        else:
+            master_articles, master_articles_description = load_live('quick', selections)
 
     # Else if user wants to load articles from previous run
     else:
@@ -129,7 +208,7 @@ def load_articles(master_tickers):
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [1] Load articles'
+    print 'End [1] Load articles (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Return items to main function
@@ -142,23 +221,29 @@ def load_articles(master_tickers):
 #########################################################################
 #########################################################################
 # Start Option [2] Determine most frequent tickers in loaded articles
-def determine_top_tickers(master_articles, master_tickers):
+def determine_top_tickers(master_articles, master_tickers, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [2] Determine most frequent tickers in loaded articles'
+    print 'Begin [2] Determine most frequent tickers in loaded articles (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Error check for case that no articles have been loaded
     if len(master_articles) == 0:
         print '\nNo articles loaded. Please load articles and try again.'
 
-    # Else display top ticker information
+    # Else determine user specified number of top tickers
     else:
 
-        # Ask how many tickers the user would like to know about
-        prompt = '\nHow many top tickers would you like to know about? '
-        num_top_tickers = int(float(raw_input(prompt)))
+        # If need to get user input manually (not a quick run)
+        if run_type == 'manual':
+            # Ask how many tickers the user would like to know about
+            prompt = '\nHow many top tickers would you like to know about? '
+            num_top_tickers = int(float(raw_input(prompt)))
+
+        # Else it's a quick run so user inputs already entered
+        else:
+            num_top_tickers = selections[1]
 
         # Get user specified number of most frequent tickers
         top_tickers = master_articles.return_top(num_top_tickers)
@@ -174,7 +259,7 @@ def determine_top_tickers(master_articles, master_tickers):
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [2] Determine most frequent tickers in loaded articles'
+    print 'End [2] Determine most frequent tickers in loaded articles (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Return item to main function
@@ -303,57 +388,67 @@ def edit_ticker_list(master_tickers):
 #########################################################################
 #########################################################################
 # Start Option [5] Get market data for ticker(s)
-def get_market_data(master_tickers, master_stock_data):
+def get_market_data(master_tickers, master_stock_data, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [5] Get market data for ticker(s)'
+    print 'Begin [5] Get market data for ticker(s) (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Make new master_stock_data list that will eventually be returned
     master_stock_data_new = master_stock_data
 
-    # Ask user what ticker(s) they want to get info for
-    prompt = '\nWhat do you want to do?\n[1] Use all tickers in current ticker list\n' + \
-    '[2] Manually enter a single ticker to use\n\nEnter number: '
-    ticker_choice = int(float(raw_input(prompt)))
+    # If need to get user input manually (not a quick run)
+    if run_type == 'manual':
+        # Ask user what ticker(s) they want to get info for
+        prompt = '\nWhat do you want to do?\n[1] Use all tickers in current ticker list\n' + \
+        '[2] Manually enter a single ticker to use\n\nEnter number: '
+        ticker_choice = int(float(raw_input(prompt)))
 
-    # Error check if ticker list is empty
-    if ticker_choice == 1 and len(master_tickers) == 0:
-        print '\nTicker list is empty. Please add tickers and try again.'
+        # Error check if ticker list is empty
+        if ticker_choice == 1 and len(master_tickers) == 0:
+            print '\nTicker list is empty. Please add tickers and try again.'
 
-    else:
-        # If user wants to manually enter a single ticker to use
-        if ticker_choice == 2:
-            prompt = '\nWhat ticker do you want to get data for? '
-            tickers_to_use = [raw_input(prompt)]
-        # Else if user wants to use all tickers in current ticker list
         else:
-            tickers_to_use = [item[0] for item in master_tickers]
+            # If user wants to manually enter a single ticker to use
+            if ticker_choice == 2:
+                prompt = '\nWhat ticker do you want to get data for? '
+                tickers_to_use = [raw_input(prompt)]
+            # Else if user wants to use all tickers in current ticker list
+            else:
+                tickers_to_use = [item[0] for item in master_tickers]
 
-        # Ask user to specify the start date they would like to use
-        prompt = '\nEnter start date you would like to use (YYYY-MM-DD): '
-        start_date = raw_input(prompt)
-        # Change start_date to correct format
-        start_year = int(float(start_date.split('-')[0]))
-        start_month = int(float(start_date.split('-')[1]))
-        start_day = int(float(start_date.split('-')[2]))
-        start = datetime.datetime(start_year, start_month, start_day)
-        # Ask user to specify the end date they would like to use
-        prompt = '\nEnter end date you would like to use (YYYY-MM-DD): '
-        end_date = raw_input(prompt)
-        # Change end_date to correct format
-        end_year = int(float(end_date.split('-')[0]))
-        end_month = int(float(end_date.split('-')[1]))
-        end_day = int(float(end_date.split('-')[2]))
-        end = datetime.datetime(end_year, end_month, end_day)
-        # Add StockInfo objects to master_stock_data list
+            # Ask user to specify the start date they would like to use
+            prompt = '\nEnter start date you would like to use (YYYY-MM-DD): '
+            start_date = raw_input(prompt)
+            # Change start_date to correct format
+            start_year = int(float(start_date.split('-')[0]))
+            start_month = int(float(start_date.split('-')[1]))
+            start_day = int(float(start_date.split('-')[2]))
+            start = datetime.datetime(start_year, start_month, start_day)
+            # Ask user to specify the end date they would like to use
+            prompt = '\nEnter end date you would like to use (YYYY-MM-DD): '
+            end_date = raw_input(prompt)
+            # Change end_date to correct format
+            end_year = int(float(end_date.split('-')[0]))
+            end_month = int(float(end_date.split('-')[1]))
+            end_day = int(float(end_date.split('-')[2]))
+            end = datetime.datetime(end_year, end_month, end_day)
+            # Add StockInfo objects to master_stock_data list
+            for item in tickers_to_use:
+                master_stock_data_new.append(StockInfo(item, start, end))
+
+    # Else it's a quick run so user inputs already entered
+    else:
+        tickers_to_use = [item[0] for item in master_tickers]
+        start = selections[2]
+        end = selections[3]
         for item in tickers_to_use:
             master_stock_data_new.append(StockInfo(item, start, end))
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [5] Get market data for ticker(s)'
+    print 'End [5] Get market data for ticker(s) (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Return item to main function
@@ -367,16 +462,11 @@ def get_market_data(master_tickers, master_stock_data):
 #########################################################################
 # Start Option [6] Analyze market data
 # THIS STILL NEEDS TO BE FULLY IMPLEMENTED
-def analyze_market_data(master_stock_data):
-
-    # Tells pandas not to limit # columns in printing
-    pd.set_option('expand_frame_repr', False)
-    pd.set_option('display.max_rows', 50)
-    pd.set_option('display.max_columns', 50)
+def analyze_market_data(master_stock_data, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [6] Analyze market data'
+    print 'Begin [6] Analyze market data (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Error check for case that no data available
@@ -384,175 +474,187 @@ def analyze_market_data(master_stock_data):
         print '\nNo market data available. Please get data and try again.'
 
     else:
-        # Ask user what data they want to analyze (printing list of available data objects)
-        prompt = '\nWhat data do you want to analyze?\n'
-        n = 0
-        for item in master_stock_data:
-            n += 1
-            prompt += '[{0}] {1:<6} '.format(n, item.ticker)
-            prompt += 'data from {0} to {1}\n'.format(str(item.start_date)[:-9], str(item.end_date)[:-9])
-        prompt += '\nEnter number: '
-        data_choice = int(float(raw_input(prompt)))
-        data_choice -= 1
+        # If need to get user input manually (not a quick run)
+        if run_type == 'manual':
+            # Ask user what data they want to analyze (printing list of available data objects)
+            prompt = '\nWhat data do you want to analyze?\n'
+            n = 0
+            for item in master_stock_data:
+                n += 1
+                prompt += '[{0}] {1:<6} '.format(n, item.ticker)
+                prompt += 'data from {0} to {1}\n'.format(str(item.start_date)[:-9], str(item.end_date)[:-9])
+            prompt += '\nEnter number(s): '
+            choices = (raw_input(prompt).split(' '))
+            data_choices = []
+            for item in choices:
+                data_choices.append(int(float(item)) - 1)
 
-        # df_ticker = ticker for the current object, df_data = all the actual data
-        df_ticker = master_stock_data[data_choice].ticker
-        df_data = master_stock_data[data_choice].data
-
-        # Reverse the data so it's in decending order
-        df_data = df_data.sort_index(axis=0 ,ascending=False)
-
-        # Make new column containing dates (currently in index)
-        df_data['Date'] = df_data.index
-        cols = df_data.columns.tolist()
-        cols.insert(0, cols.pop(cols.index('Date')))
-        df_data = df_data.reindex(columns= cols)
-
-        # Make index be a count up from 0
-        indices = range(0, len(df_data.index))
-        df_data.index = indices
-
-        # Create list with names of additional columns to be added to the table
-        columns_to_add = ['Spread', 'Gain', 'Loss', \
-        '10 MA', '10 MA %', '15 MA', '15 MA %', '20 MA', '20 MA %', \
-        '50 MA', '50 MA %', '100 MA', '100 MA %', '200 MA', '200 MA %', \
-        '10 EMA', '20 EMA', '50 EMA', \
-        '52 Wk. High', '52 Wk. Low', \
-        '14 Sim. Avg. Gain', '14 Exp. Avg. Gain', '14 Sim. Avg. Loss', '14 Exp. Avg. Loss', \
-        '28 Sim. Avg. Gain', '28 Exp. Avg. Gain', '28 Sim. Avg. Loss', '28 Exp. Avg. Loss', \
-        '42 Sim. Avg. Gain', '42 Exp. Avg. Gain', '42 Sim. Avg. Loss', '42 Exp. Avg. Loss', \
-        '56 Sim. Avg. Gain', '56 Exp. Avg. Gain', '56 Sim. Avg. Loss', '56 Exp. Avg. Loss', \
-        '14 Sim. RSI', '14 Exp. RSI', '28 Sim. RSI', '28 Exp. RSI',
-        '42 Sim. RSI', '42 Exp. RSI', '56 Sim. RSI', '56 Exp. RSI']
-
-        # Initialize additional column values to be 0.0
-        for label in columns_to_add:
-             df_data[label] = 0.0
-
-        # Add values to spread column
-        df_data ['Spread'] = calc_spread(df_data)
-
-        # Add values to gain and loss columns
-        df_data['Gain'] = calc_gain(df_data)
-        df_data['Loss'] = calc_loss(df_data)
-
-        # Create lists with days to be used for the various calculations
-        MA_days = [10, 15, 20, 50, 100, 200]
-        EMA_days = [10, 20, 50]
-        RSI_days = [14, 28, 42, 56]
+        # Else it's a quick run so user inputs already entered
+        else:
+            n = 0
+            data_choices = []
+            for item in master_stock_data:
+                data_choices.append(n)
+                n += 1
 
         ##############################################################
         ##############################################################
-        # Start loop 1 to fill columns
-        for index, row in df_data.iterrows():
+        # Start loop through analysis for all tickers selected
+        for data_choice in data_choices:
 
-            # Getting 52 week high
-            df_data.set_value(index, '52 Wk. High', calc_high(df_data, index, 52*5))
+            # df_ticker = ticker for the current object, df_data = all the actual data
+            df_ticker = master_stock_data[data_choice].ticker
+            df_data = master_stock_data[data_choice].data
 
-            # Getting 52 week low
-            df_data.set_value(index, '52 Wk. Low', calc_low(df_data, index, 52*5))
+            # Reverse the data so it's in decending order
+            df_data = df_data.sort_index(axis=0 ,ascending=False)
 
-            # Getting 10, 15, 50, 100, 200 day moving average
-            for days in MA_days:
-                column = str(days) + ' MA'
-                df_data.set_value(index, column, calc_mov_avg(df_data, index, days))
+            # Make new column containing dates (currently in index)
+            df_data['Date'] = df_data.index
+            cols = df_data.columns.tolist()
+            cols.insert(0, cols.pop(cols.index('Date')))
+            df_data = df_data.reindex(columns= cols)
 
-            # Geting simple average gains and losses to be used later for RSI calcs
-            for days in RSI_days:
-                column_gain = str(days) + ' Sim. Avg. Gain'
-                column_loss = str(days) + ' Sim. Avg. Loss'
-                df_data.set_value(index, column_gain, calc_avg_gain_s(df_data, index, days))
-                df_data.set_value(index, column_loss, calc_avg_loss_s(df_data, index, days))
+            # Make index be a count up from 0
+            indices = range(0, len(df_data.index))
+            df_data.index = indices
 
-        # End loop 1 to fill columns
+            # Create list with names of additional columns to be added to the table
+            columns_to_add = ['Spread', 'Gain', 'Loss', \
+            '10 MA', '10 MA %', '15 MA', '15 MA %', '20 MA', '20 MA %', \
+            '50 MA', '50 MA %', '100 MA', '100 MA %', '200 MA', '200 MA %', \
+            '10 EMA', '20 EMA', '50 EMA', \
+            '52 Wk. High', '52 Wk. Low', \
+            '14 Sim. Avg. Gain', '14 Exp. Avg. Gain', '14 Sim. Avg. Loss', '14 Exp. Avg. Loss', \
+            '28 Sim. Avg. Gain', '28 Exp. Avg. Gain', '28 Sim. Avg. Loss', '28 Exp. Avg. Loss', \
+            '42 Sim. Avg. Gain', '42 Exp. Avg. Gain', '42 Sim. Avg. Loss', '42 Exp. Avg. Loss', \
+            '56 Sim. Avg. Gain', '56 Exp. Avg. Gain', '56 Sim. Avg. Loss', '56 Exp. Avg. Loss', \
+            '14 Sim. RSI', '14 Exp. RSI', '28 Sim. RSI', '28 Exp. RSI',
+            '42 Sim. RSI', '42 Exp. RSI', '56 Sim. RSI', '56 Exp. RSI']
+
+            # Initialize additional column values to be 0.0
+            for label in columns_to_add:
+                 df_data[label] = 0.0
+
+            # Add values to spread column
+            df_data ['Spread'] = calc_spread(df_data)
+
+            # Add values to gain and loss columns
+            df_data['Gain'] = calc_gain(df_data)
+            df_data['Loss'] = calc_loss(df_data)
+
+            # Create lists with days to be used for the various calculations
+            MA_days = [10, 15, 20, 50, 100, 200]
+            EMA_days = [10, 20, 50]
+            RSI_days = [14, 28, 42, 56]
+
+            ##############################################################
+            ##############################################################
+            # Start loop 1 to fill columns
+            for index, row in df_data.iterrows():
+
+                # Getting 52 week high
+                df_data.set_value(index, '52 Wk. High', calc_high(df_data, index, 52*5))
+
+                # Getting 52 week low
+                df_data.set_value(index, '52 Wk. Low', calc_low(df_data, index, 52*5))
+
+                # Getting 10, 15, 50, 100, 200 day moving average
+                for days in MA_days:
+                    column = str(days) + ' MA'
+                    df_data.set_value(index, column, calc_mov_avg(df_data, index, days))
+
+                # Geting simple average gains and losses to be used later for RSI calcs
+                for days in RSI_days:
+                    column_gain = str(days) + ' Sim. Avg. Gain'
+                    column_loss = str(days) + ' Sim. Avg. Loss'
+                    df_data.set_value(index, column_gain, calc_avg_gain_s(df_data, index, days))
+                    df_data.set_value(index, column_loss, calc_avg_loss_s(df_data, index, days))
+
+            # End loop 1 to fill columns
+            ##############################################################
+            ##############################################################
+
+            ##############################################################
+            ##############################################################
+            # Start loop 2 to fill columns
+            for index in df_data.index:
+
+                # Getting 10, 15, 50, 100, 200 day percent gains
+                for days in MA_days:
+                    column = str(days) + ' MA %'
+                    df_data.set_value(index, column, calc_per_gain(df_data, index, days))
+
+            # End loop 2 to fill columns
+            ##############################################################
+            ##############################################################
+
+            # Flip table prior to calculating EMAs and exponential avg. gains and losses
+            df_data = df_data.sort_index(axis=0 ,ascending=False)
+
+            ##############################################################
+            ##############################################################
+            # Start loop 3 to fill columns
+            for index in df_data.index:
+
+                # Getting 10, 20, and 50 day EMA values
+                for days in EMA_days:
+                    column = str(days) + ' EMA'
+                    df_data.set_value(index, column, calc_ema(df_data, index, days))
+
+                # Geting exponential average gains and losses to be used later for RSI calcs
+                for days in RSI_days:
+                    column_gain = str(days) + ' Exp. Avg. Gain'
+                    column_loss = str(days) + ' Exp. Avg. Loss'
+                    df_data.set_value(index, column_gain, calc_avg_gain_e(df_data, index, days))
+                    df_data.set_value(index, column_loss, calc_avg_loss_e(df_data, index, days))
+
+            # End loop 3 to fill columns
+            ##############################################################
+            ##############################################################
+
+            # Flip table back to be ordered newest date to oldest date
+            df_data = df_data.sort_index(axis=0 ,ascending=True)
+
+            ##############################################################
+            ##############################################################
+            # Start loop 4 to fill columns
+            for index, row in df_data.iterrows():
+
+                # Getting 14, 28, 42, 56 day simple and exponential RSIs
+                for days in RSI_days:
+                    column_s = str(days) + ' Sim. RSI'
+                    column_e = str(days) + ' Exp. RSI'
+                    df_data.set_value(index, column_s, calc_rsi_s(df_data, index, days))
+                    df_data.set_value(index, column_e, calc_rsi_e(df_data, index, days))
+
+            # End loop 4 to fill columns
+            ##############################################################
+            ##############################################################
+
+            # Send output of the calculations to Excel
+            first = str(df_data['Date'][0])[:-9]
+            last = str(df_data['Date'][len(df_data.index) - 1])[:-9]
+            excel_output = 'stock-data/' + df_ticker + '_' + last + '_to_' + first + '.xlsx'
+            writer = pd.ExcelWriter(excel_output)
+            df_data.to_excel(writer,'Sheet1')
+            writer.save()
+            print '\nData saved to {0}'.format(excel_output)
+
+            # Re-assign data in StockInfo object as updated dataframe table
+            master_stock_data[data_choice].data = df_data
+
+        # End loop through analysis for all tickers selected
         ##############################################################
         ##############################################################
-
-        ##############################################################
-        ##############################################################
-        # Start loop 2 to fill columns
-        for index in df_data.index:
-
-            # Getting 10, 15, 50, 100, 200 day percent gains
-            for days in MA_days:
-                column = str(days) + ' MA %'
-                df_data.set_value(index, column, calc_per_gain(df_data, index, days))
-
-        # End loop 2 to fill columns
-        ##############################################################
-        ##############################################################
-
-        # Flip table prior to calculating EMAs and exponential avg. gains and losses
-        df_data = df_data.sort_index(axis=0 ,ascending=False)
-
-        ##############################################################
-        ##############################################################
-        # Start loop 3 to fill columns
-        for index in df_data.index:
-
-            # Getting 10, 20, and 50 day EMA values
-            for days in EMA_days:
-                column = str(days) + ' EMA'
-                df_data.set_value(index, column, calc_ema(df_data, index, days))
-
-            # Geting exponential average gains and losses to be used later for RSI calcs
-            for days in RSI_days:
-                column_gain = str(days) + ' Exp. Avg. Gain'
-                column_loss = str(days) + ' Exp. Avg. Loss'
-                df_data.set_value(index, column_gain, calc_avg_gain_e(df_data, index, days))
-                df_data.set_value(index, column_loss, calc_avg_loss_e(df_data, index, days))
-
-        # End loop 3 to fill columns
-        ##############################################################
-        ##############################################################
-
-        # Flip table back to be ordered newest date to oldest date
-        df_data = df_data.sort_index(axis=0 ,ascending=True)
-
-        ##############################################################
-        ##############################################################
-        # Start loop 4 to fill columns
-        for index, row in df_data.iterrows():
-
-            # Getting 14, 28, 42, 56 day simple and exponential RSIs
-            for days in RSI_days:
-                column_s = str(days) + ' Sim. RSI'
-                column_e = str(days) + ' Exp. RSI'
-                df_data.set_value(index, column_s, calc_rsi_s(df_data, index, days))
-                df_data.set_value(index, column_e, calc_rsi_e(df_data, index, days))
-
-        # End loop 4 to fill columns
-        ##############################################################
-        ##############################################################
-
-        # EMA
-        # Start at bottom
-        # Use the normal MA as the first value
-        # To avoid recurssion
-        # Then work backward using formula
-        # Make a 20 day moving average to work with the 20 day EMA
-
-        # Add 52 week range
-        # Add average volume
-
-        # Send output of the calculations to Excel
-        excel_output = df_ticker + ' data.xlsx'
-        writer = pd.ExcelWriter(excel_output)
-        df_data.to_excel(writer,'Sheet1')
-        writer.save()
-
-        # Will eventually start analysis here, for now just print
-        print '\nData saved to {0}'.format(excel_output)
-        #print 'Market data for {0}'.format(df_ticker)
-        #print df_data
-
-        # Return item to main function
-        return df_data
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [6] Analyze market data'
+    print 'End [6] Analyze market data (' + run_type + ')'
     print '------------------------------------------------------------'
+
+    # Return item to main function
+    return master_stock_data
 
 # End Option [6] Analyze market data
 #########################################################################

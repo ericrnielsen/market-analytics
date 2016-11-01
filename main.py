@@ -88,16 +88,22 @@ if __name__ == "__main__":
         master_tickers, master_stock_data)
 
         #########################################################################
+        # Option [0] Quick run
+        if use == 0:
+            master_articles, master_articles_description, master_tickers, master_stock_data =  \
+            menu_options.quick_run(master_articles, master_articles_description, master_tickers, master_stock_data)
+
+        #########################################################################
         # Option [1] Load articles
-        if use == 1:
+        elif use == 1:
             master_articles, master_articles_description, master_tickers =  \
-            menu_options.load_articles(master_tickers)
+            menu_options.load_articles(master_tickers, 'manual', [])
 
         #########################################################################
         # Option [2] Determine most frequent tickers in loaded articles
         elif use == 2:
             master_tickers = \
-            menu_options.determine_top_tickers(master_articles, master_tickers)
+            menu_options.determine_top_tickers(master_articles, master_tickers, 'manual', [])
 
         #########################################################################
         # Option [3] View ticker list (and associated articles)
@@ -114,19 +120,18 @@ if __name__ == "__main__":
         # Option [5] Get market data for ticker(s)
         elif use == 5:
             master_stock_data = \
-            menu_options.get_market_data(master_tickers, master_stock_data)
+            menu_options.get_market_data(master_tickers, master_stock_data, 'manual', [])
 
         #########################################################################
         # Option [6] Analyze market data
-        # THIS STILL NEEDS TO BE FULLY IMPLEMENTED
         elif use == 6:
-            current_dataframe_table = \
-            menu_options.analyze_market_data(master_stock_data)
+            master_stock_data = \
+            menu_options.analyze_market_data(master_stock_data, 'manual', [])
 
             # !!!!!!!!!!!!!!!!!!!!!!!!
             # KYLE current_dataframe_table IS THE TABLE THAT YOU SHOULD USE
             # TO MAKE HTML OR XML file_site
-            # !!!!!!!!!!!!!!!!!!!!!!!!        
+            # !!!!!!!!!!!!!!!!!!!!!!!!
 
         #########################################################################
         # Option [7] Exit program
