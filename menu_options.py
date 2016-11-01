@@ -18,13 +18,26 @@ import streetinsider
 import dominate
 from dominate.tags import *
 import glob2
-import load_support
+from load_support import load_live
+from load_support import load_previous_run
 from StockInfo import StockInfo
 import pandas as pd
+import openpyxl
 from calculation_support import calc_gain
 from calculation_support import calc_loss
+from calculation_support import calc_spread
 from calculation_support import calc_mean
-
+from calculation_support import calc_mov_avg
+from calculation_support import calc_high
+from calculation_support import calc_low
+from calculation_support import calc_per_gain
+from calculation_support import calc_rsi_s
+from calculation_support import calc_rsi_e
+from calculation_support import calc_avg_gain_s
+from calculation_support import calc_avg_loss_s
+from calculation_support import calc_avg_gain_e
+from calculation_support import calc_avg_loss_e
+from calculation_support import calc_ema
 
 #########################################################################
 #########################################################################
@@ -105,11 +118,11 @@ def load_articles(master_tickers):
 
     # If user wants to (or needs to) search live
     if choice == 1:
-        master_articles, master_articles_description = load_support.load_live()
+        master_articles, master_articles_description = load_live()
 
     # Else if user wants to load articles from previous run
     else:
-        master_articles, master_articles_description = load_support.load_previous_run()
+        master_articles, master_articles_description = load_previous_run()
 
     # Need to clear out non-user added top tickers
     master_tickers_new = [item for item in master_tickers if (item[1] == 'user added')]
@@ -399,62 +412,57 @@ def analyze_market_data(master_stock_data):
         indices = range(0, len(df_data.index))
         df_data.index = indices
 
-        # Add spread column
-        df_data['Spread'] = df_data['High'] - df_data['Low']
+        # Create list with names of additional columns to be added to the table
+        columns_to_add = ['Spread', 'Gain', 'Loss', \
+        '10 MA', '10 MA %', '15 MA', '15 MA %', '20 MA', '20 MA %', \
+        '50 MA', '50 MA %', '100 MA', '100 MA %', '200 MA', '200 MA %', \
+        '10 EMA', '20 EMA', '50 EMA', \
+        '52 Wk. High', '52 Wk. Low', \
+        '14 Sim. Avg. Gain', '14 Exp. Avg. Gain', '14 Sim. Avg. Loss', '14 Exp. Avg. Loss', \
+        '28 Sim. Avg. Gain', '28 Exp. Avg. Gain', '28 Sim. Avg. Loss', '28 Exp. Avg. Loss', \
+        '42 Sim. Avg. Gain', '42 Exp. Avg. Gain', '42 Sim. Avg. Loss', '42 Exp. Avg. Loss', \
+        '56 Sim. Avg. Gain', '56 Exp. Avg. Gain', '56 Sim. Avg. Loss', '56 Exp. Avg. Loss', \
+        '14 Sim. RSI', '14 Exp. RSI', '28 Sim. RSI', '28 Exp. RSI',
+        '42 Sim. RSI', '42 Exp. RSI', '56 Sim. RSI', '56 Exp. RSI']
 
-        # Add gain and loss columns
-        df_data['Gain'] = df_data.apply(lambda row: calc_gain(row['Open'], row['Close']), axis=1)
-        df_data['Loss'] = df_data.apply(lambda row: calc_loss(row['Open'], row['Close']), axis=1)
+        # Initialize additional column values to be 0.0
+        for label in columns_to_add:
+             df_data[label] = 0.0
 
-        # Initializing additional columns
-        df_data['10Avg'] = 0.0
-        df_data['10Per'] = 0.0
-        df_data['15Avg'] = 0.0
-        df_data['15Per'] = 0.0
-        df_data['50Avg'] = 0.0
-        df_data['50Per'] = 0.0
-        df_data['100Avg'] = 0.0
-        df_data['100Per'] = 0.0
-        df_data['200Avg'] = 0.0
-        df_data['200Per'] = 0.0
-        df_data['52DHigh'] = 0.0
-        df_data['52DLow'] = 0.0
-        df_data['14RSI'] = 0.0
-        df_data['28RSI'] = 0.0
-        df_data['42RSI'] = 0.0
-        df_data['56RSI'] = 0.0
+        # Add values to spread column
+        df_data ['Spread'] = calc_spread(df_data)
+
+        # Add values to gain and loss columns
+        df_data['Gain'] = calc_gain(df_data)
+        df_data['Loss'] = calc_loss(df_data)
+
+        # Create lists with days to be used for the various calculations
+        MA_days = [10, 15, 20, 50, 100, 200]
+        EMA_days = [10, 20, 50]
+        RSI_days = [14, 28, 42, 56]
 
         ##############################################################
         ##############################################################
         # Start loop 1 to fill columns
         for index, row in df_data.iterrows():
-            # Getting 10, 15, 50, 100, 200 day moving average
-            current_slice_10 = df_data[index:index+10]
-            current_slice_15 = df_data[index:index+15]
-            current_slice_50 = df_data[index:index+50]
-            current_slice_100 = df_data[index:index+100]
-            current_slice_200 = df_data[index:index+200]
-
-            mean_10 = current_slice_10['Adj Close'].mean()
-            mean_15 = current_slice_15['Adj Close'].mean()
-            mean_50 = current_slice_50['Adj Close'].mean()
-            mean_100 = current_slice_100['Adj Close'].mean()
-            mean_200 = current_slice_200['Adj Close'].mean()
-
-            df_data.set_value(index, '10Avg', mean_10)
-            df_data.set_value(index, '15Avg', mean_15)
-            df_data.set_value(index, '50Avg', mean_50)
-            df_data.set_value(index, '100Avg', mean_100)
-            df_data.set_value(index, '200Avg', mean_200)
 
             # Getting 52 week high
-            current_slice_52 = df_data[index:index+52]
-            high_52 = current_slice_52['Adj Close'].max()
-            df_data.set_value(index, '52DHigh', high_52)
+            df_data.set_value(index, '52 Wk. High', calc_high(df_data, index, 52*5))
 
             # Getting 52 week low
-            low_52 = current_slice_52['Adj Close'].min()
-            df_data.set_value(index, '52DLow', low_52)
+            df_data.set_value(index, '52 Wk. Low', calc_low(df_data, index, 52*5))
+
+            # Getting 10, 15, 50, 100, 200 day moving average
+            for days in MA_days:
+                column = str(days) + ' MA'
+                df_data.set_value(index, column, calc_mov_avg(df_data, index, days))
+
+            # Geting simple average gains and losses to be used later for RSI calcs
+            for days in RSI_days:
+                column_gain = str(days) + ' Sim. Avg. Gain'
+                column_loss = str(days) + ' Sim. Avg. Loss'
+                df_data.set_value(index, column_gain, calc_avg_gain_s(df_data, index, days))
+                df_data.set_value(index, column_loss, calc_avg_loss_s(df_data, index, days))
 
         # End loop 1 to fill columns
         ##############################################################
@@ -464,110 +472,56 @@ def analyze_market_data(master_stock_data):
         ##############################################################
         # Start loop 2 to fill columns
         for index in df_data.index:
+
             # Getting 10, 15, 50, 100, 200 day percent gains
-            try:
-                # 10, 15, 50, 100, and 200 day moving averages percent gains
-                today_10 = df_data.get_value(index, '10Avg')
-                today_15 = df_data.get_value(index, '15Avg')
-                today_50 = df_data.get_value(index, '50Avg')
-                today_100 = df_data.get_value(index, '100Avg')
-                today_200 = df_data.get_value(index, '200Avg')
+            for days in MA_days:
+                column = str(days) + ' MA %'
+                df_data.set_value(index, column, calc_per_gain(df_data, index, days))
 
-                yesterday_10 = df_data.get_value(index+1, '10Avg')
-                yesterday_15 = df_data.get_value(index+1, '15Avg')
-                yesterday_50 = df_data.get_value(index+1, '50Avg')
-                yesterday_100 = df_data.get_value(index+1, '100Avg')
-                yesterday_200 = df_data.get_value(index+1, '200Avg')
-
-                gain_10 = ((today_10 / yesterday_10) - 1) * 100
-                gain_15 = ((today_15 / yesterday_15) - 1) * 100
-                gain_50 = ((today_50 / yesterday_50) - 1) * 100
-                gain_100 = ((today_100 / yesterday_100) - 1) * 100
-                gain_200 = ((today_200 / yesterday_200) - 1) * 100
-
-            except:
-                gain_10 = None
-                gain_15 = None
-                gain_50 = None
-                gain_100 = None
-                gain_200 = None
-
-            df_data.set_value(index, '10Per', gain_10)
-            df_data.set_value(index, '15Per', gain_15)
-            df_data.set_value(index, '50Per', gain_50)
-            df_data.set_value(index, '100Per', gain_100)
-            df_data.set_value(index, '200Per', gain_200)
         # End loop 2 to fill columns
         ##############################################################
         ##############################################################
 
+        # Flip table prior to calculating EMAs and exponential avg. gains and losses
+        df_data = df_data.sort_index(axis=0 ,ascending=False)
+
         ##############################################################
         ##############################################################
         # Start loop 3 to fill columns
-        for index, row in df_data.iterrows():
-            # Getting 14, 28, 42, 56 day RPIs
-            current_slice_14 = df_data[index:index+14]
-            current_slice_28 = df_data[index:index+28]
-            current_slice_42 = df_data[index:index+42]
-            current_slice_56 = df_data[index:index+56]
+        for index in df_data.index:
 
-            gain_values_14 = []
-            loss_values_14 = []
-            gain_values_28 = []
-            loss_values_28 = []
-            gain_values_42 = []
-            loss_values_42 = []
-            gain_values_56 = []
-            loss_values_56 = []
+            # Getting 10, 20, and 50 day EMA values
+            for days in EMA_days:
+                column = str(days) + ' EMA'
+                df_data.set_value(index, column, calc_ema(df_data, index, days))
 
-            for index_14 in current_slice_14.index:
-                current_gain = df_data.get_value(index_14, 'Gain')
-                current_loss = df_data.get_value(index_14, 'Loss')
-                if current_gain != 0:
-                    gain_values_14.append(current_gain)
-                if current_loss != 0:
-                    loss_values_14.append(current_loss)
-
-            for index_28 in current_slice_28.index:
-                current_gain = df_data.get_value(index_28, 'Gain')
-                current_loss = df_data.get_value(index_28, 'Loss')
-                if current_gain != 0:
-                    gain_values_28.append(current_gain)
-                if current_loss != 0:
-                    loss_values_28.append(current_loss)
-
-            for index_42 in current_slice_42.index:
-                current_gain = df_data.get_value(index_42, 'Gain')
-                current_loss = df_data.get_value(index_42, 'Loss')
-                if current_gain != 0:
-                    gain_values_42.append(current_gain)
-                if current_loss != 0:
-                    loss_values_42.append(current_loss)
-
-            for index_56 in current_slice_56.index:
-                current_gain = df_data.get_value(index_56, 'Gain')
-                current_loss = df_data.get_value(index_56, 'Loss')
-                if current_gain != 0:
-                    gain_values_56.append(current_gain)
-                if current_loss != 0:
-                    loss_values_56.append(current_loss)
-
-            gain_avg_14, loss_avg_14 = calc_mean(gain_values_14), calc_mean(loss_values_14)
-            gain_avg_28, loss_avg_28 = calc_mean(gain_values_28), calc_mean(loss_values_28)
-            gain_avg_42, loss_avg_42 = calc_mean(gain_values_42), calc_mean(loss_values_42)
-            gain_avg_56, loss_avg_56 = calc_mean(gain_values_56), calc_mean(loss_values_56)
-
-            rsi_14 = 100 - (100 / (1 + gain_avg_14/loss_avg_14))
-            rsi_28 = 100 - (100 / (1 + gain_avg_28/loss_avg_28))
-            rsi_42 = 100 - (100 / (1 + gain_avg_42/loss_avg_42))
-            rsi_56 = 100 - (100 / (1 + gain_avg_56/loss_avg_56))
-
-            df_data.set_value(index, '14RSI', rsi_14)
-            df_data.set_value(index, '28RSI', rsi_28)
-            df_data.set_value(index, '42RSI', rsi_42)
-            df_data.set_value(index, '56RSI', rsi_56)
+            # Geting exponential average gains and losses to be used later for RSI calcs
+            for days in RSI_days:
+                column_gain = str(days) + ' Exp. Avg. Gain'
+                column_loss = str(days) + ' Exp. Avg. Loss'
+                df_data.set_value(index, column_gain, calc_avg_gain_e(df_data, index, days))
+                df_data.set_value(index, column_loss, calc_avg_loss_e(df_data, index, days))
 
         # End loop 3 to fill columns
+        ##############################################################
+        ##############################################################
+
+        # Flip table back to be ordered newest date to oldest date
+        df_data = df_data.sort_index(axis=0 ,ascending=True)
+
+        ##############################################################
+        ##############################################################
+        # Start loop 4 to fill columns
+        for index, row in df_data.iterrows():
+
+            # Getting 14, 28, 42, 56 day simple and exponential RSIs
+            for days in RSI_days:
+                column_s = str(days) + ' Sim. RSI'
+                column_e = str(days) + ' Exp. RSI'
+                df_data.set_value(index, column_s, calc_rsi_s(df_data, index, days))
+                df_data.set_value(index, column_e, calc_rsi_e(df_data, index, days))
+
+        # End loop 4 to fill columns
         ##############################################################
         ##############################################################
 
@@ -578,17 +532,19 @@ def analyze_market_data(master_stock_data):
         # Then work backward using formula
         # Make a 20 day moving average to work with the 20 day EMA
 
-        # RSI
-        # When it approaches 70, you know the stock is going to tank
-        # Then it will drop a lot, but you still have a little time before the price goes down
-
         # Add 52 week range
         # Add average volume
 
+        # Send output of the calculations to Excel
+        excel_output = df_ticker + ' data.xlsx'
+        writer = pd.ExcelWriter(excel_output)
+        df_data.to_excel(writer,'Sheet1')
+        writer.save()
+
         # Will eventually start analysis here, for now just print
-        print '\nTHIS IS TEMPORARY. WILL EVENTUALLY DO ANALYSIS HERE.'
-        print 'Market data for {0}'.format(df_ticker)
-        print df_data
+        print '\nData saved to {0}'.format(excel_output)
+        #print 'Market data for {0}'.format(df_ticker)
+        #print df_data
 
         # Return item to main function
         return df_data
