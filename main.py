@@ -23,6 +23,7 @@ from dominate.tags import *
 import glob2
 from StockInfo import StockInfo
 import menu_options
+from collections import defaultdict
 
 # Kyle's stuff commented out for now
 '''
@@ -57,9 +58,8 @@ if __name__ == "__main__":
     # Overarching variables
     # (passed back and forth between main function and each menu option function)
     master_articles = Article_List()
-    master_articles_description = ''
-    master_tickers = []
-    master_stock_data = []
+    master_tickers = {}
+    master_stock_data = defaultdict(list)
 
     #########################################################################
     #########################################################################
@@ -84,25 +84,21 @@ if __name__ == "__main__":
         #########################################################################
         # Printing main program menu and getting user input on option to execute
         use = \
-        menu_options.print_main_menu(master_articles, master_articles_description, \
-        master_tickers, master_stock_data)
+        menu_options.print_main_menu(master_articles, master_tickers, master_stock_data)
 
         #########################################################################
         # Option [0] Quick run
         if use == 0:
-            master_articles, master_articles_description, master_tickers, master_stock_data =  \
-            menu_options.quick_run(master_articles, master_articles_description, master_tickers, master_stock_data)
+            menu_options.quick_run(master_articles, master_tickers, master_stock_data)
 
         #########################################################################
         # Option [1] Load articles
         elif use == 1:
-            master_articles, master_articles_description, master_tickers =  \
-            menu_options.load_articles(master_tickers, 'manual', [])
+            menu_options.load_articles(master_articles, master_tickers, 'manual', [])
 
         #########################################################################
         # Option [2] Determine most frequent tickers in loaded articles
         elif use == 2:
-            master_tickers = \
             menu_options.determine_top_tickers(master_articles, master_tickers, 'manual', [])
 
         #########################################################################
@@ -113,25 +109,17 @@ if __name__ == "__main__":
         #########################################################################
         # Option [4] Manually edit ticker list
         elif use == 4:
-            master_tickers = \
             menu_options.edit_ticker_list(master_tickers, 'manual', [])
 
         #########################################################################
         # Option [5] Get market data for ticker(s)
         elif use == 5:
-            master_stock_data = \
-            menu_options.get_market_data(master_tickers, master_stock_data, 'manual', [])
+            menu_options.get_financial_data(master_tickers, master_stock_data, 'manual', [])
 
         #########################################################################
         # Option [6] Analyze market data
         elif use == 6:
-            master_stock_data = \
-            menu_options.analyze_market_data(master_stock_data, 'manual', [])
-
-            # !!!!!!!!!!!!!!!!!!!!!!!!
-            # KYLE current_dataframe_table IS THE TABLE THAT YOU SHOULD USE
-            # TO MAKE HTML OR XML file_site
-            # !!!!!!!!!!!!!!!!!!!!!!!!
+            menu_options.compute_stock_metrics(master_stock_data, 'manual', [])
 
         #########################################################################
         # Option [7] Exit program

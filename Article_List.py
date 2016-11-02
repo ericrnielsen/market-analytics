@@ -8,6 +8,7 @@ class Article_List:
 
     def __init__(self):
         self.articles = []
+        self.description = ''
 
     def __len__(self):
         return len(self.articles)
@@ -80,7 +81,8 @@ class Article_List:
         counts = self.count_tickers()
         sorted_counts = sorted(counts.items(), key=operator.itemgetter(1))
         sorted_counts.reverse()
-        return sorted_counts[:top_num]
+        top_ticker_dict = dict(sorted_counts[:top_num])
+        return top_ticker_dict
 
     def all_for_ticker(self, ticker):
         to_return = Article_List()
@@ -91,6 +93,13 @@ class Article_List:
                     continue
         return to_return
 
+    def add_description(self, description):
+        self.description = description
+
+    def reset(self, new_list):
+        self.articles = new_list.articles
+        self.description = new_list.description        
+
     def to_JSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
+        return json.dumps(self, default=lambda o: o.__dict__,
             sort_keys=True, indent=4)

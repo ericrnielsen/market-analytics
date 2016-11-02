@@ -42,7 +42,7 @@ from calculation_support import calc_ema
 #########################################################################
 #########################################################################
 # Start printing main program menu
-def print_main_menu(master_articles, master_articles_description, master_tickers, master_stock_data):
+def print_main_menu(master_articles, master_tickers, master_stock_data):
 
     # Main menu banner
     print '\n************************************************************'
@@ -52,29 +52,49 @@ def print_main_menu(master_articles, master_articles_description, master_tickers
     # Program status information
     # Articles loaded for analysis
     if len(master_articles) > 0:
-        articles_loaded = 'Articles loaded? Yes\n{0}'.format(master_articles_description)
+        articles_loaded = 'Articles loaded? Yes\n{0}'.format(master_articles.description)
     else:
         articles_loaded = 'Articles loaded? No'
 
     # Ticker list created
     if len(master_tickers) > 0:
+        sorted_tickers = sorted(master_tickers.items(), key=operator.itemgetter(1))
+        sorted_tickers.reverse()
         tickers_identified = 'Ticker list determined? Yes\n'
-        tickers_identified += 'Tickers: {0}'.format(', '.join([item[0] for item in master_tickers]))
+        tickers_identified += 'Tickers: {0}'.format(', '.join(['{0} ({1})'.format(item[0], item[1]) for item in sorted_tickers]))
     else:
         tickers_identified = 'Ticker list determined? No'
 
-    # Stock info obtained (and ready for analysis)
-    if len(master_stock_data) > 0:
-        info_obtained = 'Market data ready for analysis? Yes\n'
-        info_obtained += 'Data available for: {0}\n'.format(', '.join([item.ticker for item in master_stock_data]))
+    # Stock info obtained (and ready for computation)
+    ready_tickers = []
+    for ticker in master_stock_data:
+        for data_set in master_stock_data[ticker]:
+            if data_set.data_type == 'base' and data_set.ticker not in ready_tickers:
+                ready_tickers.append(data_set.ticker)
+    if len(ready_tickers) > 0:
+        info_obtained = 'Market data ready for computation? Yes\n'
+        info_obtained += 'Data available for: {0}'.format(', '.join(ready_tickers))
     else:
-        info_obtained = 'Market data ready for analysis? No\n'
+        info_obtained = 'Market data ready for computation? No'
+
+    # Stock info computed (additional columns added to tableframe)
+    computed_tickers = []
+    for ticker in master_stock_data:
+        for data_set in master_stock_data[ticker]:
+            if data_set.data_type == 'computed' and data_set.ticker not in computed_tickers:
+                computed_tickers.append(data_set.ticker)
+    if len(computed_tickers) > 0:
+        info_computed = 'Stock metrics computed? Yes\n'
+        info_computed += 'Data computed for: {0}\n'.format(', '.join(computed_tickers))
+    else:
+        info_computed = 'Stock metrics computed? No\n'
 
     # Print status
     print '\nSTATUS'
     print articles_loaded
     print tickers_identified
     print info_obtained
+    print info_computed
 
     # Ask user what they want to do with the code
     prompt = '\nWHAT DO YOU WANT TO DO?\n' + \
@@ -83,11 +103,14 @@ def print_main_menu(master_articles, master_articles_description, master_tickers
     '[2] Determine most frequent tickers in loaded articles\n' + \
     '[3] View ticker list (and associated articles)\n' + \
     '[4] Manually edit ticker list\n' + \
-    '[5] Get market data for ticker(s)\n' + \
-    '[6] Analyze market data\n' + \
+    '[5] Get financial data for ticker(s)\n' + \
+    '[6] Compute stock metrics\n' + \
     '[7] Exit program\n\n' + \
     'Enter number: '
-    use = int(float(raw_input(prompt)))
+    try:
+        use = int(float(raw_input(prompt)))
+    except:
+        use = -1
 
     # Return items to main function
     return use
@@ -99,7 +122,7 @@ def print_main_menu(master_articles, master_articles_description, master_tickers
 #########################################################################
 #########################################################################
 # Start Option [0] Quick run
-def quick_run(master_articles, master_articles_description, master_tickers, master_stock_data):
+def quick_run(master_articles, master_tickers, master_stock_data):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -114,6 +137,15 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
     'Enter number: '
     choice = int(float(raw_input(prompt)))
 
+    # Create dictionary of automated selections that will be passed to functions
+    selections = {}
+    selections['Quickrun'] = 0
+    selections['Days to Search'] = 0
+    selections['Num Top Tickers'] = 0
+    selections['Tickers'] = []
+    selections['Start'] = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+    selections['End'] = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+
     # If user selects option 1
     if choice == 1:
         # Need to get all input necessary to make function calls
@@ -125,32 +157,30 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
         data_years = int(float(raw_input(prompt3)))
 
         # Fill selections list to be passed to required functions
-        selections = []
-        selections.append(days_to_search)
-        selections.append(num_top_tickers)
-        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-        past_date = today_date - datetime.timedelta(days=(365*data_years))
-        selections.append(past_date)
-        selections.append(today_date)
+        selections['Quickrun'] = 1
+        selections['Days to Search'] = days_to_search
+        selections['Num Top Tickers'] = num_top_tickers
+        selections['Start'] = selections['End'] - datetime.timedelta(days=(365*data_years))
 
         # Load articles from streetinsider
-        master_articles, master_articles_description, master_tickers =  \
-        load_articles(master_tickers, 'quick', selections)
+        load_articles(master_articles, master_tickers, 'quick', selections)
 
         # Need to clear out non-user added top tickers
-        master_tickers_clear = [item for item in master_tickers if (item[1] == 'user added')]
+        for key, value in master_tickers.items():
+            if value != 'user added':
+                del master_tickers[key]
 
         # Determine top tickers
-        master_tickers_new = \
-        determine_top_tickers(master_articles, master_tickers_clear, 'quick', selections)
+        determine_top_tickers(master_articles, master_tickers, 'quick', selections)
+        for key, value in master_tickers.items():
+            if value != 'user added':
+                selections['Tickers'].append(key)
 
         # Get market data for identified tickers
-        master_stock_data = \
-        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
 
         # Analyze market data (do calculations) for identified tickers
-        master_stock_data = \
-        analyze_market_data(master_stock_data, 'quick', selections)
+        compute_stock_metrics(master_stock_data, 'quick', selections)
 
     # If user selects option 2
     elif choice == 2:
@@ -161,56 +191,40 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
         data_years = int(float(raw_input(prompt2)))
 
         # Fill selections list to be passed to required functions
-        selections = []
-        selections.append(desired_tickers)
-        selections.append('blank')
-        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-        past_date = today_date - datetime.timedelta(days=(365*data_years))
-        selections.append(past_date)
-        selections.append(today_date)
+        selections['Quickrun'] = 2
+        selections['Start'] = selections['End'] - datetime.timedelta(days=(365*data_years))
+        for ticker in desired_tickers:
+            selections['Tickers'].append(ticker)
 
         # Add tickers to ticker list
-        master_tickers_new = \
         edit_ticker_list(master_tickers, 'quick', selections)
 
         # Get market data for identified tickers
-        master_stock_data = \
-        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
 
         # Analyze market data (do calculations) for identified tickers
-        master_stock_data = \
-        analyze_market_data(master_stock_data, 'quick', selections)
+        compute_stock_metrics(master_stock_data, 'quick', selections)
 
     # If user selects option 3
     else:
         # Fill selections list to be passed to required functions
-        selections = []
-        selections.append(['TWX'])
-        selections.append('blank')
-        today_date = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-        past_date = datetime.datetime(2015, 01, 01)
-        selections.append(past_date)
-        selections.append(today_date)
+        selections['Quickrun'] = 3
+        selections['Start'] = datetime.datetime(2015, 01, 01)
+        selections['Tickers'].append('TWX')
 
         # Add tickers to ticker list
-        master_tickers_new = \
         edit_ticker_list(master_tickers, 'quick', selections)
 
         # Get market data for identified tickers
-        master_stock_data = \
-        get_market_data(master_tickers_new, master_stock_data, 'quick', selections)
+        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
 
         # Analyze market data (do calculations) for identified tickers
-        master_stock_data = \
-        analyze_market_data(master_stock_data, 'quick', selections)
+        compute_stock_metrics(master_stock_data, 'quick', selections)
 
     # Print exit text
     print '\n------------------------------------------------------------'
     print 'End [0] Quick run'
     print '------------------------------------------------------------'
-
-    # Return items to main function
-    return master_articles, master_articles_description, master_tickers_new, master_stock_data
 
 # End Option [0] Quick run
 #########################################################################
@@ -219,7 +233,7 @@ def quick_run(master_articles, master_articles_description, master_tickers, mast
 #########################################################################
 #########################################################################
 # Start Option [1] Load articles
-def load_articles(master_tickers, run_type, selections):
+def load_articles(master_articles, master_tickers, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -246,24 +260,23 @@ def load_articles(master_tickers, run_type, selections):
     # If user wants to (or needs to) search live
     if choice == 1:
         if run_type == 'manual':
-            master_articles, master_articles_description = load_live('manual', [])
+            load_live(master_articles, 'manual', {})
         else:
-            master_articles, master_articles_description = load_live('quick', selections)
+            load_live(master_articles, 'quick', selections)
 
     # Else if user wants to load articles from previous run
     else:
-        master_articles, master_articles_description = load_previous_run()
+        load_previous_run(master_articles)
 
     # Need to clear out non-user added top tickers
-    master_tickers_new = [item for item in master_tickers if (item[1] == 'user added')]
+    for key, value in master_tickers.items():
+        if value != 'user added':
+            del master_tickers[key]
 
     # Print exit text
     print '\n------------------------------------------------------------'
     print 'End [1] Load articles (' + run_type + ')'
     print '------------------------------------------------------------'
-
-    # Return items to main function
-    return master_articles, master_articles_description, master_tickers_new
 
 # End Option [1] Load articles
 #########################################################################
@@ -294,27 +307,24 @@ def determine_top_tickers(master_articles, master_tickers, run_type, selections)
 
         # Else it's a quick run so user inputs already entered
         else:
-            num_top_tickers = selections[1]
+            num_top_tickers = selections['Num Top Tickers']
 
         # Get user specified number of most frequent tickers
         top_tickers = master_articles.return_top(num_top_tickers)
 
         # Need to clear out non-user added top tickers
-        master_tickers_new = [item for item in master_tickers if (item[1] == 'user added')]
+        for key, value in master_tickers.items():
+            if value != 'user added':
+                del master_tickers[key]
 
         # Add tickers to master ticker list
-        top_tickers.reverse()
-        for item in top_tickers:
-            if item[0] not in [x[0] for x in master_tickers_new]:
-                master_tickers_new.insert(0,item)
+        for key in top_tickers:
+            master_tickers[key] = top_tickers[key]
 
     # Print exit text
     print '\n------------------------------------------------------------'
     print 'End [2] Determine most frequent tickers in loaded articles (' + run_type + ')'
     print '------------------------------------------------------------'
-
-    # Return item to main function
-    return master_tickers_new
 
 # End Option [2] Determine most frequent tickers in loaded articles
 #########################################################################
@@ -337,10 +347,14 @@ def view_ticker_list(master_articles, master_tickers):
     # Else display top ticker information
     else:
 
+        # Create ordered list of top tickers
+        sorted_tickers = sorted(master_tickers.items(), key=operator.itemgetter(1))
+        sorted_tickers.reverse()
+
         # Display current ticker list and associated article counts
         print '\nCurrent ticker list:'
         n = 1
-        for item in master_tickers:
+        for item in sorted_tickers:
             print '[{0}] {1:<6} {2}'.format(n, item[0], item[1])
             n += 1
 
@@ -349,7 +363,7 @@ def view_ticker_list(master_articles, master_tickers):
         choice = raw_input(prompt)
         if choice == 'Y' or choice == 'Yes':
             n = 0
-            for item in master_tickers:
+            for item in sorted_tickers:
                 n += 1
                 # For tickers that were added due to article frequency
                 if item[1] != 'user added':
@@ -381,20 +395,21 @@ def edit_ticker_list(master_tickers, run_type, selections):
     print 'Begin [4] Manually edit ticker list (' + run_type + ')'
     print '------------------------------------------------------------'
 
-    # Make new master_tickers list that will eventually be returned
-    master_tickers_new = master_tickers
-
     # If need to get user input manually (not a quick run)
     if run_type == 'manual':
         # Allow user to edit list as much as they want
         done_editing = False
         while done_editing == False:
 
+            # Create ordered list of top tickers
+            sorted_tickers = sorted(master_tickers.items(), key=operator.itemgetter(1))
+            sorted_tickers.reverse()
+
             # Display current ticker list and associated article counts
             print '\nCurrent ticker list:'
             n = 1
-            for item in master_tickers_new:
-                print '[{0}] {1}:\t{2}'.format(n, item[0], item[1]).expandtabs(6)
+            for item in sorted_tickers:
+                print '[{0}] {1:<6} {2}'.format(n, item[0], item[1])
                 n += 1
 
             # Ask user how they want to edit the list
@@ -404,17 +419,18 @@ def edit_ticker_list(master_tickers, run_type, selections):
             # If user wants to delete
             if choice == 'Delete':
                 prompt = '\nWhat number item do you want to delete? '
-                to_delete = int(float(raw_input(prompt)))
-                if to_delete <= len(master_tickers):
-                    master_tickers_new.pop(to_delete-1)
+                num_to_delete = int(float(raw_input(prompt)))
+                if num_to_delete <= len(sorted_tickers):
+                    ticker_to_delete = sorted_tickers[num_to_delete-1][0]
+                    del master_tickers[ticker_to_delete]
                 else:
                     print '\nInvalid selection.'
 
             # If user wants to add
             elif choice == 'Add':
                 prompt = '\nWhat ticker do you want to add? '
-                to_add = raw_input(prompt)
-                master_tickers_new.append([to_add, 'user added'])
+                ticker_to_add = raw_input(prompt)
+                master_tickers[ticker_to_add] = 'user added'
 
             # Error checking
             else:
@@ -428,16 +444,13 @@ def edit_ticker_list(master_tickers, run_type, selections):
 
     # Else it's a quick run so user inputs already entered
     else:
-        for item in selections[0]:
-            master_tickers_new.append([item, 'user added'])
+        for ticker_to_add in selections['Tickers']:
+            master_tickers[ticker_to_add] = 'user added'
 
     # Print exit text
     print '\n------------------------------------------------------------'
     print 'End [4] Manually edit ticker list (' + run_type + ')'
     print '------------------------------------------------------------'
-
-    # Return item to main function
-    return master_tickers_new
 
 # End Option [4] Manually edit ticker list
 #########################################################################
@@ -445,22 +458,19 @@ def edit_ticker_list(master_tickers, run_type, selections):
 
 #########################################################################
 #########################################################################
-# Start Option [5] Get market data for ticker(s)
-def get_market_data(master_tickers, master_stock_data, run_type, selections):
+# Start Option [5] Get financial data for ticker(s)
+def get_financial_data(master_tickers, master_stock_data, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [5] Get market data for ticker(s) (' + run_type + ')'
+    print 'Begin [5] Get financial data for ticker(s) (' + run_type + ')'
     print '------------------------------------------------------------'
-
-    # Make new master_stock_data list that will eventually be returned
-    master_stock_data_new = master_stock_data
 
     # If need to get user input manually (not a quick run)
     if run_type == 'manual':
         # Ask user what ticker(s) they want to get info for
         prompt = '\nWhat do you want to do?\n[1] Use all tickers in current ticker list\n' + \
-        '[2] Manually enter a single ticker to use\n\nEnter number: '
+        '[2] Manually enter ticker(s) to use\n\nEnter number: '
         ticker_choice = int(float(raw_input(prompt)))
 
         # Error check if ticker list is empty
@@ -468,63 +478,63 @@ def get_market_data(master_tickers, master_stock_data, run_type, selections):
             print '\nTicker list is empty. Please add tickers and try again.'
 
         else:
-            # If user wants to manually enter a single ticker to use
+            # If user wants to manually enter ticker(s) to use
             if ticker_choice == 2:
-                prompt = '\nWhat ticker do you want to get data for? '
-                tickers_to_use = [raw_input(prompt)]
+                prompt = '\nWhat ticker(s) do you want to get data for? '
+                tickers_to_use = raw_input(prompt).split(' ')
             # Else if user wants to use all tickers in current ticker list
             else:
-                tickers_to_use = [item[0] for item in master_tickers]
+                tickers_to_use = [item for item in master_tickers.keys()]
 
             # Ask user to specify the start date they would like to use
             prompt = '\nEnter start date you would like to use (YYYY-MM-DD): '
             start_date = raw_input(prompt)
+
             # Change start_date to correct format
             start_year = int(float(start_date.split('-')[0]))
             start_month = int(float(start_date.split('-')[1]))
             start_day = int(float(start_date.split('-')[2]))
             start = datetime.datetime(start_year, start_month, start_day)
+
             # Ask user to specify the end date they would like to use
             prompt = '\nEnter end date you would like to use (YYYY-MM-DD): '
             end_date = raw_input(prompt)
+
             # Change end_date to correct format
             end_year = int(float(end_date.split('-')[0]))
             end_month = int(float(end_date.split('-')[1]))
             end_day = int(float(end_date.split('-')[2]))
             end = datetime.datetime(end_year, end_month, end_day)
+
             # Add StockInfo objects to master_stock_data list
-            for item in tickers_to_use:
-                master_stock_data_new.append(StockInfo(item, start, end))
+            for ticker in tickers_to_use:
+                master_stock_data[ticker].append(StockInfo(ticker, start, end))
 
     # Else it's a quick run so user inputs already entered
     else:
-        tickers_to_use = [item[0] for item in master_tickers]
-        start = selections[2]
-        end = selections[3]
-        for item in tickers_to_use:
-            master_stock_data_new.append(StockInfo(item, start, end))
+        tickers_to_use = selections['Tickers']
+        start = selections['Start']
+        end = selections['End']
+        for ticker in tickers_to_use:
+            master_stock_data[ticker].append(StockInfo(ticker, start, end))
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [5] Get market data for ticker(s) (' + run_type + ')'
+    print 'End [5] Get financial data for ticker(s) (' + run_type + ')'
     print '------------------------------------------------------------'
 
-    # Return item to main function
-    return master_stock_data_new
-
-# End Option [5] Get market data for ticker(s)
+# End Option [5] Get financial data for ticker(s)
 #########################################################################
 #########################################################################
 
 #########################################################################
 #########################################################################
-# Start Option [6] Analyze market data
-# THIS STILL NEEDS TO BE FULLY IMPLEMENTED
-def analyze_market_data(master_stock_data, run_type, selections):
+# Start Option [6] Compute stock metrics
+def compute_stock_metrics(master_stock_data, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
-    print 'Begin [6] Analyze market data (' + run_type + ')'
+    print 'Begin [6] Compute stock metrics (' + run_type + ')'
     print '------------------------------------------------------------'
 
     # Error check for case that no data available
@@ -537,47 +547,61 @@ def analyze_market_data(master_stock_data, run_type, selections):
             # Ask user what data they want to analyze (printing list of available data objects)
             prompt = '\nWhat data do you want to analyze?\n'
             n = 0
-            for item in master_stock_data:
-                n += 1
-                prompt += '[{0}] {1:<6} '.format(n, item.ticker)
-                prompt += 'data from {0} to {1}\n'.format(str(item.start_date)[:-9], str(item.end_date)[:-9])
+            possible_compute = {}
+            for ticker in master_stock_data:
+                data_set_index = -1
+                for data_set in master_stock_data[ticker]:
+                    data_set_index += 1
+                    if data_set.data_type == 'base':
+                        n += 1
+                        prompt += '[{0}] {1:<6} '.format(n, data_set.ticker)
+                        prompt += 'data from {0} to {1}\n'.format(str(data_set.start_date)[:-9], str(data_set.end_date)[:-9])
+                        possible_compute[n] = [ticker, data_set_index, data_set]
             prompt += '\nEnter number(s): '
             choices = (raw_input(prompt).split(' '))
-            data_choices = []
-            for item in choices:
-                data_choices.append(int(float(item)) - 1)
+            chosen_compute = []
+            for num in choices:
+                chosen_compute.append(possible_compute[int(float(num))])
 
         # Else it's a quick run so user inputs already entered
         else:
-            n = 0
-            data_choices = []
-            for item in master_stock_data:
-                data_choices.append(n)
-                n += 1
+            chosen_compute = []
+            for ticker in master_stock_data:
+                if ticker in selections['Tickers']:
+                    data_set_index = -1
+                    for data_set in master_stock_data[ticker]:
+                        data_set_index += 1
+                        if data_set.data_type == 'base' and data_set.start_date == selections['Start'] and data_set.end_date == selections['End']:
+                            chosen_compute.append([ticker, data_set_index, data_set])
 
         ##############################################################
         ##############################################################
         # Start loop through analysis for all tickers selected
-        for data_choice in data_choices:
+        for chosen in chosen_compute:
+
+            # Easy references for the 3 components of 'chosen'
+            current_ticker = chosen[0]
+            current_data_set_index = chosen[1]
+            current_data_set = chosen [2]
 
             # df_ticker = ticker for the current object, df_data = all the actual data
-            df_ticker = master_stock_data[data_choice].ticker
-            df_data = master_stock_data[data_choice].data
+            df_ticker = current_data_set.ticker
+            df_data = current_data_set.data
 
             # Reverse the data so it's in decending order
             df_data = df_data.sort_index(axis=0 ,ascending=False)
 
-            # Make new column containing dates (currently in index)
-            # !!!!!!! Need to think about how to make this conditional on whether
-            # !!!!!!! or not the tableframe object has already been edited once 
-            df_data['Date'] = df_data.index
-            cols = df_data.columns.tolist()
-            cols.insert(0, cols.pop(cols.index('Date')))
-            df_data = df_data.reindex(columns= cols)
+            # If the dataframe object for the ticker
+            if len(df_data.columns.tolist()) == 6:
+                # Make new column containing dates (currently in index)
+                df_data['Date'] = df_data.index
+                cols = df_data.columns.tolist()
+                cols.insert(0, cols.pop(cols.index('Date')))
+                df_data = df_data.reindex(columns= cols)
 
-            # Make index be a count up from 0
-            indices = range(0, len(df_data.index))
-            df_data.index = indices
+                # Make index be a count up from 0
+                indices = range(0, len(df_data.index))
+                df_data.index = indices
 
             # Create list with names of additional columns to be added to the table
             columns_to_add = ['Spread', 'Gain', 'Loss', \
@@ -702,7 +726,7 @@ def analyze_market_data(master_stock_data, run_type, selections):
             print '\nData saved to {0}'.format(excel_output)
 
             # Re-assign data in StockInfo object as updated dataframe table
-            master_stock_data[data_choice].data = df_data
+            master_stock_data[current_ticker][current_data_set_index].add_metrics(df_data)
 
         # End loop through analysis for all tickers selected
         ##############################################################
@@ -710,13 +734,10 @@ def analyze_market_data(master_stock_data, run_type, selections):
 
     # Print exit text
     print '\n------------------------------------------------------------'
-    print 'End [6] Analyze market data (' + run_type + ')'
+    print 'End [6] Compute stock metrics (' + run_type + ')'
     print '------------------------------------------------------------'
 
-    # Return item to main function
-    return master_stock_data
-
-# End Option [6] Analyze market data
+# End Option [6] Compute stock metrics
 #########################################################################
 #########################################################################
 

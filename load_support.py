@@ -23,7 +23,7 @@ import glob2
 #########################################################################
 #########################################################################
 # If user wants to search live
-def load_live(run_type, selections):
+def load_live(master_articles, run_type, selections):
 
     # Start timer
     start_time = time.time()
@@ -43,13 +43,13 @@ def load_live(run_type, selections):
     # Else it's a quick run so user inputs already entered
     else:
         response_list = '5'
-        days_to_search = selections[0]
+        days_to_search = selections['Days to Search']
 
     # Print extra line
     print ''
 
     # Create master tickers list
-    master_articles = Article_List()
+    master_articles_new = Article_List()
     sites_searched = []
 
     #########################################################################
@@ -95,15 +95,15 @@ def load_live(run_type, selections):
     #########################################################################
     # Add all returned articles to master Article_List object
     for article in zergwatch_articles.articles:
-        master_articles.add_article(article)
+        master_articles_new.add_article(article)
     for article in streetupdates_articles.articles:
-        master_articles.add_article(article)
+        master_articles_new.add_article(article)
     for article in newsoracle_articles.articles:
-        master_articles.add_article(article)
+        master_articles_new.add_article(article)
     for article in smarteranalyst_articles.articles:
-        master_articles.add_article(article)
+        master_articles_new.add_article(article)
     for article in streetinsider_articles.articles:
-        master_articles.add_article(article)
+        master_articles_new.add_article(article)
 
     #########################################################################
     # Save all articles to a file for later reference
@@ -112,7 +112,7 @@ def load_live(run_type, selections):
     now = datetime.datetime.today().strftime(format)
     aa_file_name = 'previous-runs/{0}_{1}_{2}.txt'.format(now, sites_searched_string, days_to_search)
     f = open(aa_file_name, 'w')
-    f.write(str(master_articles))
+    f.write(str(master_articles_new))
     f.close()
 
     # End timer and print total time elapsed to live search
@@ -129,16 +129,21 @@ def load_live(run_type, selections):
     file_days_back = file_info[3][:-4]
     articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
     articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles), file_site, len(master_articles.count_tickers()))
+    master_articles_new.add_description(articles_description)
 
     #########################################################################
     # Return master_articles object, description, and num_top_tickers
-    return master_articles, articles_description
+    '''return master_articles, articles_description'''
+
+    #########################################################################
+    # Reset master_articles object with the contents of master_articles_new
+    master_articles.reset(master_articles_new)
 
 #########################################################################
 #########################################################################
 #########################################################################
 # If user wants to search live
-def load_previous_run():
+def load_previous_run(master_articles):
 
     # Get list of available files from previous runs
     previous_runs = glob2.glob('previous-runs/*.txt')
@@ -159,7 +164,7 @@ def load_previous_run():
     chosen_file = int(float(raw_input(prompt)))
 
     # Read from selected file and load master_articles object
-    master_articles = Article_List()
+    master_articles_new = Article_List()
     with open(previous_runs[chosen_file-1], 'r') as load_file:
         content = load_file.readlines()
         n = 0
@@ -180,13 +185,18 @@ def load_previous_run():
             current_article.set_date(date)
             n += 3
             # Add article to master article list
-            master_articles.add_article(current_article)
+            master_articles_new.add_article(current_article)
     load_file.close()
 
     # Create string that describes the master_articles object
     articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
-    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles), file_site, len(master_articles.count_tickers()))
+    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles_new), file_site, len(master_articles_new.count_tickers()))
+    master_articles_new.add_description(articles_description)
 
     #########################################################################
     # Return master_articles object and num_top_tickers
-    return master_articles, articles_description
+    '''return master_articles, articles_description'''
+
+    #########################################################################
+    # Reset master_articles object with the contents of master_articles_new
+    master_articles.reset(master_articles_new)
