@@ -2,42 +2,19 @@
 
 import sys
 import operator
-import time
 import datetime
 from Article import Article
 from Article_List import Article_List
-import tickers
-import zergwatch
-import streetupdates
-import newsoracle
-import smarteranalyst
-import streetinsider
-#import aomarkets
-#import marketwatch
-#import investorplace
 import dominate
 from dominate.tags import *
 import glob2
-from load_support import load_live
-from load_support import load_previous_run
+import load_support
 from StockInfo import StockInfo
 import pandas as pd
 import openpyxl
-from calculation_support import calc_gain
-from calculation_support import calc_loss
-from calculation_support import calc_spread
-from calculation_support import calc_mean
-from calculation_support import calc_mov_avg
-from calculation_support import calc_high
-from calculation_support import calc_low
-from calculation_support import calc_per_gain
-from calculation_support import calc_rsi_s
-from calculation_support import calc_rsi_e
-from calculation_support import calc_avg_gain_s
-from calculation_support import calc_avg_loss_s
-from calculation_support import calc_avg_gain_e
-from calculation_support import calc_avg_loss_e
-from calculation_support import calc_ema
+import xlrd
+import calc_support
+import quick_run_support
 
 #########################################################################
 #########################################################################
@@ -105,7 +82,8 @@ def print_main_menu(master_articles, master_tickers, master_stock_data):
     '[4] Manually edit ticker list\n' + \
     '[5] Get financial data for ticker(s)\n' + \
     '[6] Compute stock metrics\n' + \
-    '[7] Exit program\n\n' + \
+    '[7] Load stock metrics from Excel\n' + \
+    '[8] Exit program\n\n' + \
     'Enter number: '
     try:
         use = int(float(raw_input(prompt)))
@@ -133,7 +111,8 @@ def quick_run(master_articles, master_tickers, master_stock_data):
     prompt = '\nWhich quick run do you want to do?\n' + \
     '[1] Search streetinsider live -> determine top tickers -> get financial data\n' + \
     '[2] Enter ticker(s) -> get financial data\n' + \
-    '[3] Current test configuration (TWX from 2015-01-01 to today)\n\n' + \
+    '[3] Update stock metrics in Excel file (new end date = today)\n' + \
+    '[4] Current test configuration (TWX from 2015-01-01 to today)\n\n' + \
     'Enter number: '
     choice = int(float(raw_input(prompt)))
 
@@ -148,78 +127,19 @@ def quick_run(master_articles, master_tickers, master_stock_data):
 
     # If user selects option 1
     if choice == 1:
-        # Need to get all input necessary to make function calls
-        prompt1 = raw_input("\nHow many days back do you want to search? ")
-        days_to_search = int(float(prompt1))
-        prompt2 = '\nHow many top tickers would you like to identify? '
-        num_top_tickers = int(float(raw_input(prompt2)))
-        prompt3 = '\nHow many years of financial data would you like to get? '
-        data_years = int(float(raw_input(prompt3)))
-
-        # Fill selections list to be passed to required functions
-        selections['Quickrun'] = 1
-        selections['Days to Search'] = days_to_search
-        selections['Num Top Tickers'] = num_top_tickers
-        selections['Start'] = selections['End'] - datetime.timedelta(days=(365*data_years))
-
-        # Load articles from streetinsider
-        load_articles(master_articles, master_tickers, 'quick', selections)
-
-        # Need to clear out non-user added top tickers
-        for key, value in master_tickers.items():
-            if value != 'user added':
-                del master_tickers[key]
-
-        # Determine top tickers
-        determine_top_tickers(master_articles, master_tickers, 'quick', selections)
-        for key, value in master_tickers.items():
-            if value != 'user added':
-                selections['Tickers'].append(key)
-
-        # Get market data for identified tickers
-        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
-
-        # Analyze market data (do calculations) for identified tickers
-        compute_stock_metrics(master_stock_data, 'quick', selections)
+        quick_run_support.run_1(master_articles, master_tickers, master_stock_data, selections)
 
     # If user selects option 2
     elif choice == 2:
-        # Need to get all input necessary to make function calls
-        prompt1 = '\nWhat tickers would you like to get financial data for? '
-        desired_tickers = raw_input(prompt1).split(' ')
-        prompt2 = '\nHow many years of financial data would you like to get? '
-        data_years = int(float(raw_input(prompt2)))
-
-        # Fill selections list to be passed to required functions
-        selections['Quickrun'] = 2
-        selections['Start'] = selections['End'] - datetime.timedelta(days=(365*data_years))
-        for ticker in desired_tickers:
-            selections['Tickers'].append(ticker)
-
-        # Add tickers to ticker list
-        edit_ticker_list(master_tickers, 'quick', selections)
-
-        # Get market data for identified tickers
-        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
-
-        # Analyze market data (do calculations) for identified tickers
-        compute_stock_metrics(master_stock_data, 'quick', selections)
+        quick_run_support.run_2(master_articles, master_tickers, master_stock_data, selections)
 
     # If user selects option 3
+    elif choice == 3:
+        quick_run_support.run_3(master_articles, master_tickers, master_stock_data, selections)
+
+    # If user selects option 4
     else:
-        # Fill selections list to be passed to required functions
-        selections['Quickrun'] = 3
-        selections['Start'] = datetime.datetime(2015, 01, 01)
-        selections['Tickers'].append('TWX')
-
-        # Add tickers to ticker list
-        edit_ticker_list(master_tickers, 'quick', selections)
-
-        # Get market data for identified tickers
-        get_financial_data(master_tickers, master_stock_data, 'quick', selections)
-
-        # Analyze market data (do calculations) for identified tickers
-        compute_stock_metrics(master_stock_data, 'quick', selections)
+        quick_run_support.run_4(master_articles, master_tickers, master_stock_data, selections)
 
     # Print exit text
     print '\n------------------------------------------------------------'
@@ -260,13 +180,13 @@ def load_articles(master_articles, master_tickers, run_type, selections):
     # If user wants to (or needs to) search live
     if choice == 1:
         if run_type == 'manual':
-            load_live(master_articles, 'manual', {})
+            load_support.load_live(master_articles, 'manual', {})
         else:
-            load_live(master_articles, 'quick', selections)
+            load_support.load_live(master_articles, 'quick', selections)
 
     # Else if user wants to load articles from previous run
     else:
-        load_previous_run(master_articles)
+        load_support.load_previous_run(master_articles)
 
     # Need to clear out non-user added top tickers
     for key, value in master_tickers.items():
@@ -482,6 +402,9 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
             if ticker_choice == 2:
                 prompt = '\nWhat ticker(s) do you want to get data for? '
                 tickers_to_use = raw_input(prompt).split(' ')
+                # Add the entered tickers to master_tickers
+                for ticker in tickers_to_use:
+                    master_tickers[ticker] = 'user added'
             # Else if user wants to use all tickers in current ticker list
             else:
                 tickers_to_use = [item for item in master_tickers.keys()]
@@ -497,14 +420,17 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
             start = datetime.datetime(start_year, start_month, start_day)
 
             # Ask user to specify the end date they would like to use
-            prompt = '\nEnter end date you would like to use (YYYY-MM-DD): '
+            prompt = '\nEnter end date you would like to use (YYYY-MM-DD or \'today\'): '
             end_date = raw_input(prompt)
-
-            # Change end_date to correct format
-            end_year = int(float(end_date.split('-')[0]))
-            end_month = int(float(end_date.split('-')[1]))
-            end_day = int(float(end_date.split('-')[2]))
-            end = datetime.datetime(end_year, end_month, end_day)
+            # If the user enters 'today'
+            if end_date == 'today' or end_date == 'Today':
+                end = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+            else:
+                # Change end_date to correct format
+                end_year = int(float(end_date.split('-')[0]))
+                end_month = int(float(end_date.split('-')[1]))
+                end_day = int(float(end_date.split('-')[2]))
+                end = datetime.datetime(end_year, end_month, end_day)
 
             # Add StockInfo objects to master_stock_data list
             for ticker in tickers_to_use:
@@ -517,6 +443,9 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
         end = selections['End']
         for ticker in tickers_to_use:
             master_stock_data[ticker].append(StockInfo(ticker, start, end))
+
+    # Print success message
+    print '\nSuccessfully retrieved data for: {0}'.format(', '.join(tickers_to_use))
 
     # Print exit text
     print '\n------------------------------------------------------------'
@@ -545,7 +474,7 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
         # If need to get user input manually (not a quick run)
         if run_type == 'manual':
             # Ask user what data they want to analyze (printing list of available data objects)
-            prompt = '\nWhat data do you want to analyze?\n'
+            prompt = '\nWhat data do you want to use to compute stock metrics?\n'
             n = 0
             possible_compute = {}
             for ticker in master_stock_data:
@@ -583,7 +512,6 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
         first = str(temp_data.data.index[len(temp_data.data.index) - 1])[:-9]
         excel_file = 'stock-data/' + tickers_string + last + '_to_' + first + '.xlsx'
         writer = pd.ExcelWriter(excel_file)
-        worksheet = 1
 
         ##############################################################
         ##############################################################
@@ -632,11 +560,11 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                  df_data[label] = 0.0
 
             # Add values to spread column
-            df_data ['Spread'] = calc_spread(df_data)
+            df_data ['Spread'] = calc_support.calc_spread(df_data)
 
             # Add values to gain and loss columns
-            df_data['Gain'] = calc_gain(df_data)
-            df_data['Loss'] = calc_loss(df_data)
+            df_data['Gain'] = calc_support.calc_gain(df_data)
+            df_data['Loss'] = calc_support.calc_loss(df_data)
 
             # Create lists with days to be used for the various calculations
             MA_days = [10, 15, 20, 50, 100, 200]
@@ -649,22 +577,22 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
             for index, row in df_data.iterrows():
 
                 # Getting 52 week high
-                df_data.set_value(index, '52 Wk. High', calc_high(df_data, index, 52*5))
+                df_data.set_value(index, '52 Wk. High', calc_support.calc_high(df_data, index, 52*5))
 
                 # Getting 52 week low
-                df_data.set_value(index, '52 Wk. Low', calc_low(df_data, index, 52*5))
+                df_data.set_value(index, '52 Wk. Low', calc_support.calc_low(df_data, index, 52*5))
 
                 # Getting 10, 15, 50, 100, 200 day moving average
                 for days in MA_days:
                     column = str(days) + ' MA'
-                    df_data.set_value(index, column, calc_mov_avg(df_data, index, days))
+                    df_data.set_value(index, column, calc_support.calc_mov_avg(df_data, index, days))
 
                 # Geting simple average gains and losses to be used later for RSI calcs
                 for days in RSI_days:
                     column_gain = str(days) + ' Sim. Avg. Gain'
                     column_loss = str(days) + ' Sim. Avg. Loss'
-                    df_data.set_value(index, column_gain, calc_avg_gain_s(df_data, index, days))
-                    df_data.set_value(index, column_loss, calc_avg_loss_s(df_data, index, days))
+                    df_data.set_value(index, column_gain, calc_support.calc_avg_gain_s(df_data, index, days))
+                    df_data.set_value(index, column_loss, calc_support.calc_avg_loss_s(df_data, index, days))
 
             # End loop 1 to fill columns
             ##############################################################
@@ -678,7 +606,7 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                 # Getting 10, 15, 50, 100, 200 day percent gains
                 for days in MA_days:
                     column = str(days) + ' MA %'
-                    df_data.set_value(index, column, calc_per_gain(df_data, index, days))
+                    df_data.set_value(index, column, calc_support.calc_per_gain(df_data, index, days))
 
             # End loop 2 to fill columns
             ##############################################################
@@ -695,14 +623,14 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                 # Getting 10, 20, and 50 day EMA values
                 for days in EMA_days:
                     column = str(days) + ' EMA'
-                    df_data.set_value(index, column, calc_ema(df_data, index, days))
+                    df_data.set_value(index, column, calc_support.calc_ema(df_data, index, days))
 
                 # Geting exponential average gains and losses to be used later for RSI calcs
                 for days in RSI_days:
                     column_gain = str(days) + ' Exp. Avg. Gain'
                     column_loss = str(days) + ' Exp. Avg. Loss'
-                    df_data.set_value(index, column_gain, calc_avg_gain_e(df_data, index, days))
-                    df_data.set_value(index, column_loss, calc_avg_loss_e(df_data, index, days))
+                    df_data.set_value(index, column_gain, calc_support.calc_avg_gain_e(df_data, index, days))
+                    df_data.set_value(index, column_loss, calc_support.calc_avg_loss_e(df_data, index, days))
 
             # End loop 3 to fill columns
             ##############################################################
@@ -720,8 +648,8 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                 for days in RSI_days:
                     column_s = str(days) + ' Sim. RSI'
                     column_e = str(days) + ' Exp. RSI'
-                    df_data.set_value(index, column_s, calc_rsi_s(df_data, index, days))
-                    df_data.set_value(index, column_e, calc_rsi_e(df_data, index, days))
+                    df_data.set_value(index, column_s, calc_support.calc_rsi_s(df_data, index, days))
+                    df_data.set_value(index, column_e, calc_support.calc_rsi_e(df_data, index, days))
 
             # End loop 4 to fill columns
             ##############################################################
@@ -752,7 +680,79 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
 
 #########################################################################
 #########################################################################
-# Start Option [7] Exit program
+# Start Option [7] Load stock metrics from Excel
+def load_stock_metrics(master_stock_data, run_type, selections):
+
+    # Print intro text
+    print '\n------------------------------------------------------------'
+    print 'Begin [7] Load stock metrics from Excel'
+    print '------------------------------------------------------------'
+
+    # Get list of available Excel files from previous computations
+    available_metrics = glob2.glob('stock-data/*.xlsx')
+
+    # Ask user which file they want to use to load articles
+    prompt = '\nWhich stock metric Excel file do you want to load from?\n'
+    n = 0
+    for file_name in available_metrics:
+        n += 1
+        file_details = file_name.split('_')
+        file_details.reverse()
+        end_date = file_details[0][:-5]
+        start_date = file_details[2]
+        file_details[len(file_details)-1] = file_details[len(file_details)-1][11:]
+        ticker_list = ', '.join(file_details[3:len(file_details)])
+        prompt += '[{0}] Tickers: {1}\n'.format(n, ticker_list)
+        if n < 10:
+            space = '    '
+        else:
+            space = '     '
+        prompt += '{0}From: {1}\tTo: {2}\n\n'.format(space, start_date, end_date)
+    prompt += 'Enter number: '
+    chosen_num = int(float(raw_input(prompt)))
+    chosen_file = available_metrics[chosen_num-1]
+
+    # Change the dates in the chosen file name to be datetime objects
+    chosen_file_details = chosen_file.split('_')
+    chosen_file_details.reverse()
+    start_date = chosen_file_details[2]
+    start_year = int(float(start_date.split('-')[0]))
+    start_month = int(float(start_date.split('-')[1]))
+    start_day = int(float(start_date.split('-')[2]))
+    start = datetime.datetime(start_year, start_month, start_day)
+    end_date = chosen_file_details[0][:-5]
+    end_year = int(float(end_date.split('-')[0]))
+    end_month = int(float(end_date.split('-')[1]))
+    end_day = int(float(end_date.split('-')[2]))
+    end = datetime.datetime(end_year, end_month, end_day)
+
+    # Open the chosen Excel file and load data into new StockInfo objects
+    # Then add to master_stock_data
+    to_read = pd.ExcelFile(chosen_file)
+    sheet_names = to_read.sheet_names
+    for ticker in sheet_names:
+        # Get the current sheet
+        current_df = pd.read_excel(open(chosen_file, 'rb'), sheetname=ticker)
+        # Create new StockInfo object
+        to_add = StockInfo(ticker, start, end)
+        to_add.add_metrics(current_df)
+        master_stock_data[ticker].append(to_add)
+
+    # Print success message
+    print '\nSuccessfully loaded metrics for: {0}'.format(', '.join(sheet_names))
+
+    # Print exit text
+    print '\n------------------------------------------------------------'
+    print 'End [7] Load stock metrics from Excel'
+    print '------------------------------------------------------------'
+
+# End Option [7] Load stock metrics from Excel
+#########################################################################
+#########################################################################
+
+#########################################################################
+#########################################################################
+# Start Option [8] Exit program
 def exit_program():
 
     # Print  text
@@ -760,6 +760,6 @@ def exit_program():
     print 'Adios'
     print '------------------------------------------------------------'
 
-# End Option [7] Exit program
+# End Option [8] Exit program
 #########################################################################
 #########################################################################

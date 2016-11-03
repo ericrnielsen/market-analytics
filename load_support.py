@@ -6,7 +6,6 @@ import time
 import datetime
 from Article import Article
 from Article_List import Article_List
-import tickers
 import zergwatch
 import streetupdates
 import newsoracle
@@ -128,12 +127,8 @@ def load_live(master_articles, run_type, selections):
     file_site = file_info[2]
     file_days_back = file_info[3][:-4]
     articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
-    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles), file_site, len(master_articles.count_tickers()))
+    articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles_new), file_site, len(master_articles_new.count_tickers()))
     master_articles_new.add_description(articles_description)
-
-    #########################################################################
-    # Return master_articles object, description, and num_top_tickers
-    '''return master_articles, articles_description'''
 
     #########################################################################
     # Reset master_articles object with the contents of master_articles_new
@@ -192,10 +187,6 @@ def load_previous_run(master_articles):
     articles_description = 'Run: {0} at {1} for previous {2} days\n'.format(file_date, file_time, file_days_back)
     articles_description += 'Description: {0} articles from {1} identifying {2} total tickers'.format(len(master_articles_new), file_site, len(master_articles_new.count_tickers()))
     master_articles_new.add_description(articles_description)
-
-    #########################################################################
-    # Return master_articles object and num_top_tickers
-    '''return master_articles, articles_description'''
 
     #########################################################################
     # Reset master_articles object with the contents of master_articles_new
