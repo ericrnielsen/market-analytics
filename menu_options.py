@@ -574,6 +574,17 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                         if data_set.data_type == 'base' and data_set.start_date == selections['Start'] and data_set.end_date == selections['End']:
                             chosen_compute.append([ticker, data_set_index, data_set])
 
+        # Create Excel file to save stock metrics to
+        tickers_string = ''
+        for item in chosen_compute:
+            tickers_string += item[0] + '_'
+        temp_data = chosen_compute[0][2]
+        last = str(temp_data.data.index[0])[:-9]
+        first = str(temp_data.data.index[len(temp_data.data.index) - 1])[:-9]
+        excel_file = 'stock-data/' + tickers_string + last + '_to_' + first + '.xlsx'
+        writer = pd.ExcelWriter(excel_file)
+        worksheet = 1
+
         ##############################################################
         ##############################################################
         # Start loop through analysis for all tickers selected
@@ -582,7 +593,7 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
             # Easy references for the 3 components of 'chosen'
             current_ticker = chosen[0]
             current_data_set_index = chosen[1]
-            current_data_set = chosen [2]
+            current_data_set = chosen[2]
 
             # df_ticker = ticker for the current object, df_data = all the actual data
             df_ticker = current_data_set.ticker
@@ -716,14 +727,9 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
             ##############################################################
             ##############################################################
 
-            # Send output of the calculations to Excel
-            first = str(df_data['Date'][0])[:-9]
-            last = str(df_data['Date'][len(df_data.index) - 1])[:-9]
-            excel_output = 'stock-data/' + df_ticker + '_' + last + '_to_' + first + '.xlsx'
-            writer = pd.ExcelWriter(excel_output)
-            df_data.to_excel(writer,'Sheet1')
-            writer.save()
-            print '\nData saved to {0}'.format(excel_output)
+            # Save dataframe object to a new worksheet in the Excel file
+            df_data.to_excel(writer, current_ticker)
+            print '\nData saved to {0} worksheet in {1}'.format(current_ticker, excel_file)
 
             # Re-assign data in StockInfo object as updated dataframe table
             master_stock_data[current_ticker][current_data_set_index].add_metrics(df_data)
@@ -731,6 +737,9 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
         # End loop through analysis for all tickers selected
         ##############################################################
         ##############################################################
+
+        # Save the output Excel file
+        writer.save()
 
     # Print exit text
     print '\n------------------------------------------------------------'
