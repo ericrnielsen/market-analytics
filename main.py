@@ -102,33 +102,43 @@ if __name__ == "__main__":
             menu_options.determine_top_tickers(master_articles, master_tickers, 'manual', [])
 
         #########################################################################
-        # Option [3] View ticker list (and associated articles)
+        # Option [3] Load tickers from file
         elif use == 3:
+            menu_options.load_tickers(master_tickers, 'manual', [])
+
+        #########################################################################
+        # Option [4] Create new ticker list file
+        elif use == 4:
+            menu_options.create_ticker_file(master_tickers, 'manual', [])
+
+        #########################################################################
+        # Option [5] View ticker list (and associated articles)
+        elif use == 5:
             menu_options.view_ticker_list(master_articles, master_tickers)
 
         #########################################################################
-        # Option [4] Manually edit ticker list
-        elif use == 4:
+        # Option [6] Manually edit ticker list
+        elif use == 6:
             menu_options.edit_ticker_list(master_tickers, 'manual', [])
 
         #########################################################################
-        # Option [5] Get market data for ticker(s)
-        elif use == 5:
+        # Option [7] Get market data for ticker(s)
+        elif use == 7:
             menu_options.get_financial_data(master_tickers, master_stock_data, 'manual', [])
 
         #########################################################################
-        # Option [6] Analyze market data
-        elif use == 6:
+        # Option [8] Analyze market data
+        elif use == 8:
             menu_options.compute_stock_metrics(master_stock_data, 'manual', [])
 
         #########################################################################
-        # Option [7] Load stock metrics from Excel file
-        elif use == 7:
+        # Option [9] Load stock metrics from Excel file
+        elif use == 9:
             menu_options.load_stock_metrics(master_stock_data, 'manual', [])
 
         #########################################################################
-        # Option [7] Exit program
-        elif use == 8:
+        # Option [10] Exit program
+        elif use == 10:
             menu_options.exit_program()
             continue_code = False
 

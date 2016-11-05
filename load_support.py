@@ -29,10 +29,30 @@ def load_live(master_articles, run_type, selections):
 
     # If need to get user input manually (not a quick run)
     if run_type == 'manual':
-        # Ask user what sites they want to search
-        prompt = '\nWhich site(s) do you want to search?\n[1] zergwatch\n[2] streetupdates' + \
-        '\n[3] newsoracle\n[4] smarteranalyst\n[5] streetinsider !!\n\nEnter number(s): '
-        response_list = raw_input(prompt).split(' ')
+        ######################################################
+        # Ask user what sites they want to search (in loop until valid selection)
+        valid = False
+        while valid == False:
+            prompt = '\nWhich site(s) do you want to search?\n' + \
+            '[1] zergwatch\n' + \
+            '[2] streetupdates\n' + \
+            '[3] newsoracle\n' + \
+            '[4] smarteranalyst\n' + \
+            '[5] streetinsider !!\n\n' + \
+            'Enter number(s): '
+            response_list = raw_input(prompt).split(' ')
+            try:
+                response_list = [int(float(num)) for num in response_list]
+                valid = all(num in range(1,6) for num in response_list)
+            except KeyboardInterrupt:
+                print'\n'
+                sys.exit()
+            except:
+                pass
+            if valid == False:
+                print '\nInvalid selection. Please try again.'
+        # End selection loop
+        ######################################################
 
         # Have user input number of days worth of articles they want to search
         print ''
@@ -143,24 +163,39 @@ def load_previous_run(master_articles):
     # Get list of available files from previous runs
     previous_runs = glob2.glob('previous-runs/*.txt')
 
-    # Ask user which file they want to  use to load articles
-    prompt = '\nWhich previous run do you want to load from?\n'
-    n = 0
-    for item in previous_runs:
-        n += 1
-        file_info = item.split('_')
-        file_date = file_info[0][14:]
-        file_time = ':'.join(file_info[1].split('-'))
-        file_site = file_info[2]
-        file_days_back = file_info[3][:-4]
-        prompt += '[{0}] {1} at {2} for previous {3} days | '.format(n, file_date, file_time, file_days_back)
-        prompt += 'Articles from: {0}\n'.format(file_site)
-    prompt += '\nEnter number(s): '
-    chosen_file = int(float(raw_input(prompt)))
+    ######################################################
+    # Ask user which file they want to  use to load articles (in loop until valid selection)
+    valid = False
+    while valid == False:
+        prompt = '\nWhich previous run do you want to load from?\n'
+        n = 0
+        for item in previous_runs:
+            n += 1
+            file_info = item.split('_')
+            file_date = file_info[0][14:]
+            file_time = ':'.join(file_info[1].split('-'))
+            file_site = file_info[2]
+            file_days_back = file_info[3][:-4]
+            prompt += '[{0}] {1} at {2} for previous {3} days | '.format(n, file_date, file_time, file_days_back)
+            prompt += 'Articles from: {0}\n'.format(file_site)
+        prompt += '\nEnter number(s): '
+        try:
+            choice = int(float(raw_input(prompt)))
+        except KeyboardInterrupt:
+            print'\n'
+            sys.exit()
+        except:
+            choice = -1
+        if choice in range(1,n+1):
+            valid = True
+        if valid == False:
+            print '\nInvalid selection. Please try again.'
+    # End selection loop
+    ######################################################
 
     # Read from selected file and load master_articles object
     master_articles_new = Article_List()
-    with open(previous_runs[chosen_file-1], 'r') as load_file:
+    with open(previous_runs[choice-1], 'r') as load_file:
         content = load_file.readlines()
         n = 0
         # Loop through each line in the file, look at 5 lines at a time
