@@ -24,6 +24,8 @@ import glob2
 from StockInfo import StockInfo
 import menu_options
 from collections import defaultdict
+import pandas as pd
+import ticker_reference
 
 # Kyle's stuff commented out for now
 '''
@@ -58,7 +60,9 @@ if __name__ == "__main__":
     # Overarching variables
     # (passed back and forth between main function and each menu option function)
     master_articles = Article_List()
+    #master_tickers = defaultdict(list)
     master_tickers = {}
+    master_ticker_reference = pd.read_csv('ticker_reference.csv')
     master_stock_data = defaultdict(list)
 
     #########################################################################

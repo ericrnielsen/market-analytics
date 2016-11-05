@@ -423,6 +423,11 @@ def create_ticker_file(master_tickers, run_type, selections):
     # End selection loop
     ######################################################
 
+    # If the current ticker list is empty, divert the user to option 2
+    if choice == 1 and len(master_tickers) == 0:
+        print '\nCurrent ticker list is empty. Please enter tickers manually.'
+        choice = 2
+
     # Get tickers to add if the user selects to input tickers themselves
     if choice == 2:
         prompt = '\nEnter the tickers you would like to add to the file: '

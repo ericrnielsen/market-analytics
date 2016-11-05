@@ -17,6 +17,9 @@ class StockInfo:
         # Ticker name
         self.ticker = ticker
 
+        # Company name
+        self.name = ''
+
         # Actual data
         logging.getLogger("requests").setLevel(logging.WARNING)
         self.data = web.DataReader(ticker, 'yahoo', start_date, end_date)
