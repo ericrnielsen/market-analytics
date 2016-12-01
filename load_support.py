@@ -44,6 +44,7 @@ def load_live(master_articles, run_type, selections):
             try:
                 response_list = [int(float(num)) for num in response_list]
                 valid = all(num in range(1,6) for num in response_list)
+                response_list = [str(num) for num in response_list]
             except KeyboardInterrupt:
                 print'\n'
                 sys.exit()

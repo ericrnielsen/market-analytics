@@ -6,6 +6,7 @@ import time
 import datetime
 import pandas_datareader.data as web
 import logging
+import ticker_reference
 
 #########################################################################
 #########################################################################
@@ -13,12 +14,12 @@ import logging
 class StockInfo:
 
     # Init the object
-    def __init__(self, ticker, start_date, end_date):
+    def __init__(self, ticker, master_ticker_reference, start_date, end_date):
         # Ticker name
         self.ticker = ticker
 
         # Company name
-        self.name = ''
+        self.name = ticker_reference.get_company_name(ticker, master_ticker_reference)
 
         # Actual data
         logging.getLogger("requests").setLevel(logging.WARNING)

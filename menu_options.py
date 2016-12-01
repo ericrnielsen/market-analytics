@@ -13,8 +13,10 @@ from StockInfo import StockInfo
 import pandas as pd
 import openpyxl
 import xlrd
+from openpyxl import load_workbook
 import calc_support
 import quick_run_support
+import ticker_reference
 
 #########################################################################
 #########################################################################
@@ -105,7 +107,7 @@ def print_main_menu(master_articles, master_tickers, master_stock_data):
 #########################################################################
 #########################################################################
 # Start Option [0] Quick run
-def quick_run(master_articles, master_tickers, master_stock_data):
+def quick_run(master_articles, master_tickers, master_stock_data, master_ticker_reference):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -146,19 +148,19 @@ def quick_run(master_articles, master_tickers, master_stock_data):
 
     # If user selects option 1
     if choice == 1:
-        quick_run_support.run_1(master_articles, master_tickers, master_stock_data, selections)
+        quick_run_support.run_1(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # If user selects option 2
     elif choice == 2:
-        quick_run_support.run_2(master_articles, master_tickers, master_stock_data, selections)
+        quick_run_support.run_2(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # If user selects option 3
     elif choice == 3:
-        quick_run_support.run_3(master_articles, master_tickers, master_stock_data, selections)
+        quick_run_support.run_3(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # If user selects option 4
     else:
-        quick_run_support.run_4(master_articles, master_tickers, master_stock_data, selections)
+        quick_run_support.run_4(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # Print success message
     print '\n>>> Successfully completed selected quick run'
@@ -602,7 +604,7 @@ def edit_ticker_list(master_tickers, run_type, selections):
 #########################################################################
 #########################################################################
 # Start Option [7] Get financial data for ticker(s)
-def get_financial_data(master_tickers, master_stock_data, run_type, selections):
+def get_financial_data(master_tickers, master_stock_data, master_ticker_reference, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -674,7 +676,7 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
 
             # Add StockInfo objects to master_stock_data list
             for ticker in tickers_to_use:
-                master_stock_data[ticker].append(StockInfo(ticker, start, end))
+                master_stock_data[ticker].append(StockInfo(ticker, master_ticker_reference, start, end))
 
     # Else it's a quick run so user inputs already entered
     else:
@@ -682,7 +684,7 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
         start = selections['Start']
         end = selections['End']
         for ticker in tickers_to_use:
-            master_stock_data[ticker].append(StockInfo(ticker, start, end))
+            master_stock_data[ticker].append(StockInfo(ticker, master_ticker_reference, start, end))
 
     # Print success message
     print '\n>>> Successfully retrieved data for: {0}'.format(', '.join(tickers_to_use))
@@ -699,7 +701,7 @@ def get_financial_data(master_tickers, master_stock_data, run_type, selections):
 #########################################################################
 #########################################################################
 # Start Option [8] Compute stock metrics
-def compute_stock_metrics(master_stock_data, run_type, selections):
+def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -771,6 +773,9 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
         excel_file = 'stock-data/' + tickers_string + last + '_to_' + first + '.xlsx'
         writer = pd.ExcelWriter(excel_file)
 
+        # Create worksheet number variable (will be name of each worksheet)
+        current_worksheet = 1
+
         ##############################################################
         ##############################################################
         # Start loop through analysis for all tickers selected
@@ -799,6 +804,9 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
                 # Make index be a count up from 0
                 indices = range(0, len(df_data.index))
                 df_data.index = indices
+
+            # Add column to associate each record with ticker
+            df_data.insert(0, 'Ticker', current_ticker)
 
             # Create list with names of additional columns to be added to the table
             columns_to_add = ['Spread', 'Gain', 'Loss', \
@@ -914,8 +922,13 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
             ##############################################################
 
             # Save dataframe object to a new worksheet in the Excel file
-            df_data.to_excel(writer, current_ticker)
-            print '\nData saved to {0} worksheet in {1}'.format(current_ticker, excel_file)
+            if current_worksheet == 1:
+                worksheet_name = 'Main'
+            else:
+                worksheet_name = str(current_worksheet)
+            df_data.to_excel(writer, worksheet_name)
+            print '\nData for {0} saved to worksheet {1} in {2}'.format(current_ticker, current_worksheet, excel_file)
+            current_worksheet += 1
 
             # Re-assign data in StockInfo object as updated dataframe table
             master_stock_data[current_ticker][current_data_set_index].add_metrics(df_data)
@@ -926,6 +939,27 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
 
         # Save the output Excel file
         writer.save()
+
+    # Add blank worksheets out to 30 total
+    wb = load_workbook(excel_file)
+    while current_worksheet <= 30:
+        wb.create_sheet(str(current_worksheet))
+        current_worksheet += 1
+
+    # Add worksheet at front of Excel that has a list of all the tickers
+    ticker_sheet = wb.create_sheet('Tickers')
+
+    current_row = 1
+    for chosen in chosen_compute:
+        current_ticker = chosen[0]
+        _ = ticker_sheet.cell(column=1, row=current_row, value=current_ticker)
+        current_row += 1    
+
+    # Re-order worksheets to get ticker sheet at the beginning
+    my_order = [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, \
+    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+    wb._sheets = [wb._sheets[i] for i in my_order]
+    wb.save(excel_file)
 
     # Print success message
     print '\n>>> Successfully computed stock metrics'
@@ -942,7 +976,7 @@ def compute_stock_metrics(master_stock_data, run_type, selections):
 #########################################################################
 #########################################################################
 # Start Option [9] Load stock metrics from Excel
-def load_stock_metrics(master_stock_data, run_type, selections):
+def load_stock_metrics(master_stock_data, master_ticker_reference, run_type, selections):
 
     # Print intro text
     print '\n------------------------------------------------------------'
@@ -1010,7 +1044,7 @@ def load_stock_metrics(master_stock_data, run_type, selections):
         # Get the current sheet
         current_df = pd.read_excel(open(chosen_file, 'rb'), sheetname=ticker)
         # Create new StockInfo object
-        to_add = StockInfo(ticker, start, end)
+        to_add = StockInfo(ticker, master_ticker_reference, start, end)
         to_add.add_metrics(current_df)
         master_stock_data[ticker].append(to_add)
 

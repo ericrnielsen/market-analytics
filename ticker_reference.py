@@ -19,7 +19,11 @@ def check_valid(ticker, master_ticker_reference):
 # If user wants to get the company name for a ticker
 def get_company_name(ticker, master_ticker_reference):
     row = master_ticker_reference.loc[master_ticker_reference['Ticker'] == ticker]
-    return row['Name'].values[0]
+    try:
+        company_name = row['Name'].values[0]
+    except:
+        company_name = ticker
+    return company_name
 
 #########################################################################
 #########################################################################

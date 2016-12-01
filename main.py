@@ -93,7 +93,7 @@ if __name__ == "__main__":
         #########################################################################
         # Option [0] Quick run
         if use == 0:
-            menu_options.quick_run(master_articles, master_tickers, master_stock_data)
+            menu_options.quick_run(master_articles, master_tickers, master_stock_data, master_ticker_reference)
 
         #########################################################################
         # Option [1] Load articles
@@ -128,17 +128,17 @@ if __name__ == "__main__":
         #########################################################################
         # Option [7] Get market data for ticker(s)
         elif use == 7:
-            menu_options.get_financial_data(master_tickers, master_stock_data, 'manual', [])
+            menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'manual', [])
 
         #########################################################################
         # Option [8] Analyze market data
         elif use == 8:
-            menu_options.compute_stock_metrics(master_stock_data, 'manual', [])
+            menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'manual', [])
 
         #########################################################################
         # Option [9] Load stock metrics from Excel file
         elif use == 9:
-            menu_options.load_stock_metrics(master_stock_data, 'manual', [])
+            menu_options.load_stock_metrics(master_stock_data, master_ticker_reference, 'manual', [])
 
         #########################################################################
         # Option [10] Exit program

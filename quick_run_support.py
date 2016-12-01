@@ -14,7 +14,7 @@ import menu_options
 #########################################################################
 #########################################################################
 # If user selects [1] Search streetinsider live -> determine top tickers -> get financial data
-def run_1(master_articles, master_tickers, master_stock_data, selections):
+def run_1(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections):
 
     # Need to get all input necessary to make function calls
     prompt1 = raw_input("\nHow many days back do you want to search? ")
@@ -45,16 +45,16 @@ def run_1(master_articles, master_tickers, master_stock_data, selections):
             selections['Tickers'].append(key)
 
     # Get market data for identified tickers
-    menu_options.get_financial_data(master_tickers, master_stock_data, 'quick', selections)
+    menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
 
     # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, 'quick', selections)
+    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
 
 #########################################################################
 #########################################################################
 #########################################################################
 # If user selects [2] Enter ticker(s) -> get financial data
-def run_2(master_articles, master_tickers, master_stock_data, selections):
+def run_2(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections):
 
     # Need to get all input necessary to make function calls
     prompt1 = '\nWhat tickers would you like to get financial data for? '
@@ -72,16 +72,16 @@ def run_2(master_articles, master_tickers, master_stock_data, selections):
     menu_options.edit_ticker_list(master_tickers, 'quick', selections)
 
     # Get market data for identified tickers
-    menu_options.get_financial_data(master_tickers, master_stock_data, 'quick', selections)
+    menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
 
     # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, 'quick', selections)
+    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
 
 #########################################################################
 #########################################################################
 #########################################################################
 # If user selects [3] Update stock metrics in Excel file for current day
-def run_3(master_articles, master_tickers, master_stock_data, selections):
+def run_3(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections):
 
     # Get list of available Excel files from previous computations
     available_metrics = glob2.glob('stock-data/*.xlsx')
@@ -133,16 +133,16 @@ def run_3(master_articles, master_tickers, master_stock_data, selections):
     menu_options.edit_ticker_list(master_tickers, 'quick', selections)
 
     # Get market data for identified tickers
-    menu_options.get_financial_data(master_tickers, master_stock_data, 'quick', selections)
+    menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
 
     # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, 'quick', selections)
+    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
 
 #########################################################################
 #########################################################################
 #########################################################################
 # If user selects [4] Current test configuration (TWX from 2015-01-01 to today)
-def run_4(master_articles, master_tickers, master_stock_data, selections):
+def run_4(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections):
 
     # Fill selections list to be passed to required functions
     selections['Quickrun'] = 4
@@ -153,7 +153,7 @@ def run_4(master_articles, master_tickers, master_stock_data, selections):
     menu_options.edit_ticker_list(master_tickers, 'quick', selections)
 
     # Get market data for identified tickers
-    menu_options.get_financial_data(master_tickers, master_stock_data, 'quick', selections)
+    menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
 
     # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, 'quick', selections)
+    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
