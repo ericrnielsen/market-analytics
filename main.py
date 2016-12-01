@@ -23,34 +23,15 @@ from dominate.tags import *
 import glob2
 from StockInfo import StockInfo
 import menu_options
+import menu_optionsAPI
 from collections import defaultdict
 import pandas as pd
 import ticker_reference
+from flask import Flask, request, render_template, jsonify
+from flask.ext.jsonpify import jsonify
 
-# Kyle's stuff commented out for now
-'''
-class form:
-    form = web.form.Form(
-        web.form.Checkbox('zergwatch', value=True),
-        web.form.Checkbox('streetupdates', value=True),
-        web.form.Checkbox('newsoracle', value=True),
-        web.form.Checkbox('smarteranalyst', value=True),
-        web.form.Checkbox('streetinsider', value=True),
-        web.form.Dropdown('days', args=['1', '2', '3', '4', '5']),
-        web.form.Button('Post entry')
-    )
 
-    # GET method is used when there is no form data sent to the server
-    def GET(self):
-        form = self.form()
-        return render.form(form)
 
-    def POST(self):
-        form = self.form()
-        if not form.validates():
-            print 'uh oh'
-        raise web.seeother('/success')
-'''
 
 if __name__ == "__main__":
 
@@ -64,6 +45,7 @@ if __name__ == "__main__":
     master_tickers = {}
     master_ticker_reference = pd.read_csv('ticker_reference.csv')
     master_stock_data = defaultdict(list)
+    master_stock_data_test = defaultdict(list)
 
     #########################################################################
     #########################################################################
@@ -74,16 +56,26 @@ if __name__ == "__main__":
         # Kyle's stuff commented out for now
         # Eric, change this if you dont want to use the server for inputs
         '''
-        server = False
+        app = Flask(__name__)
 
-        urls = (
-            '/articles', 'form'
-        )
-        render = web.template.render('templates/')
-        app = web.application(urls, globals())
-        if server:
+        @app.route('/', methods=['GET'])
+        def test():
+            list = [
+                {'param': 'foo', 'val': 2},
+                {'param': 'bar', 'val': 10}
+            ]
+            master_tickers_test = {
+                'AMD' : 'user added'
+            }
+            menu_optionsAPI.get_financial_dataAPI(master_tickers_test, master_stock_data_test, 'manual', [], '2016-01-01','2016-05-01')
+            menu_optionsAPI.compute_stock_metricsAPI(master_stock_data_test, 'manual', [])
+            print master_stock_data_test
+            return  jsonify(results=list)
+
+        if __name__ == "__main__":
             app.run()
-        '''
+            '''
+
 
         #########################################################################
         # Printing main program menu and getting user input on option to execute
