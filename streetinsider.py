@@ -21,6 +21,7 @@ def search(num_days):
     from Article import Article
     from Article_List import Article_List
     import logging
+    import platform
 
     # Suppress logging messages
     logging.getLogger("requests").setLevel(logging.WARNING)
@@ -151,7 +152,15 @@ def search(num_days):
     #########################################################################
 
     # Get StreetInsider Premium authentication information from local file
-    file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
+    print platform.system()
+
+    if platform.uname()[1] == 'DESKTOP-641I540':
+        file_name = "C:\Users\Justin\Desktop\stock_project\street-insider-auth/streetinsiderauth.txt"
+    elif platform.uname()[1] == 'Erics-MacBook-Pro.local':
+        file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
+    else:    
+        file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
+
     f = open(file_name, 'r')
     lines = f.readlines()
     login_payload = {}
