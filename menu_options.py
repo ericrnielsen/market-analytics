@@ -754,7 +754,7 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
                             prompt += '[{0}] {1:<6} '.format(n, data_set.ticker)
                             prompt += 'data from {0} to {1}\n'.format(str(data_set.start_date)[:-9], str(data_set.end_date)[:-9])
                             possible_compute[n] = [ticker, data_set_index, data_set]
-                prompt += '\nEnter number(s): '
+                prompt += '\nEnter number(s) or \'all\': '
                 choices = raw_input(prompt).split(' ')
                 try:
                     choices = [int(float(num)) for num in choices]
@@ -763,7 +763,8 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
                     print'\n'
                     sys.exit()
                 except:
-                    pass
+                    if choices[0] == 'all' or choices[0] == 'All':
+                        valid = True
                 if valid == False:
                     print '\nInvalid selection. Please try again.'
             # End selection loop
@@ -771,8 +772,12 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
 
             # Add (valid) choices to list
             chosen_compute = []
-            for num in choices:
-                chosen_compute.append(possible_compute[num])
+            if choices[0] == 'all' or choices[0] == 'All':
+                for value in possible_compute:
+                    chosen_compute.append(possible_compute[value])
+            else:
+                for num in choices:
+                    chosen_compute.append(possible_compute[num])
 
         # Else it's a quick run so user inputs already entered
         else:
