@@ -152,13 +152,11 @@ def search(num_days):
     #########################################################################
 
     # Get StreetInsider Premium authentication information from local file
-    print platform.system()
-
     if platform.uname()[1] == 'DESKTOP-641I540':
         file_name = "C:\Users\Justin\Desktop\stock_project\street-insider-auth/streetinsiderauth.txt"
     elif platform.uname()[1] == 'Erics-MacBook-Pro.local':
         file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
-    else:    
+    else:
         file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
 
     f = open(file_name, 'r')
