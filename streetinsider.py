@@ -43,7 +43,7 @@ def search(num_days):
         day_to_add -= datetime.timedelta(days=1)
     for item in temp_dates:
         month = item.strftime("%B")
-        day = item.strftime("%e").replace(' ', '')
+        day = item.strftime("%d").replace(' ', '')
         year = item.strftime("%Y")
         dates.append(month + ' ' + day + ", " + year)
 
