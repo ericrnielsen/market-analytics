@@ -555,34 +555,56 @@ def edit_ticker_list(master_tickers, run_type, selections):
                 n += 1
 
             # Ask user how they want to edit the list
-            prompt = '\nHow do you want to edit the list? (Add or Delete) '
+            prompt = '\nHow do you want to edit the list? (Add, Delete, or Clear All) '
             choice = raw_input(prompt)
 
             # If user wants to delete
-            if choice == 'Delete':
-                prompt = '\nWhat number item do you want to delete? '
-                num_to_delete = int(float(raw_input(prompt)))
-                if num_to_delete <= len(sorted_tickers):
+            if choice == 'Delete' or choice == 'delete':
+                # Ask user what item(s) they want to delete, loop until valid selection(s)
+                valid = False
+                while valid == False:
+                    prompt = '\nWhat item(s) do you want to delete? \n'
+                    prompt += '\nEnter number(s): '
+                    choices = raw_input(prompt).split(' ')
+                    try:
+                        choices = [int(float(num)) for num in choices]
+                        valid = all(num in range(1,len(sorted_tickers)+1) for num in choices)
+                    except KeyboardInterrupt:
+                        print'\n'
+                        sys.exit()
+                    except:
+                        pass
+                    if valid == False:
+                        print '\nInvalid selection(s). Please try again.'
+                # Actually perform the delete
+                for num_to_delete in choices:
                     ticker_to_delete = sorted_tickers[num_to_delete-1][0]
                     del master_tickers[ticker_to_delete]
-                else:
-                    print '\nInvalid selection.'
 
             # If user wants to add
-            elif choice == 'Add':
-                prompt = '\nWhat ticker do you want to add? '
-                ticker_to_add = raw_input(prompt)
-                master_tickers[ticker_to_add] = 'user added'
+            elif choice == 'Add' or choice == 'add':
+                prompt = '\nWhat ticker(s) do you want to add? '
+                tickers_to_add = raw_input(prompt).split(' ')
+                for ticker in tickers_to_add:
+                    master_tickers[ticker] = 'user added'
+
+            elif choice == 'Clear All' or choice == 'clear all':
+                choices = range(1,len(sorted_tickers)+1)
+                for num_to_delete in choices:
+                    ticker_to_delete = sorted_tickers[num_to_delete-1][0]
+                    del master_tickers[ticker_to_delete]
+                done_editing = True
 
             # Error checking
             else:
                 print '\nInvalid selection.'
 
             # Ask if the user has any more edits to make
-            prompt = '\nDo you want to make any more edits? (Y or N) '
-            choice = raw_input(prompt)
-            if choice == 'N' or choice == 'No':
-                done_editing = True
+            if done_editing == False:
+                prompt = '\nDo you want to make any more edits? (Y or N) '
+                choice = raw_input(prompt)
+                if choice == 'N' or choice == 'No':
+                    done_editing = True
 
     # Else it's a quick run so user inputs already entered
     else:
@@ -953,7 +975,7 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
     for chosen in chosen_compute:
         current_ticker = chosen[0]
         _ = ticker_sheet.cell(column=1, row=current_row, value=current_ticker)
-        current_row += 1    
+        current_row += 1
 
     # Re-order worksheets to get ticker sheet at the beginning
     my_order = [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, \

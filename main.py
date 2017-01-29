@@ -27,24 +27,38 @@ import menu_optionsAPI
 from collections import defaultdict
 import pandas as pd
 import ticker_reference
-from flask import Flask, request, render_template, jsonify
-from flask.ext.jsonpify import jsonify
-
-
-
+#from flask import Flask, request, render_template, jsonify
+#from flask.ext.jsonpify import jsonify
 
 if __name__ == "__main__":
 
     # Variable that allows the code to loop until the user chooses to exit
     continue_code = True
 
-    # Overarching variables
-    # (passed back and forth between main function and each menu option function)
+    #########################################################################
+    #########################################################################
+    #########################################################################
+    # Global variables -
+    # Passed back and forth between main function and each menu option function
+
+    # Article_List object, which is a list of Article objects
+    # Each Article object contains a name, href, date, tickers, and keywords
     master_articles = Article_List()
-    #master_tickers = defaultdict(list)
+
+    # Dictionary
+    # Keys are tickers, Values are either article counts, 'user added', 'file loaded'
     master_tickers = {}
+
+    # Pandas dataframe object
+    # Contains tickers associated with company names
     master_ticker_reference = pd.read_csv('ticker_reference.csv')
+
+    # Dictionary
+    # Keys are tickers, Values are lists of Pandas dataframe objects containing stock data
     master_stock_data = defaultdict(list)
+
+    # Dictionary
+    # Keys are tickers, Values are lists of Pandas dataframe objects containing stock data
     master_stock_data_test = defaultdict(list)
 
     #########################################################################
@@ -53,9 +67,8 @@ if __name__ == "__main__":
     # Master while loop - continues until user chooses to exit
     while continue_code == True:
 
-        # Kyle's stuff commented out for now
-        # Eric, change this if you dont want to use the server for inputs
-        '''
+        ''' Kyle's stuff commented out for now
+
         app = Flask(__name__)
 
         @app.route('/', methods=['GET'])
@@ -74,8 +87,8 @@ if __name__ == "__main__":
 
         if __name__ == "__main__":
             app.run()
-            '''
 
+        Kyle's stuff commented out for now '''
 
         #########################################################################
         # Printing main program menu and getting user input on option to execute
@@ -143,8 +156,8 @@ if __name__ == "__main__":
         else:
             print "\nInvalid selection. Please try again."
 
-        # Kyle's stuff commented out for now
-        '''
+        ''' Kyle's stuff commented out for now
+
         f.write('\n----------------------------\n----------------------------\n\n')
         f.write('Kyle Tests\n')
         print master_articles.to_JSON()
@@ -158,7 +171,8 @@ if __name__ == "__main__":
         print doc
         with open('articles.html', 'w') as f:
             f.write(doc.render())
-        '''
+
+        Kyle's stuff commented out for now '''
 
     # End master while loop
     #########################################################################
