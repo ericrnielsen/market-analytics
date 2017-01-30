@@ -151,7 +151,8 @@ def search(num_days):
     #
     #########################################################################
 
-    # Get StreetInsider Premium authentication information from local file
+    # Determine correct file path for local file with authentication information
+    # Three options - Justin's computer, Eric's computer, or Kyle's computer
     if platform.uname()[1] == 'DESKTOP-641I540':
         file_name = "C:\Users\Justin\Desktop\stock_project\street-insider-auth/streetinsiderauth.txt"
     elif platform.uname()[1] == 'Erics-MacBook-Pro.local':
@@ -159,6 +160,7 @@ def search(num_days):
     else:
         file_name = os.path.expanduser("~/Desktop/street-insider-auth/streetinsiderauth.txt")
 
+    # Get StreetInsider Premium authentication information from local file
     f = open(file_name, 'r')
     lines = f.readlines()
     login_payload = {}
@@ -248,6 +250,9 @@ def search(num_days):
                 # Get the date of the link
                 date = link.find('span', {'class':'timestamp'}).contents[0]
 
+                # Get the time of the link
+                time = date.split(" ")[3]
+
                 # Months in dates only have 3 chars, so need to standardize to full month names
                 date_month = date.split(" ")[0]
                 date_day = date.split(" ")[1]
@@ -269,6 +274,7 @@ def search(num_days):
                         current_article.set_name(name)
                         current_article.set_href(href)
                         current_article.set_date(date)
+                        current_article.set_time(time)
                         all_articles.add_article(current_article)
                     n += 1
                 # Check to see if date is more than num_days ago

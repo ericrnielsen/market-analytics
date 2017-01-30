@@ -108,12 +108,12 @@ def run_3(master_articles, master_tickers, master_stock_data, master_ticker_refe
     chosen_file = available_metrics[chosen_num-1]
 
     # Get the tickers in the file by parsing the chosen file name
-    metrics_file = pd.ExcelFile(chosen_file)
-    file_tickers = metrics_file.sheet_names
-
-    # Get the start date of the data by parsing the chosen file name
     chosen_file_details = chosen_file.split('_')
     chosen_file_details.reverse()
+    chosen_file_details[len(chosen_file_details)-1] = chosen_file_details[len(chosen_file_details)-1][11:]
+    file_tickers = chosen_file_details[3:len(chosen_file_details)]
+
+    # Get the start date of the data by parsing the chosen file name
     start_date = chosen_file_details[2]
     start_year = int(float(start_date.split('-')[0]))
     start_month = int(float(start_date.split('-')[1]))
@@ -128,26 +128,6 @@ def run_3(master_articles, master_tickers, master_stock_data, master_ticker_refe
     for ticker in file_tickers:
         selections['Tickers'].append(ticker)
     selections['Start'] = start
-
-    # Add tickers to ticker list
-    menu_options.edit_ticker_list(master_tickers, 'quick', selections)
-
-    # Get market data for identified tickers
-    menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
-
-    # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
-
-#########################################################################
-#########################################################################
-#########################################################################
-# If user selects [4] Current test configuration (TWX from 2015-01-01 to today)
-def run_4(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections):
-
-    # Fill selections list to be passed to required functions
-    selections['Quickrun'] = 4
-    selections['Start'] = datetime.datetime(2015, 01, 01)
-    selections['Tickers'].append('TWX')
 
     # Add tickers to ticker list
     menu_options.edit_ticker_list(master_tickers, 'quick', selections)

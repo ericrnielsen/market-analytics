@@ -56,6 +56,9 @@ class Article_List:
             if edit_type == "date":
                 to_edit.set_date(value)
                 return 1
+            if edit_type == "time":
+                to_edit.set_time(value)
+                return 1
             if edit_type == "tickers":
                 to_edit.add_tickers(value)
                 return 1
@@ -84,6 +87,13 @@ class Article_List:
         top_ticker_dict = dict(sorted_counts[:top_num])
         return top_ticker_dict
 
+    def ticker_appears(self, ticker):
+        for article in self.articles:
+            for item in article.tickers:
+                if item == ticker:
+                    return True
+        return False
+
     def all_for_ticker(self, ticker):
         to_return = Article_List()
         for article in self.articles:
@@ -98,7 +108,7 @@ class Article_List:
 
     def reset(self, new_list):
         self.articles = new_list.articles
-        self.description = new_list.description        
+        self.description = new_list.description
 
     def to_JSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

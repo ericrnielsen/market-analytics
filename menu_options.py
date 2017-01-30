@@ -86,8 +86,7 @@ def print_main_menu(master_articles, master_tickers, master_stock_data):
     '[6] Manually edit current ticker list\n' + \
     '[7] Get financial data for ticker(s)\n' + \
     '[8] Compute stock metrics\n' + \
-    '[9] Load stock metrics from Excel\n' + \
-    '[10] Exit program\n\n' + \
+    '[9] Exit program\n\n' + \
     'Enter number: '
     try:
         use = int(float(raw_input(prompt)))
@@ -121,8 +120,7 @@ def quick_run(master_articles, master_tickers, master_stock_data, master_ticker_
         prompt = '\nWhich quick run do you want to do?\n' + \
         '[1] Search streetinsider live -> determine top tickers -> get financial data\n' + \
         '[2] Enter ticker(s) -> get financial data\n' + \
-        '[3] Update stock metrics in Excel file (new end date = today)\n' + \
-        '[4] Current test configuration (TWX from 2015-01-01 to today)\n\n' + \
+        '[3] Update stock metrics in Excel file (new end date = today)\n\n' + \
         'Enter number: '
         try:
             choice = int(float(raw_input(prompt)))
@@ -155,12 +153,8 @@ def quick_run(master_articles, master_tickers, master_stock_data, master_ticker_
         quick_run_support.run_2(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # If user selects option 3
-    elif choice == 3:
-        quick_run_support.run_3(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
-
-    # If user selects option 4
     else:
-        quick_run_support.run_4(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
+        quick_run_support.run_3(master_articles, master_tickers, master_stock_data, master_ticker_reference, selections)
 
     # Print success message
     print '\n>>> Successfully completed selected quick run'
@@ -362,13 +356,17 @@ def load_tickers(master_tickers, run_type, selections):
         while n < len(content):
             n += 1
             prompt += '{1}\n'.format(n, content[n-1].rstrip())
-        prompt += '\nDo you want to load these tickers? (Y or N) '
-        choice = raw_input(prompt)
 
-        # If confirmed, move on to loading; if not, repeat selection
-        if choice == 'Y' or choice == 'Yes':
-            confirmed = True
-
+        valid = False
+        while valid == False:
+            prompt += '\nDo you want to load these tickers? (Y or N) '
+            choice = raw_input(prompt)
+            if choice == 'Y' or choice == 'Yes' or choice == 'y':
+                confirmed = True
+                valid = True
+            elif choice == 'N' or choice == 'No' or choice == 'n':
+                confirmed = False
+                valid = True
     # End loop
     ##############################################################
 
@@ -500,23 +498,28 @@ def view_ticker_list(master_articles, master_tickers):
             print '[{0}] {1:<6} {2}'.format(n, item[0], description)
             n += 1
 
-        # Ask if user would like to see articles associated with tickers
-        prompt = '\nDo you want to see the articles associated with each ticker? (Y or N) '
-        choice = raw_input(prompt)
-        if choice == 'Y' or choice == 'Yes':
-            n = 0
-            for item in sorted_tickers:
-                n += 1
-                # For tickers that were added due to article frequency
-                if item[1] != 'user added':
-                    print '-----------------------------------------'
-                    print '[{0}]/[{1}] All {2} articles for {3}'.format(n, len(master_tickers), item[1], item[0])
-                    print '-----------------------------------------'
-                    print master_articles.all_for_ticker(item[0])
-                else:
-                    print '-----------------------------------------'
-                    print '[{0}]/[{1}] {2} was {3}. No articles to display.'.format(n, len(master_tickers), item[0], item[1])
-                    print '-----------------------------------------\n'
+        valid = False
+        while valid == False:
+            # Ask if user would like to see articles associated with tickers
+            prompt = '\nDo you want to see the articles associated with each ticker? (Y or N) '
+            choice = raw_input(prompt)
+            if choice == 'Y' or choice == 'Yes' or choice == 'y':
+                valid = True
+                n = 0
+                for item in sorted_tickers:
+                    n += 1
+                    # Check if the ticker appears in any loaded articles
+                    if master_articles.ticker_appears(item[0]) == True:
+                        print '-----------------------------------------'
+                        print '[{0}]/[{1}] All {2} articles for {3}'.format(n, len(master_tickers), item[1], item[0])
+                        print '-----------------------------------------'
+                        print master_articles.all_for_ticker(item[0])
+                    else:
+                        print '-----------------------------------------'
+                        print '[{0}]/[{1}] No articles to display for {2}'.format(n, len(master_tickers), item[0])
+                        print '-----------------------------------------\n'
+            elif choice == 'N' or choice == 'No' or choice == 'n':
+                valid = True
 
     # Print exit text
     print '\n------------------------------------------------------------'
@@ -601,10 +604,16 @@ def edit_ticker_list(master_tickers, run_type, selections):
 
             # Ask if the user has any more edits to make
             if done_editing == False:
-                prompt = '\nDo you want to make any more edits? (Y or N) '
-                choice = raw_input(prompt)
-                if choice == 'N' or choice == 'No':
-                    done_editing = True
+                valid = False
+                while valid == False:
+                    prompt = '\nDo you want to make any more edits? (Y or N) '
+                    choice = raw_input(prompt)
+                    if choice == 'N' or choice == 'No' or choice == 'n':
+                        done_editing = True
+                        valid = True
+                    elif choice == 'Y' or choice == 'Yes' or choice == 'y':
+                        done_editing = False
+                        valid = True
 
     # Else it's a quick run so user inputs already entered
     else:
@@ -1002,94 +1011,7 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
 
 #########################################################################
 #########################################################################
-# Start Option [9] Load stock metrics from Excel
-def load_stock_metrics(master_stock_data, master_ticker_reference, run_type, selections):
-
-    # Print intro text
-    print '\n------------------------------------------------------------'
-    print 'Begin [9] Load stock metrics from Excel'
-    print '------------------------------------------------------------'
-
-    # Get list of available Excel files from previous computations
-    available_metrics = glob2.glob('stock-data/*.xlsx')
-
-    ######################################################
-    # Ask user which file they want to use to load stock metrics (in loop until valid selection)
-    valid = False
-    while valid == False:
-        prompt = '\nWhich stock metric Excel file do you want to load from?\n'
-        n = 0
-        for file_name in available_metrics:
-            n += 1
-            file_details = file_name.split('_')
-            file_details.reverse()
-            end_date = file_details[0][:-5]
-            start_date = file_details[2]
-            file_details[len(file_details)-1] = file_details[len(file_details)-1][11:]
-            ticker_list = ', '.join(file_details[3:len(file_details)])
-            prompt += '[{0}] Tickers: {1}\n'.format(n, ticker_list)
-            if n < 10:
-                space = '    '
-            else:
-                space = '     '
-            prompt += '{0}From: {1}\tTo: {2}\n\n'.format(space, start_date, end_date)
-        prompt += 'Enter number: '
-        try:
-            chosen_num = int(float(raw_input(prompt)))
-        except KeyboardInterrupt:
-            print'\n'
-            sys.exit()
-        except:
-            chosen_num = -1
-        if chosen_num in range(1,n+1):
-            valid = True
-            chosen_file = available_metrics[chosen_num-1]
-        if valid == False:
-            print '\nInvalid selection. Please try again.'
-    # End selection loop
-    ######################################################
-
-    # Change the dates in the chosen file name to be datetime objects
-    chosen_file_details = chosen_file.split('_')
-    chosen_file_details.reverse()
-    start_date = chosen_file_details[2]
-    start_year = int(float(start_date.split('-')[0]))
-    start_month = int(float(start_date.split('-')[1]))
-    start_day = int(float(start_date.split('-')[2]))
-    start = datetime.datetime(start_year, start_month, start_day)
-    end_date = chosen_file_details[0][:-5]
-    end_year = int(float(end_date.split('-')[0]))
-    end_month = int(float(end_date.split('-')[1]))
-    end_day = int(float(end_date.split('-')[2]))
-    end = datetime.datetime(end_year, end_month, end_day)
-
-    # Open the chosen Excel file and load data into new StockInfo objects
-    # Then add to master_stock_data
-    to_read = pd.ExcelFile(chosen_file)
-    sheet_names = to_read.sheet_names
-    for ticker in sheet_names:
-        # Get the current sheet
-        current_df = pd.read_excel(open(chosen_file, 'rb'), sheetname=ticker)
-        # Create new StockInfo object
-        to_add = StockInfo(ticker, master_ticker_reference, start, end)
-        to_add.add_metrics(current_df)
-        master_stock_data[ticker].append(to_add)
-
-    # Print success message
-    print '\n>>> Successfully loaded metrics for: {0}'.format(', '.join(sheet_names))
-
-    # Print exit text
-    print '\n------------------------------------------------------------'
-    print 'End [9] Load stock metrics from Excel'
-    print '------------------------------------------------------------'
-
-# End Option [9] Load stock metrics from Excel
-#########################################################################
-#########################################################################
-
-#########################################################################
-#########################################################################
-# Start Option [10] Exit program
+# Start Option [9] Exit program
 def exit_program():
 
     # Print  text
@@ -1097,6 +1019,6 @@ def exit_program():
     print 'Adios'
     print '------------------------------------------------------------'
 
-# End Option [10] Exit program
+# End Option [9] Exit program
 #########################################################################
 #########################################################################

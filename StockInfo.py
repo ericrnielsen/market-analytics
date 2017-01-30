@@ -23,6 +23,7 @@ class StockInfo:
 
         # Actual data
         logging.getLogger("requests").setLevel(logging.WARNING)
+        #print 'Testing. ticker: {0}\tstart_date: {1}\tend_date: {2}'.format(ticker, start_date, end_date)
         self.data = web.DataReader(ticker, 'yahoo', start_date, end_date)
 
         # Data type (either base or computed)

@@ -8,12 +8,13 @@ class Article:
         self.name = ""
         self.href = ""
         self.date = ""
+        self.time = ""
         self.tickers = []
         self.keywords = []
 
     def __str__(self):
-        to_return = 'name:    {0}\nhref:    {1}\ndate:    {2}\ntickers: {3}\n'.format( \
-        self.name, self.href, self.date, self.tickers)
+        to_return = 'name:    {0}\nhref:    {1}\ndate:    {2}\ntime:    {3}\ntickers: {4}\n'.format( \
+        self.name, self.href, self.date, self.time, self.tickers)
         return to_return
 
     # Set the article name, also automatically sets the ticker values if there are tickers
@@ -35,6 +36,9 @@ class Article:
     def set_date(self, date):
         self.date = date.encode('ascii', 'ignore')
 
+    def set_time(self, time):
+        self.time = time.encode('ascii', 'ignore')
+
     def add_ticker(self, ticker):
         self.tickers.append(ticker)
 
@@ -45,7 +49,8 @@ class Article:
         #return self.__dict__ == other.__dict__
         if (self.name == other.name):
             if (self.date == other.date):
-                if (self.tickers == other.tickers):
-                    if (self.keywords == other.keywords):
-                        return True
+                if (self.time == other.time):
+                    if (self.tickers == other.tickers):
+                        if (self.keywords == other.keywords):
+                            return True
         return False

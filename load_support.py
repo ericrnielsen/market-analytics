@@ -34,16 +34,14 @@ def load_live(master_articles, run_type, selections):
         valid = False
         while valid == False:
             prompt = '\nWhich site(s) do you want to search?\n' + \
-            '[1] zergwatch\n' + \
-            '[2] streetupdates\n' + \
-            '[3] newsoracle\n' + \
-            '[4] smarteranalyst\n' + \
-            '[5] streetinsider !!\n\n' + \
+            '[1] streetinsider\n\n' + \
             'Enter number(s): '
             response_list = raw_input(prompt).split(' ')
             try:
                 response_list = [int(float(num)) for num in response_list]
-                valid = all(num in range(1,6) for num in response_list)
+                # This isn't the best way to check validity, but will be good
+                # if we add more sites
+                valid = all(num in range(1,2) for num in response_list)
                 response_list = [str(num) for num in response_list]
             except KeyboardInterrupt:
                 print'\n'
@@ -62,7 +60,7 @@ def load_live(master_articles, run_type, selections):
 
     # Else it's a quick run so user inputs already entered
     else:
-        response_list = '5'
+        response_list = '1'
         days_to_search = selections['Days to Search']
 
     # Print extra line
@@ -73,40 +71,8 @@ def load_live(master_articles, run_type, selections):
     sites_searched = []
 
     #########################################################################
-    # Search zergwatch.com and get all articles within past 'days_to_search'
-    if '1' in response_list:
-        sites_searched.append('zergwatch')
-        zergwatch_articles = zergwatch.search(days_to_search)
-    else:
-        zergwatch_articles = Article_List()
-
-    #########################################################################
-    # Search streetupdates.com and get all articles within past 'days_to_search'
-    if '2' in response_list:
-        sites_searched.append('streetupdates')
-        streetupdates_articles = streetupdates.search(days_to_search)
-    else:
-        streetupdates_articles = Article_List()
-
-    #########################################################################
-    # Search newsoracle.com and get all articles within past 'days_to_search'
-    if '3' in response_list:
-        sites_searched.append('newsoracle')
-        newsoracle_articles = newsoracle.search(days_to_search)
-    else:
-        newsoracle_articles = Article_List()
-
-    #########################################################################
-    # Search smarteranalyst.com and get all articles within past 'days_to_search'
-    if '4' in response_list:
-        sites_searched.append('smarteranalyst')
-        smarteranalyst_articles = smarteranalyst.search(days_to_search)
-    else:
-        smarteranalyst_articles = Article_List()
-
-    #########################################################################
     # Search streetinsider.com and get all articles within past 'days_to_search'
-    if '5' in response_list:
+    if '1' in response_list:
         sites_searched.append('streetinsider')
         streetinsider_articles = streetinsider.search(days_to_search)
     else:
@@ -114,14 +80,6 @@ def load_live(master_articles, run_type, selections):
 
     #########################################################################
     # Add all returned articles to master Article_List object
-    for article in zergwatch_articles.articles:
-        master_articles_new.add_article(article)
-    for article in streetupdates_articles.articles:
-        master_articles_new.add_article(article)
-    for article in newsoracle_articles.articles:
-        master_articles_new.add_article(article)
-    for article in smarteranalyst_articles.articles:
-        master_articles_new.add_article(article)
     for article in streetinsider_articles.articles:
         master_articles_new.add_article(article)
 

@@ -141,13 +141,8 @@ if __name__ == "__main__":
             menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'manual', [])
 
         #########################################################################
-        # Option [9] Load stock metrics from Excel file
+        # Option [9] Exit program
         elif use == 9:
-            menu_options.load_stock_metrics(master_stock_data, master_ticker_reference, 'manual', [])
-
-        #########################################################################
-        # Option [10] Exit program
-        elif use == 10:
             menu_options.exit_program()
             continue_code = False
 
