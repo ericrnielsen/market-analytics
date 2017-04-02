@@ -11,6 +11,7 @@ import streetupdates
 import newsoracle
 import smarteranalyst
 import streetinsider
+import wsnews4investors
 #import aomarkets
 #import marketwatch
 #import investorplace
@@ -34,14 +35,15 @@ def load_live(master_articles, run_type, selections):
         valid = False
         while valid == False:
             prompt = '\nWhich site(s) do you want to search?\n' + \
-            '[1] streetinsider\n\n' + \
+            '[1] streetinsider\n' + \
+            '[2] wsnews4investors\n\n' + \
             'Enter number(s): '
             response_list = raw_input(prompt).split(' ')
             try:
                 response_list = [int(float(num)) for num in response_list]
                 # This isn't the best way to check validity, but will be good
                 # if we add more sites
-                valid = all(num in range(1,2) for num in response_list)
+                valid = all(num in range(1,3) for num in response_list)
                 response_list = [str(num) for num in response_list]
             except KeyboardInterrupt:
                 print'\n'
@@ -75,13 +77,22 @@ def load_live(master_articles, run_type, selections):
     if '1' in response_list:
         sites_searched.append('streetinsider')
         streetinsider_articles = streetinsider.search(days_to_search)
+        # Add all returned articles to master Article_List object
+        for article in streetinsider_articles.articles:
+            master_articles_new.add_article(article)
     else:
         streetinsider_articles = Article_List()
 
     #########################################################################
-    # Add all returned articles to master Article_List object
-    for article in streetinsider_articles.articles:
-        master_articles_new.add_article(article)
+    # Search wsnews4investors.com and get all articles within past 'days_to_search'
+    if '2' in response_list:
+        sites_searched.append('wsnews4investors')
+        wsnews4investors_articles = wsnews4investors.search(days_to_search)
+        # Add all returned articles to master Article_List object
+        for article in wsnews4investors_articles.articles:
+            master_articles_new.add_article(article)
+    else:
+        wsnews4investors_articles = Article_List()
 
     #########################################################################
     # Save all articles to a file for later reference
