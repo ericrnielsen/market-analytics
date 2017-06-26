@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 import dominate
 from dominate.tags import *
 import glob2
-from StockInfo import StockInfo
+from StockInfo import StockInfo 
 import menu_options
 import menu_optionsAPI
 from collections import defaultdict
