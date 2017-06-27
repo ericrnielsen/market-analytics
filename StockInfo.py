@@ -19,7 +19,8 @@ class StockInfo:
         self.ticker = ticker
 
         # Company name
-        self.name = ticker_reference.get_company_name(ticker, master_ticker_reference)
+        #self.name = ticker_reference.get_company_name(ticker, master_ticker_reference)
+        self.name = ""    #ticker_reference.get_company_name(ticker, master_ticker_reference)
 
         # Actual data
         logging.getLogger("requests").setLevel(logging.WARNING)

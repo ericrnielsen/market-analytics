@@ -16,26 +16,27 @@ sys.path.insert(0,currentdir)
 
 if __name__ == "__main__":
 
-    testing = True
+    testing = False
 
     ######################################################################################
     # Testing - so specify input data here
     ######################################################################################
     if (testing == True):
-        input_dict = {'Tickers':['FB', 'MSFT'], 'Start':'2016-01-01', 'End':'today'}
-        input_json = json.dumps(input_dict)
-        input_data = json.loads(input_json)
+        input_data = {}
+        input_data['Tickers'] = ['FB', 'MSFT']
+        input_data['Start'] = '2016-01-01'
+        input_data['End'] = 'today'
 
     ######################################################################################
-    # Get JSON object passed in
+    # Get values passed in
     ######################################################################################
     else:
-        try:
-            passed_in = sys.argv[1]
-            input_data = json.loads(passed_in)
-        except:
-            print "ERROR: Invalid input!"
-            sys.exit(1)
+        input_data = {}
+        input_data['Tickers'] = sys.argv[3].split(",")
+        input_data['Start'] = sys.argv[1]
+        input_data['End'] = sys.argv[2]
+
+    print input_data    
 
     ######################################################################################
     # Working with the data in the JSON object
@@ -51,6 +52,7 @@ if __name__ == "__main__":
     start_time = dt.datetime.strptime('00:00:00', '%H:%M:%S').time()
     start_datetime = dt.datetime.combine(start_date, start_time)
 
+
     # End date and datetime
     if (input_data['End'].lower() == 'today'):
         end_date = dt.datetime.now().date()
@@ -64,8 +66,9 @@ if __name__ == "__main__":
     ######################################################################################
    
     master_tickers = {}
-    master_ticker_reference = pd.read_csv('../ticker_reference.csv')
     master_stock_data = defaultdict(list)
+    master_ticker_reference = None #pd.read_csv('ticker_reference.csv')
+
 
     ######################################################################################
     # Set selections for calling the functions
@@ -85,6 +88,8 @@ if __name__ == "__main__":
     # Start and end dates
     selections['Start'] = start_datetime
     selections['End'] = end_datetime
+
+    print selections
 
     ######################################################################################
     # Call functions
