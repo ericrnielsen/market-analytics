@@ -707,8 +707,7 @@ def get_financial_data(master_tickers, master_stock_data, master_ticker_referenc
 
             # Add StockInfo objects to master_stock_data list
             for ticker in tickers_to_use:
-                stock_info = StockInfo(ticker, master_ticker_reference, start, end)
-                
+                to_add = StockInfo(ticker, master_ticker_reference, start, end)
                 master_stock_data[ticker].append(to_add)
 
     # Else it's a quick run so user inputs already entered

@@ -68,6 +68,8 @@ def run_2(master_articles, master_tickers, master_stock_data, master_ticker_refe
     for ticker in desired_tickers:
         selections['Tickers'].append(ticker)
 
+    print selections['Start'], selections['End']
+
     # Add tickers to ticker list
     menu_options.edit_ticker_list(master_tickers, 'quick', selections)
 
