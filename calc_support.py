@@ -40,7 +40,7 @@ def calc_mov_avg(df_data, index, days):
     # Once you get 10 days, 15 days, etc. from start of sample
     else:
         current_slice = df_data[index:index+days]
-        mean = current_slice['Adj Close'].mean()
+        mean = current_slice['Close'].mean()
     return mean
 
 def calc_high(df_data, index, days):
@@ -52,7 +52,7 @@ def calc_high(df_data, index, days):
     else:
         end_search = index + days
     current_slice = df_data[index:end_search]
-    high = current_slice['Adj Close'].max()
+    high = current_slice['Close'].max()
     return high
 
 def calc_low(df_data, index, days):
@@ -64,7 +64,7 @@ def calc_low(df_data, index, days):
     else:
         end_search = index + days
     current_slice = df_data[index:end_search]
-    low = current_slice['Adj Close'].min()
+    low = current_slice['Close'].min()
     return low
 
 def calc_per_gain(df_data, index, days):
@@ -201,7 +201,7 @@ def calc_ema(df_data, index, days):
     else:
         EMA_col = str(days) + ' EMA'
         prev_ema = df_data.get_value(index+1, EMA_col)
-        curr_adj_close = df_data.get_value(index, 'Adj Close')
+        curr_adj_close = df_data.get_value(index, 'Close')
         multiplier = float(2.0 / (float(days) + 1.0))
         ema = ((curr_adj_close - prev_ema) * multiplier) + prev_ema
     return ema

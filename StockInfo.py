@@ -5,6 +5,7 @@ import operator
 import time
 import datetime
 import pandas_datareader.data as web
+import fix_yahoo_finance as yf
 import logging
 import ticker_reference
 
@@ -24,7 +25,8 @@ class StockInfo:
         # Actual data
         logging.getLogger("requests").setLevel(logging.WARNING)
         #print 'Testing. ticker: {0}\tstart_date: {1}\tend_date: {2}'.format(ticker, start_date, end_date)
-        self.data = web.DataReader(ticker, 'yahoo', start_date, end_date)
+        yf.pdr_override() # <== that's all it takes :-)
+        self.data = web.DataReader(ticker, 'google', start_date, end_date)
 
         # Data type (either base or computed)
         self.data_type = 'base'

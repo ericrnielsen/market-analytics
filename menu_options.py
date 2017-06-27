@@ -707,7 +707,9 @@ def get_financial_data(master_tickers, master_stock_data, master_ticker_referenc
 
             # Add StockInfo objects to master_stock_data list
             for ticker in tickers_to_use:
-                master_stock_data[ticker].append(StockInfo(ticker, master_ticker_reference, start, end))
+                stock_info = StockInfo(ticker, master_ticker_reference, start, end)
+                
+                master_stock_data[ticker].append(to_add)
 
     # Else it's a quick run so user inputs already entered
     else:
@@ -715,7 +717,8 @@ def get_financial_data(master_tickers, master_stock_data, master_ticker_referenc
         start = selections['Start']
         end = selections['End']
         for ticker in tickers_to_use:
-            master_stock_data[ticker].append(StockInfo(ticker, master_ticker_reference, start, end))
+            to_add = StockInfo(ticker, master_ticker_reference, start, end)
+            master_stock_data[ticker].append(to_add)
 
     # Print success message
     print '\n>>> Successfully retrieved data for: {0}'.format(', '.join(tickers_to_use))
@@ -830,13 +833,14 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
             df_data = df_data.sort_index(axis=0 ,ascending=False)
 
             # If the dataframe object for the ticker
-            if len(df_data.columns.tolist()) == 6:
+            if len(df_data.columns.tolist()) == 5:
                 # Make new column containing dates (currently in index)
                 df_data['Date'] = df_data.index
                 cols = df_data.columns.tolist()
                 cols.insert(0, cols.pop(cols.index('Date')))
-                df_data = df_data.reindex(columns= cols)
-
+                df_data = df_data.reindex(columns=cols)
+                # Strip blank timestamp from datetime
+                df_data['Date'] = df_data['Date'].apply(lambda x: x.date())
                 # Make index be a count up from 0
                 indices = range(0, len(df_data.index))
                 df_data.index = indices
