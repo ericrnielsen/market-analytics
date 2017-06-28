@@ -547,9 +547,10 @@ def view_ticker_list(master_articles, master_tickers):
 def edit_ticker_list(master_tickers, run_type, selections):
 
     # Print intro text
-    print '\n------------------------------------------------------------'
-    print 'Begin [6] Manually edit current ticker list (' + run_type + ')'
-    print '------------------------------------------------------------'
+    if not (selections['Web App'] == True):
+        print '\n------------------------------------------------------------'
+        print 'Begin [6] Manually edit current ticker list (' + run_type + ')'
+        print '------------------------------------------------------------'
 
     # If need to get user input manually (not a quick run)
     if run_type == 'manual':
@@ -630,14 +631,13 @@ def edit_ticker_list(master_tickers, run_type, selections):
     else:
         for ticker_to_add in selections['Tickers']:
             master_tickers[ticker_to_add] = 'user added'
-
-    # Print success message
-    print '\n>>> Successfully edited current ticker list'
-
-    # Print exit text
-    print '\n------------------------------------------------------------'
-    print 'End [6] Manually edit current ticker list (' + run_type + ')'
-    print '------------------------------------------------------------'
+    
+    # Print success and exit messages
+    if not (selections['Web App'] == True):
+        print '\n>>> Successfully edited current ticker list'
+        print '\n------------------------------------------------------------'
+        print 'End [6] Manually edit current ticker list (' + run_type + ')'
+        print '------------------------------------------------------------'
 
 # End Option [6] Manually edit ticker list
 #########################################################################
@@ -649,9 +649,10 @@ def edit_ticker_list(master_tickers, run_type, selections):
 def get_financial_data(master_tickers, master_stock_data, master_ticker_reference, run_type, selections):
 
     # Print intro text
-    print '\n------------------------------------------------------------'
-    print 'Begin [7] Get financial data for ticker(s) (' + run_type + ')'
-    print '------------------------------------------------------------'
+    if not (selections['Web App'] == True):
+        print '\n------------------------------------------------------------'
+        print 'Begin [7] Get financial data for ticker(s) (' + run_type + ')'
+        print '------------------------------------------------------------'
 
     # If need to get user input manually (not a quick run)
     if run_type == 'manual':
@@ -730,13 +731,12 @@ def get_financial_data(master_tickers, master_stock_data, master_ticker_referenc
             to_add = StockInfo(ticker, master_ticker_reference, start, end)
             master_stock_data[ticker].append(to_add)
 
-    # Print success message
-    print '\n>>> Successfully retrieved data for: {0}'.format(', '.join(tickers_to_use))
-
-    # Print exit text
-    print '\n------------------------------------------------------------'
-    print 'End [7] Get financial data for ticker(s) (' + run_type + ')'
-    print '------------------------------------------------------------'
+    # Print success and exit messages
+    if not (selections['Web App'] == True):
+        print '\n>>> Successfully retrieved data for: {0}'.format(', '.join(tickers_to_use))
+        print '\n------------------------------------------------------------'
+        print 'End [7] Get financial data for ticker(s) (' + run_type + ')'
+        print '------------------------------------------------------------'
 
 # End Option [7] Get financial data for ticker(s)
 #########################################################################
@@ -748,9 +748,10 @@ def get_financial_data(master_tickers, master_stock_data, master_ticker_referenc
 def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, selections):
 
     # Print intro text
-    print '\n------------------------------------------------------------'
-    print 'Begin [8] Compute stock metrics (' + run_type + ')'
-    print '------------------------------------------------------------'
+    if not (selections['Web App'] == True):
+        print '\n------------------------------------------------------------'
+        print 'Begin [8] Compute stock metrics (' + run_type + ')'
+        print '------------------------------------------------------------'
 
     # Error check for case that no data available
     if len(master_stock_data) == 0:
@@ -987,7 +988,9 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
             else:
                 worksheet_name = str(current_worksheet)
             df_data.to_excel(writer, worksheet_name)
-            print '\nData for {0} saved to worksheet {1} in {2}'.format(current_ticker, current_worksheet, excel_filename)
+            data_html = df_data.to_html()
+            if not (selections['Web App'] == True):
+                print '\nData for {0} saved to worksheet {1} in {2}'.format(current_ticker, current_worksheet, excel_filename)
             current_worksheet += 1
 
             # Re-assign data in StockInfo object as updated dataframe table
@@ -997,13 +1000,6 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
         ##############################################################
         ##############################################################
 
-        # THE OLD WAY (doesn't reach Here 2 using web app)
-        #print "Here 1"
-        # Save the output Excel file
-        #writer.save()
-        #print "Here 2"
-
-        # THE NEW WAY
         # Normal usage
         if not (selections['Web App'] == True):
             # Save the output Excel file
@@ -1031,28 +1027,24 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
 
         # Else it's the web app using this
         else:
+            pass
             # Close the book (used by the writer)
             #book.close()
             #print output.read()
-            print "Got here 1"
-            writer.close()
-            print "Got here 2"
-
-            print "Got here 4"
+            #writer.close()
             #response = HttpResponse(output.read(), mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             #response['Content-Disposition'] = "attachment; filename=%s" % (excel_filename)
 
-        # Print success message
-        print '\n>>> Successfully computed stock metrics'
-
-        # Print exit text
-        print '\n------------------------------------------------------------'
-        print 'End [8] Compute stock metrics'
-        print '------------------------------------------------------------'
+        # Print success and exit messages
+        if not (selections['Web App'] == True):
+            print '\n>>> Successfully computed stock metrics'
+            print '\n------------------------------------------------------------'
+            print 'End [8] Compute stock metrics'
+            print '------------------------------------------------------------'
 
         # If using web app, need to return file
         if (selections['Web App'] == True):
-            return output
+            return data_html
 
 # End Option [8] Compute stock metrics
 #########################################################################

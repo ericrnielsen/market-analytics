@@ -16,13 +16,13 @@ import menu_options
 sys.path.insert(0,currentdir)
 
 # Set up flask
-app = Flask(__name__)
-ctx = app.app_context()
-ctx.push()
+#app = Flask(__name__)
+#ctx = app.app_context()
+#ctx.push()
 
 if __name__ == "__main__":
 
-    testing = True
+    testing = False
 
     ######################################################################################
     # Testing - so specify input data here
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         input_data['Start'] = sys.argv[1]
         input_data['End'] = sys.argv[2]
 
-    print input_data    
+    #print input_data    
 
     ######################################################################################
     # Working with the data in the JSON object
@@ -108,11 +108,10 @@ if __name__ == "__main__":
 
     # Analyze market data (do calculations) for identified tickers
     output = menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
+    print output
 
     # Construct response
-    output.seek(0)
-    print "Got here 3"
-    with ctx:
-        send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
-        print "Got here 4"
+    #output.seek(0)
+    #with ctx:
+    #    send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
 
