@@ -18,6 +18,16 @@ import calc_support
 import quick_run_support
 import ticker_reference
 
+# For returning the excel file
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
+from django.http import HttpResponse
+from xlsxwriter.workbook import Workbook
+from io import BytesIO
+from flask import Flask, send_file
+
 #########################################################################
 #########################################################################
 # Start printing main program menu
@@ -143,6 +153,7 @@ def quick_run(master_articles, master_tickers, master_stock_data, master_ticker_
     selections['Tickers'] = []
     selections['Start'] = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
     selections['End'] = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+    selections['Web App'] = False
 
     # If user selects option 1
     if choice == 1:
@@ -801,15 +812,25 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
                         if data_set.data_type == 'base' and data_set.start_date == selections['Start'] and data_set.end_date == selections['End']:
                             chosen_compute.append([ticker, data_set_index, data_set])
 
-        # Create Excel file to save stock metrics to
+        # NEW
+        # If using normally - create Excel file to save stock metrics to
         tickers_string = ''
         for item in chosen_compute:
             tickers_string += item[0] + '_'
         temp_data = chosen_compute[0][2]
         last = str(temp_data.data.index[0])[:-9]
         first = str(temp_data.data.index[len(temp_data.data.index) - 1])[:-9]
-        excel_file = 'stock-data/' + tickers_string + last + '_to_' + first + '.xlsx'
-        writer = pd.ExcelWriter(excel_file)
+        excel_filename = 'stock-data/' + tickers_string + last + '_to_' + first + '.xlsx'
+
+        # If using normally - create Excel file to save stock metrics to
+        if not (selections['Web App'] == True):
+            writer = pd.ExcelWriter(excel_filename)
+        # Else, going to save it in memory before return
+        else:
+            #output = StringIO.StringIO()
+            #book = Workbook(output)
+            output = BytesIO()
+            writer = pd.ExcelWriter(output, engine='xlsxwriter')
 
         # Create worksheet number variable (will be name of each worksheet)
         current_worksheet = 1
@@ -966,7 +987,7 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
             else:
                 worksheet_name = str(current_worksheet)
             df_data.to_excel(writer, worksheet_name)
-            print '\nData for {0} saved to worksheet {1} in {2}'.format(current_ticker, current_worksheet, excel_file)
+            print '\nData for {0} saved to worksheet {1} in {2}'.format(current_ticker, current_worksheet, excel_filename)
             current_worksheet += 1
 
             # Re-assign data in StockInfo object as updated dataframe table
@@ -976,37 +997,62 @@ def compute_stock_metrics(master_stock_data, master_ticker_reference, run_type, 
         ##############################################################
         ##############################################################
 
+        # THE OLD WAY (doesn't reach Here 2 using web app)
+        #print "Here 1"
         # Save the output Excel file
-        writer.save()
+        #writer.save()
+        #print "Here 2"
 
-    # Add blank worksheets out to 30 total
-    wb = load_workbook(excel_file)
-    while current_worksheet <= 30:
-        wb.create_sheet(str(current_worksheet))
-        current_worksheet += 1
+        # THE NEW WAY
+        # Normal usage
+        if not (selections['Web App'] == True):
+            # Save the output Excel file
+            writer.save()
+            # Add blank worksheets out to 30 total
+            wb = load_workbook(excel_filename)
+            while current_worksheet <= 30:
+                wb.create_sheet(str(current_worksheet))
+                current_worksheet += 1
 
-    # Add worksheet at front of Excel that has a list of all the tickers
-    ticker_sheet = wb.create_sheet('Tickers')
+            # Add worksheet at front of Excel that has a list of all the tickers
+            ticker_sheet = wb.create_sheet('Tickers')
 
-    current_row = 1
-    for chosen in chosen_compute:
-        current_ticker = chosen[0]
-        _ = ticker_sheet.cell(column=1, row=current_row, value=current_ticker)
-        current_row += 1
+            current_row = 1
+            for chosen in chosen_compute:
+                current_ticker = chosen[0]
+                _ = ticker_sheet.cell(column=1, row=current_row, value=current_ticker)
+                current_row += 1
 
-    # Re-order worksheets to get ticker sheet at the beginning
-    my_order = [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, \
-    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
-    wb._sheets = [wb._sheets[i] for i in my_order]
-    wb.save(excel_file)
+            # Re-order worksheets to get ticker sheet at the beginning
+            my_order = [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, \
+            16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+            wb._sheets = [wb._sheets[i] for i in my_order]
+            wb.save(excel_filename)
 
-    # Print success message
-    print '\n>>> Successfully computed stock metrics'
+        # Else it's the web app using this
+        else:
+            # Close the book (used by the writer)
+            #book.close()
+            #print output.read()
+            print "Got here 1"
+            writer.close()
+            print "Got here 2"
 
-    # Print exit text
-    print '\n------------------------------------------------------------'
-    print 'End [8] Compute stock metrics (' + run_type + ')'
-    print '------------------------------------------------------------'
+            print "Got here 4"
+            #response = HttpResponse(output.read(), mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            #response['Content-Disposition'] = "attachment; filename=%s" % (excel_filename)
+
+        # Print success message
+        print '\n>>> Successfully computed stock metrics'
+
+        # Print exit text
+        print '\n------------------------------------------------------------'
+        print 'End [8] Compute stock metrics'
+        print '------------------------------------------------------------'
+
+        # If using web app, need to return file
+        if (selections['Web App'] == True):
+            return output
 
 # End Option [8] Compute stock metrics
 #########################################################################

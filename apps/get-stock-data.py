@@ -5,6 +5,8 @@ import sys, os, inspect, json
 import datetime as dt
 import pandas as pd
 from collections import defaultdict
+from io import BytesIO
+from flask import Flask, send_file
 
 # Need to get them from the directory above
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -13,10 +15,14 @@ sys.path.insert(0,parentdir)
 import menu_options
 sys.path.insert(0,currentdir)
 
+# Set up flask
+app = Flask(__name__)
+ctx = app.app_context()
+ctx.push()
 
 if __name__ == "__main__":
 
-    testing = False
+    testing = True
 
     ######################################################################################
     # Testing - so specify input data here
@@ -46,12 +52,11 @@ if __name__ == "__main__":
     tickers = []
     for each in input_data['Tickers']:
         tickers.append(each.encode('ascii', 'ignore'))
-
+    
     # Start date and datetime
     start_date = dt.datetime.strptime(input_data['Start'], '%Y-%m-%d').date()
     start_time = dt.datetime.strptime('00:00:00', '%H:%M:%S').time()
     start_datetime = dt.datetime.combine(start_date, start_time)
-
 
     # End date and datetime
     if (input_data['End'].lower() == 'today'):
@@ -78,7 +83,7 @@ if __name__ == "__main__":
 
     # Quick run type (option 2 is to compute stock data)
     selections['Quickrun'] = 2
-
+    selections['Web App'] = True
     # Tickers
     selections['Tickers'] = tickers
 
@@ -89,7 +94,7 @@ if __name__ == "__main__":
     selections['Start'] = start_datetime
     selections['End'] = end_datetime
 
-    print selections
+    #print selections
 
     ######################################################################################
     # Call functions
@@ -102,6 +107,12 @@ if __name__ == "__main__":
     menu_options.get_financial_data(master_tickers, master_stock_data, master_ticker_reference, 'quick', selections)
 
     # Analyze market data (do calculations) for identified tickers
-    menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
+    output = menu_options.compute_stock_metrics(master_stock_data, master_ticker_reference, 'quick', selections)
 
+    # Construct response
+    output.seek(0)
+    print "Got here 3"
+    with ctx:
+        send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
+        print "Got here 4"
 
